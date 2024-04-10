@@ -30,7 +30,7 @@ public class DzbanScript : MonoBehaviour, Interactable
     void Update()
     {
         TorchActiveCheck();
-        Debug.Log(pushCount);
+        Debug.Log(isOn);
     }
 
     void UpdateLight()
