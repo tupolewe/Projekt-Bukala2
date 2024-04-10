@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Rendering.LookDev;
 using UnityEngine;
 
 public class DzbanScript : MonoBehaviour, Interactable
@@ -12,11 +13,12 @@ public class DzbanScript : MonoBehaviour, Interactable
     public bool torchInRange = false;
     public bool torchActive = true;
     public GameObject Torch;
-    public Rigidbody Rigidbody;
-    private int pushCount = 0;
+    
+    private bool canPushD;
     public animationStateController animationStateController;
     public GameObject Player;
     public GameObject PushingPosition;
+    public GameObject dzban;
 
 
 
@@ -25,12 +27,13 @@ public class DzbanScript : MonoBehaviour, Interactable
     {
         
         dzbanLight.SetActive(false);
-        Rigidbody.isKinematic = true;
+       
+        
     }
     void Update()
     {
         TorchActiveCheck();
-        Debug.Log(isOn);
+       
     }
 
     void UpdateLight()
@@ -49,25 +52,27 @@ public class DzbanScript : MonoBehaviour, Interactable
         {
             UpdateLight();
         }
-        else if (isOn && !torchActive && pushCount == 0)
+        else if (isOn && !torchActive && !canPushD)
         {
 
             
-            Rigidbody.isKinematic = false;
-            pushCount = 1;
+            
+            canPushD = true;
             animationStateController.canPushD = true;
-            Player.transform.position = PushingPosition.transform.position;
+            
+            dzban.transform.position = PushingPosition.transform.position;
+            dzban.transform.SetParent(Player.transform, true);
         }
-        else if (isOn && !torchActive && pushCount > 0)
+        else if (isOn && !torchActive && canPushD)
         {
             
-            Rigidbody.isKinematic = true;
-            pushCount = 0;
+            
             animationStateController.canPushD = false;
-            
+            canPushD = false;
+            dzban.transform.parent = null;
 
-            
         }
+        
         
        
     }

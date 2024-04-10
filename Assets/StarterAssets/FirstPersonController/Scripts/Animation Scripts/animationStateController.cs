@@ -13,6 +13,8 @@ public class animationStateController : MonoBehaviour
     public bool torchActive;
     public GameObject Torch;
     public bool canPushD = false;
+    public PlayerController playerController;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -45,11 +47,13 @@ public class animationStateController : MonoBehaviour
             if (movementKey)
             {
                 animator.SetBool("isWalking", true);
+                
             }
 
             if (!movementKey)
             {
                 animator.SetBool("isWalking", false);
+                
             }
 
         
@@ -59,10 +63,10 @@ public class animationStateController : MonoBehaviour
 
     public void PushingAnimation ()
     {
-        bool canPush = animator.GetBool(canPushHash) && canPushD;
+        bool canPush = animator.GetBool(canPushHash);
         
         bool movementKey = Input.GetKey(KeyCode.W) | Input.GetKey(KeyCode.S) | Input.GetKey(KeyCode.A) | Input.GetKey(KeyCode.D);
-
+        
         
 
         if (!torchActive && canPushD) 
@@ -71,18 +75,18 @@ public class animationStateController : MonoBehaviour
             if (movementKey)
             {
                 animator.SetBool("canPush", true);
+                playerController.speed = 2f;
             }
 
             if (!movementKey)
             {
                 animator.SetBool("canPush", false);
+                playerController.speed = 4f;
             }
 
         }
       
-
-
-
+         
 
     }
 

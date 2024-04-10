@@ -7,6 +7,8 @@ public class TorchInteraction : MonoBehaviour
     public GameObject Torch;
     [SerializeField] private bool torchActive = true;
 
+    public animationStateController animationStateController;
+
     public void Update()
     {
         TorchFiring(); 
@@ -15,7 +17,7 @@ public class TorchInteraction : MonoBehaviour
     private void TorchFiring () 
     
     {
-      if (Input.GetKeyDown(KeyCode.F))
+      if (Input.GetKeyDown(KeyCode.F) && !animationStateController.canPushD)
 
 
         {

@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
 {
    
     [SerializeField] private Rigidbody _rb;
-    [SerializeField] private float _speed = 5;
+     public float speed = 4;
     [SerializeField] private float _turnSpeed = 180;
     private Vector3 _input;
 
@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
     {
         GatherInput();
         Look();
-        Debug.Log("chuj");
+        
     }
 
     private void FixedUpdate()
@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour
 
     private void Move()
     {
-        _rb.MovePosition(transform.position + transform.forward * _input.normalized.magnitude * _speed * Time.deltaTime);
+        _rb.MovePosition(transform.position + transform.forward * _input.normalized.magnitude * speed * Time.deltaTime);
     }
 
 
