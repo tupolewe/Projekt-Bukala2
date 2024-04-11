@@ -1,6 +1,7 @@
 using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.InputSystem.EnhancedTouch;
 
@@ -30,22 +31,23 @@ public class animationStateController : MonoBehaviour
     {
         WalkingAnimation();
         TorchActiveCheck();
-        PushingAnimation();
+        
     }
     
     public void WalkingAnimation ()
     {
         bool isWalking = animator.GetBool(isWalkingHash);
-        
+        bool canPush = animator.GetBool(canPushHash);
 
         bool movementKey = Input.GetKey(KeyCode.W) | Input.GetKey(KeyCode.S) | Input.GetKey(KeyCode.A) | Input.GetKey(KeyCode.D);
 
-    
+         
 
         if (!canPushD)
         {
-            if (movementKey)
-            {
+            if (movementKey && playerController.speed > 3)
+
+            {   
                 animator.SetBool("isWalking", true);
                 
             }
@@ -56,39 +58,40 @@ public class animationStateController : MonoBehaviour
                 
             }
 
-        
+            else if (playerController.speed < 3)
+            {
+                animator.SetBool("isWalking", false);
+            }
+
+
         }
 
-    }
-
-    public void PushingAnimation ()
-    {
-        bool canPush = animator.GetBool(canPushHash);
-        
-        bool movementKey = Input.GetKey(KeyCode.W) | Input.GetKey(KeyCode.S) | Input.GetKey(KeyCode.A) | Input.GetKey(KeyCode.D);
-        
-        
-
-        if (!torchActive && canPushD) 
+        if (canPushD)
         {
+            if (movementKey && playerController.speed < 3)
 
-            if (movementKey)
             {
                 animator.SetBool("canPush", true);
-                playerController.speed = 2f;
+
             }
 
             if (!movementKey)
             {
                 animator.SetBool("canPush", false);
-                playerController.speed = 4f;
-            }
 
+            }
+            else if (playerController.speed > 3)
+            {
+                animator.SetBool("canPush", false);
+            }
         }
-      
-         
 
     }
+
+    
+         
+
+    
 
     public void TorchActiveCheck()
     {

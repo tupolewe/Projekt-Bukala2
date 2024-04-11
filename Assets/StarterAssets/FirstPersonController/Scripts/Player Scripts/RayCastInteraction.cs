@@ -6,8 +6,9 @@ using UnityEngine.SocialPlatforms;
 
 public class RayCastInteraction : MonoBehaviour
 {
-    public float radius;
-    public float maxDistance;
+    public float range;
+
+    
 
     public GameObject player;
 
@@ -15,11 +16,7 @@ public class RayCastInteraction : MonoBehaviour
 
 
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, radius);
-    }
+    
 
     void Update()
     {
@@ -29,16 +26,14 @@ public class RayCastInteraction : MonoBehaviour
     public void RayInteraction()
     {
 
-        RaycastHit hit;
+        Vector3 direction = Vector3.forward;
+        Ray ray = new Ray(transform.position, transform.TransformDirection(direction * range));
+        Debug.DrawRay(transform.position, transform.TransformDirection(direction * range));
 
-        Vector3 p1 = transform.position;
-       
-
-        
-        if (Physics.SphereCast(p1, radius, transform.forward, out hit, 1))
+        if (Physics.Raycast(ray, out RaycastHit hit, range))
         {
             
-            Debug.Log(hit.collider);
+            
             Interactable interactable = hit.collider.GetComponent<Interactable>();
 
 
@@ -57,4 +52,4 @@ public class RayCastInteraction : MonoBehaviour
     }
 }
 
-            
+

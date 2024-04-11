@@ -19,6 +19,7 @@ public class DzbanScript : MonoBehaviour, Interactable
     public GameObject Player;
     public GameObject PushingPosition;
     public GameObject dzban;
+    public PlayerController playerController;
 
 
 
@@ -55,8 +56,8 @@ public class DzbanScript : MonoBehaviour, Interactable
         else if (isOn && !torchActive && !canPushD)
         {
 
-            
-            
+
+            playerController.speed = 2;
             canPushD = true;
             animationStateController.canPushD = true;
             
@@ -66,7 +67,7 @@ public class DzbanScript : MonoBehaviour, Interactable
         else if (isOn && !torchActive && canPushD)
         {
             
-            
+            playerController.speed = 4;
             animationStateController.canPushD = false;
             canPushD = false;
             dzban.transform.parent = null;

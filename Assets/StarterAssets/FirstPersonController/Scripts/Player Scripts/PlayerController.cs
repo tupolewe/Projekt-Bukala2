@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
 {
    
     [SerializeField] private Rigidbody _rb;
-     public float speed = 4;
+     public float speed;
     [SerializeField] private float _turnSpeed = 180;
     private Vector3 _input;
 
@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     {
         GatherInput();
         Look();
+        Debug.Log(speed);
         
     }
 
