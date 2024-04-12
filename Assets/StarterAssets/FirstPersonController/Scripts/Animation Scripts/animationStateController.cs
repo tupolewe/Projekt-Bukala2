@@ -37,19 +37,20 @@ public class animationStateController : MonoBehaviour
     public void WalkingAnimation ()
     {
         bool isWalking = animator.GetBool(isWalkingHash);
-        bool canPush = animator.GetBool(canPushHash);
+        
 
         bool movementKey = Input.GetKey(KeyCode.W) | Input.GetKey(KeyCode.S) | Input.GetKey(KeyCode.A) | Input.GetKey(KeyCode.D);
-
+        
          
 
         if (!canPushD)
         {
-            if (movementKey && playerController.speed > 3)
+            if (movementKey)
 
             {   
                 animator.SetBool("isWalking", true);
-                
+                animator.SetBool("canPush", false);
+
             }
 
             if (!movementKey)
@@ -58,32 +59,31 @@ public class animationStateController : MonoBehaviour
                 
             }
 
-            else if (playerController.speed < 3)
-            {
-                animator.SetBool("isWalking", false);
-            }
+            
 
 
         }
 
         if (canPushD)
         {
-            if (movementKey && playerController.speed < 3)
+            if (movementKey)
 
             {
                 animator.SetBool("canPush", true);
+                animator.SetBool("isWalking", false);
 
             }
 
             if (!movementKey)
             {
                 animator.SetBool("canPush", false);
+                animator.SetBool("isWalking", false);
 
             }
-            else if (playerController.speed > 3)
-            {
-                animator.SetBool("canPush", false);
-            }
+            
+
+        
+            
         }
 
     }

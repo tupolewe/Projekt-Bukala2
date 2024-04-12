@@ -428,7 +428,7 @@ Transform:
   m_GameObject: {fileID: 363319899}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.042137157, z: 0, w: 0.99911183}
-  m_LocalPosition: {x: 0.008, y: 0.887, z: 0.074}
+  m_LocalPosition: {x: 0.117, y: 0.887, z: 0.074}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1774,7 +1774,7 @@ MonoBehaviour:
   Player: {fileID: 2140472227}
   PushingPosition: {fileID: 15951949}
   dzban: {fileID: 1570550478}
-  playerController: {fileID: 0}
+  playerController: {fileID: 2140472231}
 --- !u!136 &1570550481
 CapsuleCollider:
   m_ObjectHideFlags: 0
