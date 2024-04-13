@@ -13,11 +13,16 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _turnSpeed = 180;
     private Vector3 _input;
 
+    private void Start()
+    {
+        
+    }
+
     private void Update()
     {
         GatherInput();
         Look();
-        Debug.Log(speed);
+        
         
     }
 
