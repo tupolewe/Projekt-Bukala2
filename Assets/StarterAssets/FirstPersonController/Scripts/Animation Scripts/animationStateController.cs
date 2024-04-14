@@ -15,7 +15,8 @@ public class animationStateController : MonoBehaviour
     public GameObject Torch;
     public bool canPushD = false;
     public PlayerController playerController;
-    
+    int torchHandlerHash;
+    public bool canHandleTorch;
 
     // Start is called before the first frame update
     void Start()
@@ -23,7 +24,7 @@ public class animationStateController : MonoBehaviour
         animator = GetComponent<Animator>();
         isWalkingHash = Animator.StringToHash("isWalking");
         canPushHash = Animator.StringToHash("canPush");
-       
+        torchHandlerHash = Animator.StringToHash("torchHandler");
     }
 
     // Update is called once per frame
@@ -105,5 +106,13 @@ public class animationStateController : MonoBehaviour
         }
     }
 
-    
+    void TorchHandling()
+    {
+        
+        bool movementKey = Input.GetKey(KeyCode.W) | Input.GetKey(KeyCode.S) | Input.GetKey(KeyCode.A) | Input.GetKey(KeyCode.D);
+        if (!movementKey && canHandleTorch) 
+        { 
+          
+        }
+    } 
 }

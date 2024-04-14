@@ -18,7 +18,7 @@ public class PressurePlateScript : MonoBehaviour
     {
         StoneDoorOpening();
         StoneDoorClosing();
-        Debug.Log(objectsAtPlate);
+        //Debug.Log(objectsAtPlate);
         ObjectCheck();
     }
 
