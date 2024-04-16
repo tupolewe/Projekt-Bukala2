@@ -94,9 +94,9 @@ public class PressurePlateScript : MonoBehaviour
             gameObject.transform.localScale = scaleChange;
         }
 
-        if (objectsAtPlate > 2)
+        if (objectsAtPlate > 3)
         {
-            objectsAtPlate = 2;
+            objectsAtPlate = 3;
         }
         if (objectsAtPlate < 0)
         {

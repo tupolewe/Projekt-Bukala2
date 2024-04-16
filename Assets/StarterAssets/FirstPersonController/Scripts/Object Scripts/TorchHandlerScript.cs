@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.InputSystem.EnhancedTouch;
 
@@ -9,7 +10,10 @@ public class TorchHandlerScript : MonoBehaviour, Interactable
     public bool torchActive;
     public GameObject Torch;
     public animationStateController animationStateController;
-
+    private int buttonCount = 0;
+    [SerializeField] private GameObject Player;
+    [SerializeField] private GameObject HandlePosition;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -27,7 +31,17 @@ public class TorchHandlerScript : MonoBehaviour, Interactable
     {
         if (torchInRange && torchActive) 
         {
+            animationStateController.torchHandle = true;
+            buttonCount = 1;
+            Player.transform.position = HandlePosition.transform.position;
+            Player.transform.rotation = HandlePosition.transform.rotation;
+        }
+        else if (torchInRange && torchActive && buttonCount > 0) 
+        {
             
+            buttonCount = 0;
+            Player.transform.position = HandlePosition.transform.position;
+            Player.transform.rotation = HandlePosition.transform.rotation;
         }
     }
 
@@ -53,6 +67,7 @@ public class TorchHandlerScript : MonoBehaviour, Interactable
         {
             torchInRange = false;
             animationStateController.canHandleTorch = false;
+            animationStateController.torchHandle = false;
         }
     }
 

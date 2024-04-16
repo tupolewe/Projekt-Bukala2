@@ -20,6 +20,9 @@ public class DzbanScript : MonoBehaviour, Interactable
     public GameObject PushingPosition;
     public GameObject dzban;
     public PlayerController playerController;
+    public int burnCount = 0;
+    public Rigidbody playerRb;
+    
 
 
 
@@ -34,6 +37,8 @@ public class DzbanScript : MonoBehaviour, Interactable
     void Update()
     {
         TorchActiveCheck();
+        BurnCount();   
+        
        
     }
 
@@ -52,6 +57,10 @@ public class DzbanScript : MonoBehaviour, Interactable
         if (torchInRange == true && !isOn && torchActive)
         {
             UpdateLight();
+            animationStateController.torchHandle = true;
+            burnCount = 1;
+           
+
         }
         else if (isOn && !torchActive && !canPushD)
         {
@@ -73,6 +82,9 @@ public class DzbanScript : MonoBehaviour, Interactable
             dzban.transform.parent = null;
 
         }
+
+        
+
         
         
        
@@ -97,6 +109,8 @@ public class DzbanScript : MonoBehaviour, Interactable
         if (collider.CompareTag("Torch"))
         {
             torchInRange = false;
+            burnCount = 0;
+            
         }
     }
 
@@ -109,6 +123,16 @@ public class DzbanScript : MonoBehaviour, Interactable
         else if (Torch.activeInHierarchy == false)
         {
             torchActive = false;
+        }
+
+    }
+
+    void BurnCount()
+    {
+        if (burnCount > 0) 
+        {
+            animationStateController.torchHandle = false;
+            Debug.Log(burnCount);
         }
     }
    
