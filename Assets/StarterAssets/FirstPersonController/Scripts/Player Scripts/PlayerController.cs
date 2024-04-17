@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _turnSpeed = 180;
     private Vector3 _input;
 
+    public animationStateController animationStateController;
+
     private void Start()
     {
         
@@ -33,20 +35,32 @@ public class PlayerController : MonoBehaviour
 
     private void GatherInput()
     {
-        _input = new Vector3(Input.GetAxisRaw("Vertical") * (-1), 0, Input.GetAxisRaw("Horizontal"));
+        if (animationStateController.isTimerRunning == false)
+        {
+            _input = new Vector3(Input.GetAxisRaw("Vertical") * (-1), 0, Input.GetAxisRaw("Horizontal"));
+        }
+            
     }
 
     private void Look()
     {
         if (_input == Vector3.zero) return;
 
-        var rot = Quaternion.LookRotation(_input.ToIso(), Vector3.up);
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, rot, _turnSpeed * Time.deltaTime);
+        if (animationStateController.isTimerRunning == false)
+        {
+            var rot = Quaternion.LookRotation(_input.ToIso(), Vector3.up);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, rot, _turnSpeed * Time.deltaTime);
+        }
+        
     }
 
     private void Move()
     {
-        _rb.MovePosition(transform.position + transform.forward * _input.normalized.magnitude * speed * Time.deltaTime);
+        if ( animationStateController.isTimerRunning == false)
+        {
+            _rb.MovePosition(transform.position + transform.forward * _input.normalized.magnitude * speed * Time.deltaTime);
+        }
+       
     }
 
 

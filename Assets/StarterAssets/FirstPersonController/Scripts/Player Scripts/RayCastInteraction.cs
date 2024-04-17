@@ -6,11 +6,22 @@ using UnityEngine.SocialPlatforms;
 
 public class RayCastInteraction : MonoBehaviour
 {
-    public float range;
+    public float sphereRadius;
+    public float maxDistance;
+    public LayerMask layerMask;
+    public GameObject player;
+
+
+    private Vector3 origin;
+    private Vector3 direction;
+
+    private float currentHitDistance;
+    public GameObject currentHitObject;
+    
 
     
 
-    public GameObject player;
+    
 
 
 
@@ -26,14 +37,15 @@ public class RayCastInteraction : MonoBehaviour
     public void RayInteraction()
     {
 
-        Vector3 direction = Vector3.forward;
-        Ray ray = new Ray(transform.position, transform.TransformDirection(direction * range));
-        Debug.DrawRay(transform.position, transform.TransformDirection(direction * range));
+        origin = transform.position;
+        direction = transform.forward;
+        //RaycastHit hit;
 
-        if (Physics.Raycast(ray, out RaycastHit hit, range))
+        if (Physics.SphereCast(origin, sphereRadius, direction, out RaycastHit hit, maxDistance, layerMask, QueryTriggerInteraction.UseGlobal))
         {
-            
-            
+            currentHitObject = hit.transform.gameObject;
+            currentHitDistance = hit.distance;
+
             Interactable interactable = hit.collider.GetComponent<Interactable>();
 
 
@@ -47,8 +59,25 @@ public class RayCastInteraction : MonoBehaviour
                 }
             }
 
+        }
+        else
+        {
+            currentHitObject = null;
+            currentHitDistance = maxDistance;
+            
 
         }
+
+
+
+        
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.green;
+        Debug.DrawLine(origin, origin + direction * currentHitDistance);
+        Gizmos.DrawWireSphere(origin + direction * currentHitDistance, sphereRadius);
     }
 }
 

@@ -7,23 +7,27 @@ public class DzbanScript : MonoBehaviour, Interactable
 
 
 {
-    
-    public GameObject dzbanLight;
-    private bool isOn = false;
+    public animationStateController animationStateController;
+    public PlayerController playerController;
+
+   
     public bool torchInRange = false;
     public bool torchActive = true;
-    public GameObject Torch;
-    
     private bool canPushD;
-    public animationStateController animationStateController;
+    private bool isOn = false;
+
+
+
+    public int burnCount = 0;
+    public Rigidbody playerRb;
+
     public GameObject Player;
     public GameObject PushingPosition;
     public GameObject dzban;
-    public PlayerController playerController;
-    public int burnCount = 0;
-    public Rigidbody playerRb;
-    
+    public GameObject dzbanLight;
+    public GameObject Torch;
 
+    
 
 
     // Start is called before the first frame update
@@ -37,7 +41,8 @@ public class DzbanScript : MonoBehaviour, Interactable
     void Update()
     {
         TorchActiveCheck();
-        BurnCount();   
+        //BurnCount();
+        
         
        
     }
@@ -59,6 +64,7 @@ public class DzbanScript : MonoBehaviour, Interactable
             UpdateLight();
             animationStateController.torchHandle = true;
             burnCount = 1;
+            animationStateController.isTimerRunning = true;
            
 
         }

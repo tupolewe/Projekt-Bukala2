@@ -18,6 +18,11 @@ public class animationStateController : MonoBehaviour
     int torchHandlerHash;
     public bool canHandleTorch;
     public bool torchHandle = false;
+
+
+    public float totalTime = 3f;
+    private float currentTime = 3f;
+    public bool isTimerRunning = false;
     
 
     // Start is called before the first frame update
@@ -35,7 +40,7 @@ public class animationStateController : MonoBehaviour
         WalkingAnimation();
         TorchActiveCheck();
         TorchHandling();
-        Debug.Log(torchHandle);
+        TorchTimer();
     }
     
     public void WalkingAnimation ()
@@ -49,7 +54,7 @@ public class animationStateController : MonoBehaviour
 
         if (!canPushD)
         {
-            if (movementKey)
+            if (movementKey && !isTimerRunning)
 
             {   
                 animator.SetBool("isWalking", true);
@@ -70,7 +75,7 @@ public class animationStateController : MonoBehaviour
 
         if (canPushD)
         {
-            if (movementKey)
+            if (movementKey && !isTimerRunning)
 
             {
                 animator.SetBool("canPush", true);
@@ -113,24 +118,31 @@ public class animationStateController : MonoBehaviour
     {
         
         bool movementKey = Input.GetKey(KeyCode.W) | Input.GetKey(KeyCode.S) | Input.GetKey(KeyCode.A) | Input.GetKey(KeyCode.D);
-        if (!movementKey && canHandleTorch && torchHandle) 
+        if (!movementKey && torchHandle && isTimerRunning) 
         {
             animator.SetBool("torchHandler", true);
             
         }
-        else if (movementKey)
+        else if (!isTimerRunning)
         {
             animator.SetBool("torchHandler", false);
         }
 
-        if (!movementKey && torchHandle)
-        {
-            animator.SetBool("torchHandler", true);
-        }
-        else if (movementKey)
-        {
-            animator.SetBool("torchHandler", false);
-        }
+        
 
     } 
+
+    void TorchTimer()
+    {
+        Debug.Log(isTimerRunning);
+        if (isTimerRunning)
+        {
+            currentTime -= Time.deltaTime;
+            if (currentTime <= 0) 
+            {
+                isTimerRunning = false;
+                currentTime = 3;
+            }
+        } 
+    }
 }

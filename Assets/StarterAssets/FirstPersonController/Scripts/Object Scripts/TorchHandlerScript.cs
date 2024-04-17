@@ -10,7 +10,7 @@ public class TorchHandlerScript : MonoBehaviour, Interactable
     public bool torchActive;
     public GameObject Torch;
     public animationStateController animationStateController;
-    private int buttonCount = 0;
+    
     [SerializeField] private GameObject Player;
     [SerializeField] private GameObject HandlePosition;
     
@@ -32,14 +32,15 @@ public class TorchHandlerScript : MonoBehaviour, Interactable
         if (torchInRange && torchActive) 
         {
             animationStateController.torchHandle = true;
-            buttonCount = 1;
+            
             Player.transform.position = HandlePosition.transform.position;
             Player.transform.rotation = HandlePosition.transform.rotation;
+            animationStateController.isTimerRunning = true;
         }
-        else if (torchInRange && torchActive && buttonCount > 0) 
+        else if (torchInRange && torchActive) 
         {
             
-            buttonCount = 0;
+            
             Player.transform.position = HandlePosition.transform.position;
             Player.transform.rotation = HandlePosition.transform.rotation;
         }
