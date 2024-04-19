@@ -12,6 +12,10 @@ TagManager:
   - Torch
   - Vase
   - Torch Handler
+  - BurnPosition1
+  - BurnPosition2
+  - BurnPosition3
+  - BurnPosition4
   layers:
   - Default
   - TransparentFX
