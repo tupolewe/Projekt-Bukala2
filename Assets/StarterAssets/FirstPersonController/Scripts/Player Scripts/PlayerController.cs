@@ -56,7 +56,7 @@ public class PlayerController : MonoBehaviour
 
     private void Move()
     {
-        if ( animationStateController.isTimerRunning == false)
+        if ( animationStateController.isTimerRunning == false && animationStateController.isHandlingRunning == false)
         {
             _rb.MovePosition(transform.position + transform.forward * _input.normalized.magnitude * speed * Time.deltaTime);
         }

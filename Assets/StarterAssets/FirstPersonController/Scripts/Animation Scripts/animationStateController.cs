@@ -23,6 +23,9 @@ public class animationStateController : MonoBehaviour
     public float totalTime = 3f;
     private float currentTime = 3f;
     public bool isTimerRunning = false;
+    public bool isHandlingRunning = false;
+
+    public TorchHandlerScript torchHandlerScript;
     
 
     // Start is called before the first frame update
@@ -41,6 +44,9 @@ public class animationStateController : MonoBehaviour
         TorchActiveCheck();
         TorchHandling();
         TorchTimer();
+        TorchHandleTimer();
+
+
     }
     
     public void WalkingAnimation ()
@@ -54,7 +60,7 @@ public class animationStateController : MonoBehaviour
 
         if (!canPushD)
         {
-            if (movementKey && !isTimerRunning)
+            if (movementKey && !isTimerRunning && !isHandlingRunning)
 
             {   
                 animator.SetBool("isWalking", true);
@@ -75,7 +81,7 @@ public class animationStateController : MonoBehaviour
 
         if (canPushD)
         {
-            if (movementKey && !isTimerRunning)
+            if (movementKey && !isTimerRunning && !isHandlingRunning)
 
             {
                 animator.SetBool("canPush", true);
@@ -127,14 +133,19 @@ public class animationStateController : MonoBehaviour
         {
             animator.SetBool("torchHandler", false);
         }
+        if (torchHandle && isHandlingRunning)
+        {
+            animator.SetBool("torchHandler", true);
 
-        
+        }
+
+
 
     } 
 
     void TorchTimer()
     {
-        Debug.Log(isTimerRunning);
+        
         if (isTimerRunning)
         {
             currentTime -= Time.deltaTime;
@@ -144,5 +155,20 @@ public class animationStateController : MonoBehaviour
                 currentTime = 3;
             }
         } 
+    }
+
+    void TorchHandleTimer()
+    {
+        if (isHandlingRunning)
+        {
+            currentTime -= Time.deltaTime;
+            if (currentTime <= 0)
+            {
+                isHandlingRunning = false;
+                currentTime = 3;
+                torchHandlerScript.burnCount = 0;
+                
+            }
+        }
     }
 }

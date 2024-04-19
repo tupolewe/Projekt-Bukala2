@@ -138,7 +138,7 @@ public class DzbanScript : MonoBehaviour, Interactable
         if (burnCount > 0) 
         {
             animationStateController.torchHandle = false;
-            Debug.Log(burnCount);
+            //Debug.Log(burnCount);
         }
     }
    

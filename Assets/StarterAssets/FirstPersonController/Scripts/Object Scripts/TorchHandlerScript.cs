@@ -12,8 +12,11 @@ public class TorchHandlerScript : MonoBehaviour, Interactable
     public animationStateController animationStateController;
     public PlayerNavMesh playerNavMesh;
     
+
     [SerializeField] private GameObject Player;
     [SerializeField] private GameObject HandlePosition;
+
+    public int burnCount;
     
 
     // Start is called before the first frame update
@@ -26,25 +29,21 @@ public class TorchHandlerScript : MonoBehaviour, Interactable
     void Update()
     {
         TorchActiveCheck();
+        //BurnCount();
+       // Debug.Log(burnCount);
     }
 
     public void Interact()
     {
         if (torchInRange && torchActive) 
         {
+            playerNavMesh.isHandlingTriggered = true;
+            animationStateController.isHandlingRunning = true;
             animationStateController.torchHandle = true;
+            burnCount = 1;
             
-            Player.transform.position = HandlePosition.transform.position;
-            Player.transform.rotation = HandlePosition.transform.rotation;
-            animationStateController.isTimerRunning = true;
         }
-        else if (torchInRange && torchActive) 
-        {
-            
-            
-            Player.transform.position = HandlePosition.transform.position;
-            Player.transform.rotation = HandlePosition.transform.rotation;
-        }
+        
     }
 
     public void OnTriggerEnter(Collider collider)
@@ -82,6 +81,15 @@ public class TorchHandlerScript : MonoBehaviour, Interactable
         else if (Torch.activeInHierarchy == false)
         {
             torchActive = false;
+        }
+    }
+
+    void BurnCount()
+    {
+        if (burnCount == 0)
+        {
+            animationStateController.torchHandle = false;
+            
         }
     }
 
