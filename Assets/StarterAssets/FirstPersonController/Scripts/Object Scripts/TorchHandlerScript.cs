@@ -10,6 +10,7 @@ public class TorchHandlerScript : MonoBehaviour, Interactable
     public bool torchActive;
     public GameObject Torch;
     public animationStateController animationStateController;
+    public PlayerNavMesh playerNavMesh;
     
     [SerializeField] private GameObject Player;
     [SerializeField] private GameObject HandlePosition;

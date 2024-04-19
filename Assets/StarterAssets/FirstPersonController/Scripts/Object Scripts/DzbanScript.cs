@@ -23,8 +23,8 @@ public class DzbanScript : MonoBehaviour, Interactable
 
     public GameObject Player;
     public GameObject PushingPosition;
-    public GameObject dzban;
-    public GameObject dzbanLight;
+    public GameObject Vase;
+    public GameObject VaseLight;
     public GameObject Torch;
 
     
@@ -34,7 +34,7 @@ public class DzbanScript : MonoBehaviour, Interactable
     void Start()
     {
         
-        dzbanLight.SetActive(false);
+        VaseLight.SetActive(false);
        
         
     }
@@ -49,7 +49,7 @@ public class DzbanScript : MonoBehaviour, Interactable
 
     void UpdateLight()
     {
-        dzbanLight.SetActive(true);
+        VaseLight.SetActive(true);
         isOn = true; 
          
     }
@@ -76,8 +76,8 @@ public class DzbanScript : MonoBehaviour, Interactable
             canPushD = true;
             animationStateController.canPushD = true;
             
-            dzban.transform.position = PushingPosition.transform.position;
-            dzban.transform.SetParent(Player.transform, true);
+            Vase.transform.position = PushingPosition.transform.position;
+            Vase.transform.SetParent(Player.transform, true);
         }
         else if (isOn && !torchActive && canPushD)
         {
@@ -85,7 +85,7 @@ public class DzbanScript : MonoBehaviour, Interactable
             playerController.speed = 4;
             animationStateController.canPushD = false;
             canPushD = false;
-            dzban.transform.parent = null;
+            Vase.transform.parent = null;
 
         }
 
