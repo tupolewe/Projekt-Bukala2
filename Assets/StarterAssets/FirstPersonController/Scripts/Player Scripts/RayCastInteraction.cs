@@ -17,9 +17,10 @@ public class RayCastInteraction : MonoBehaviour
 
     private float currentHitDistance;
     public GameObject currentHitObject;
-    
 
-    
+
+    public VaseBurnPosition vaseBurnPosition;
+    public PlayerNavMesh playerNavMesh;
 
     
 
@@ -68,9 +69,23 @@ public class RayCastInteraction : MonoBehaviour
 
         }
 
-
-
         
+            
+
+        if (hit.collider.CompareTag("Torch Handler"))
+        {
+            playerNavMesh.canWallHandle = true;
+        }
+        else
+        {
+            playerNavMesh.canWallHandle = false;
+        }
+        
+
+
+
+
+
     }
 
     private void OnDrawGizmosSelected()

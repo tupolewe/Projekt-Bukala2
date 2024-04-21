@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Rendering.LookDev;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class DzbanScript : MonoBehaviour, Interactable
 
@@ -9,12 +10,14 @@ public class DzbanScript : MonoBehaviour, Interactable
 {
     public animationStateController animationStateController;
     public PlayerController playerController;
+    public VaseBurnPosition vaseBurnPosition;
+    public PlayerNavMesh playerNavMesh;
 
    
     public bool torchInRange = false;
     public bool torchActive = true;
     private bool canPushD;
-    private bool isOn = false;
+    public bool isOn = false;
 
 
 
@@ -27,7 +30,13 @@ public class DzbanScript : MonoBehaviour, Interactable
     public GameObject VaseLight;
     public GameObject Torch;
 
-    
+    public GameObject BurnPosition1;
+    public GameObject BurnPosition2;
+    public GameObject BurnPosition3;
+    public GameObject BurnPosition4;
+    public NavMeshAgent navMeshAgent;
+
+
 
 
     // Start is called before the first frame update
@@ -59,15 +68,60 @@ public class DzbanScript : MonoBehaviour, Interactable
 
   public void Interact()
     {
-        if (torchInRange == true && !isOn && torchActive)
+        if (torchInRange == true && !isOn && torchActive && vaseBurnPosition.burnPositionNumber > 0)
         {
             UpdateLight();
             animationStateController.torchHandle = true;
             burnCount = 1;
             animationStateController.isTimerRunning = true;
-           
+            playerNavMesh.isHandlingTriggered = true;
+
+            if (vaseBurnPosition.burnPositionNumber == 1)
+            {
+                Debug.Log("asasasas");
+                animationStateController.isHandlingRunning = true;
+                //playerNavMesh.navMeshAgent.destination = BurnPosition1.transform.position;
+                navMeshAgent.updateRotation = false;
+                Player.transform.rotation = Quaternion.Euler(0, -360, 0);
+            }
+
+            else if (vaseBurnPosition.burnPositionNumber == 2)
+            {
+
+                Debug.Log("asasasas");
+                animationStateController.isHandlingRunning = true;
+                //playerNavMesh.navMeshAgent.destination = BurnPosition2.transform.position;
+                Player.transform.rotation = Quaternion.Euler(0, 100, 0);
+            }
+            else if (vaseBurnPosition.burnPositionNumber == 3)
+            {
+
+                Debug.Log("asasasas");
+                animationStateController.isHandlingRunning = true;
+                //playerNavMesh.navMeshAgent.destination = BurnPosition3.transform.position;
+                Player.transform.rotation = Quaternion.Euler(0, -90, 0);
+            }
+            else if (vaseBurnPosition.burnPositionNumber == 4)
+            {
+
+                Debug.Log("asasasas");
+                animationStateController.isHandlingRunning = true;
+                //playerNavMesh.navMeshAgent.destination = BurnPosition4.transform.position;
+                navMeshAgent.updateRotation = false;
+                Player.transform.rotation = Quaternion.Euler(0, 180, 0);
+            }
+
+            
+
+
 
         }
+
+
+
+
+
+
         else if (isOn && !torchActive && !canPushD)
         {
 

@@ -8,13 +8,16 @@ public class TorchHandlerScript : MonoBehaviour, Interactable
 {
     public bool torchInRange = false;
     public bool torchActive;
-    public GameObject Torch;
+    public GameObject TorchLight;
     public animationStateController animationStateController;
     public PlayerNavMesh playerNavMesh;
-    
+    public bool torchHandled = false;
+    public GameObject Torch;
 
     [SerializeField] private GameObject Player;
-    [SerializeField] private GameObject HandlePosition;
+    public GameObject HandlePosition;
+    [SerializeField] private GameObject TorchHandlePosition;
+    [SerializeField] private GameObject TorchPosition;
 
     public int burnCount;
     
@@ -35,14 +38,25 @@ public class TorchHandlerScript : MonoBehaviour, Interactable
 
     public void Interact()
     {
-        if (torchInRange && torchActive) 
+        if (torchActive && !torchHandled) 
         {
             playerNavMesh.isHandlingTriggered = true;
             animationStateController.isHandlingRunning = true;
             animationStateController.torchHandle = true;
             burnCount = 1;
+            torchHandled = true;
+            Torch.transform.position = TorchHandlePosition.transform.position;
+            Torch.transform.parent = null; 
             
         }
+        else if (torchHandled)
+        {
+            playerNavMesh.isHandlingTriggered = true;
+            animationStateController.isHandlingRunning = true;
+            Torch.transform.SetParent(TorchPosition.transform, true);
+            Torch.transform.position = TorchPosition.transform.position;
+        }
+        
         
     }
 
@@ -74,11 +88,11 @@ public class TorchHandlerScript : MonoBehaviour, Interactable
 
     public void TorchActiveCheck()
     {
-        if (Torch.activeInHierarchy == true)
+        if (TorchLight.activeInHierarchy == true)
         {
             torchActive = true;
         }
-        else if (Torch.activeInHierarchy == false)
+        else if (TorchLight.activeInHierarchy == false)
         {
             torchActive = false;
         }
