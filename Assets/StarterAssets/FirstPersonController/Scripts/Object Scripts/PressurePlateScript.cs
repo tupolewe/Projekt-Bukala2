@@ -90,7 +90,7 @@ public class PressurePlateScript : MonoBehaviour
 
         {
             platePressured = false;
-            scaleChange = new Vector3(1.849517f, 0.055f, 2.135503f);
+            scaleChange = new Vector3(1.849517f, 0.06f, 2.135503f);
             gameObject.transform.localScale = scaleChange;
         }
 
