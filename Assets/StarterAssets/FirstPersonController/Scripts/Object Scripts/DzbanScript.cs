@@ -125,7 +125,7 @@ public class DzbanScript : MonoBehaviour, Interactable
         else if (isOn && !torchActive && !canPushD)
         {
 
-
+            
             playerController.speed = 2;
             canPushD = true;
             animationStateController.canPushD = true;

@@ -33,7 +33,10 @@ public class TorchHandlerScript : MonoBehaviour, Interactable
     {
         TorchActiveCheck();
         //BurnCount();
-       // Debug.Log(burnCount);
+        // Debug.Log(burnCount);
+        Debug.Log(torchHandled);
+       
+        
     }
 
     public void Interact()
@@ -49,7 +52,7 @@ public class TorchHandlerScript : MonoBehaviour, Interactable
             Torch.transform.parent = null; 
             
         }
-        else if (torchHandled)
+        if (torchHandled)
         {
             playerNavMesh.isHandlingTriggered = true;
             animationStateController.isHandlingRunning = true;

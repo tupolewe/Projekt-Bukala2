@@ -11,7 +11,7 @@ public class VaseBurnPosition : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(burnPositionNumber);
+        //Debug.Log(burnPositionNumber);
     }
 
     
