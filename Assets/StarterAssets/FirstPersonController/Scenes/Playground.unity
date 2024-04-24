@@ -4165,7 +4165,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rb: {fileID: 2140472230}
   speed: 4
-  _turnSpeed: 180
+  turnSpeed: 120
   animationStateController: {fileID: 2140472241}
 --- !u!114 &2140472241
 MonoBehaviour:

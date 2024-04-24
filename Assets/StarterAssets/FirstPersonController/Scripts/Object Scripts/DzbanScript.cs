@@ -129,7 +129,7 @@ public class DzbanScript : MonoBehaviour, Interactable
             playerController.speed = 2;
             canPushD = true;
             animationStateController.canPushD = true;
-            
+            playerController.turnSpeed = 80;
             Vase.transform.position = PushingPosition.transform.position;
             Vase.transform.SetParent(Player.transform, true);
         }
@@ -140,6 +140,7 @@ public class DzbanScript : MonoBehaviour, Interactable
             animationStateController.canPushD = false;
             canPushD = false;
             Vase.transform.parent = null;
+            playerController.turnSpeed = 120;
 
         }
 
