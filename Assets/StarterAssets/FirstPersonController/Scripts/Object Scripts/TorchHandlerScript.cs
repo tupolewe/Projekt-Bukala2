@@ -8,14 +8,15 @@ public class TorchHandlerScript : MonoBehaviour, Interactable
 {
     public bool torchInRange = false;
     public bool torchActive;
-    public GameObject TorchLight;
+    public bool torchHandled = false;
+   
     public animationStateController animationStateController;
     public PlayerNavMesh playerNavMesh;
-    public bool torchHandled = false;
-    public GameObject Torch;
 
-    [SerializeField] private GameObject Player;
+    public GameObject TorchLight;
+    public GameObject Torch;
     public GameObject HandlePosition;
+    [SerializeField] private GameObject Player;
     [SerializeField] private GameObject TorchHandlePosition;
     [SerializeField] private GameObject TorchPosition;
 
@@ -31,34 +32,13 @@ public class TorchHandlerScript : MonoBehaviour, Interactable
     // Update is called once per frame
     void Update()
     {
-        TorchActiveCheck();
-        //BurnCount();
-        // Debug.Log(burnCount);
-        Debug.Log(torchHandled);
+        
        
         
     }
 
     public void Interact()
     {
-        if (torchActive && !torchHandled) 
-        {
-            playerNavMesh.isHandlingTriggered = true;
-            animationStateController.isHandlingRunning = true;
-            animationStateController.torchHandle = true;
-            burnCount = 1;
-            torchHandled = true;
-            Torch.transform.position = TorchHandlePosition.transform.position;
-            Torch.transform.parent = null; 
-            
-        }
-        if (torchHandled)
-        {
-            playerNavMesh.isHandlingTriggered = true;
-            animationStateController.isHandlingRunning = true;
-            Torch.transform.SetParent(TorchPosition.transform, true);
-            Torch.transform.position = TorchPosition.transform.position;
-        }
         
         
     }
