@@ -32,13 +32,19 @@ public class TorchHandlerScript : MonoBehaviour, Interactable
     // Update is called once per frame
     void Update()
     {
-        
+        TorchActiveCheck();
        
         
     }
 
     public void Interact()
+
     {
+        
+        if (torchActive) 
+        {
+            
+        }
         
         
     }

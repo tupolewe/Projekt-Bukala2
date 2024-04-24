@@ -140,7 +140,7 @@ public class DzbanScript : MonoBehaviour, Interactable
             animationStateController.canPushD = false;
             canPushD = false;
             Vase.transform.parent = null;
-            playerController.turnSpeed = 120;
+            playerController.turnSpeed = 340;
 
         }
 
