@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour
     public float turnSpeed = 120;
     private Vector3 _input;
 
+    public bool staticAnimationPlayed;
+
 
     //public float horizontalInput = Input.GetAxis("Horizontal");
     //public float verticalInput = Input.GetAxis("Vertical");
@@ -28,15 +30,23 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        GatherInput();
-        Look();
+        if (!staticAnimationPlayed)
+        {
+            GatherInput();
+            Look();
+        }
+        
 
 
     }
 
     private void FixedUpdate()
     {
-        Move();
+        if (!staticAnimationPlayed)
+        {
+            Move();
+        }
+        
     }
 
     private void GatherInput()

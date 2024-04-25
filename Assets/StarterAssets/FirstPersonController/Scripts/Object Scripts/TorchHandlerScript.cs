@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem.EnhancedTouch;
 
@@ -12,6 +13,7 @@ public class TorchHandlerScript : MonoBehaviour, Interactable
    
     public animationStateController animationStateController;
     public PlayerNavMesh playerNavMesh;
+    public PlayerController controller;
 
     public GameObject TorchLight;
     public GameObject Torch;
@@ -20,7 +22,15 @@ public class TorchHandlerScript : MonoBehaviour, Interactable
     [SerializeField] private GameObject TorchHandlePosition;
     [SerializeField] private GameObject TorchPosition;
 
+
+    public Transform PlayerTransform;
+    public Transform HandleTransform;
+
+
+
     public int burnCount;
+
+    public bool torchHandlingActive;
     
 
     // Start is called before the first frame update
@@ -33,17 +43,23 @@ public class TorchHandlerScript : MonoBehaviour, Interactable
     void Update()
     {
         TorchActiveCheck();
-       
+        NavMeshDestination();
+
         
+
     }
 
     public void Interact()
 
     {
-        
+        Debug.Log("torch handling1");
         if (torchActive) 
         {
             
+             torchHandlingActive = true;
+            
+            
+
         }
         
         
@@ -95,5 +111,26 @@ public class TorchHandlerScript : MonoBehaviour, Interactable
             
         }
     }
+
+    void NavMeshDestination()
+    {
+        if (torchHandlingActive)
+        {
+            playerNavMesh.navMeshAgent.destination = HandlePosition.transform.position;
+            playerNavMesh.WallHandling();
+
+           if(Vector3.Distance(PlayerTransform.position, HandleTransform.position) < 0.25f)
+            {
+                animationStateController.animator.SetBool("torchHandler", true);
+                playerNavMesh.navMeshAgent.enabled = false;
+                torchHandlingActive = false;
+                animationStateController.isHandlingRunning = true;
+                controller.staticAnimationPlayed = true;
+            }
+        }
+        
+    }
+
+    
 
 }

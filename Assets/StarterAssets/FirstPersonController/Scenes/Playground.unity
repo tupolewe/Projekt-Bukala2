@@ -1128,13 +1128,17 @@ MonoBehaviour:
   torchHandled: 0
   animationStateController: {fileID: 2140472241}
   playerNavMesh: {fileID: 2140472242}
+  controller: {fileID: 0}
   TorchLight: {fileID: 633992555}
   Torch: {fileID: 1534568136}
   HandlePosition: {fileID: 0}
   Player: {fileID: 2140472227}
   TorchHandlePosition: {fileID: 0}
   TorchPosition: {fileID: 0}
+  PlayerTransform: {fileID: 0}
+  HandleTransform: {fileID: 0}
   burnCount: 0
+  torchHandlingActive: 0
 --- !u!1001 &914655104
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2878,7 +2882,8 @@ Transform:
   m_LocalPosition: {x: -4.73, y: 2.036, z: -0.185}
   m_LocalScale: {x: 1, y: 5.1443, z: 0.56675}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 2107139230}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1704696701
@@ -2898,13 +2903,17 @@ MonoBehaviour:
   torchHandled: 0
   animationStateController: {fileID: 2140472241}
   playerNavMesh: {fileID: 2140472242}
+  controller: {fileID: 2140472240}
   TorchLight: {fileID: 633992555}
   Torch: {fileID: 1534568136}
-  HandlePosition: {fileID: 0}
+  HandlePosition: {fileID: 2107139229}
   Player: {fileID: 2140472227}
   TorchHandlePosition: {fileID: 0}
   TorchPosition: {fileID: 0}
+  PlayerTransform: {fileID: 2140472229}
+  HandleTransform: {fileID: 2107139230}
   burnCount: 0
+  torchHandlingActive: 0
 --- !u!65 &1704696702
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3458,6 +3467,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2107139229
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2107139230}
+  m_Layer: 0
+  m_Name: HandlePosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2107139230
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2107139229}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.72, y: -0.477, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1704696700}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2140472227 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 0d0fb07ae956c2c40b68629b36f2eed4,
@@ -3570,7 +3610,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 0.56, y: 1.7, z: 0.84}
-  m_Center: {x: 0.05, y: 0.85, z: 0.21}
+  m_Center: {x: 0.05, y: 0.87, z: 0.21}
 --- !u!114 &2140472240
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3586,6 +3626,7 @@ MonoBehaviour:
   _rb: {fileID: 2140472230}
   speed: 4
   turnSpeed: 340
+  staticAnimationPlayed: 0
   animationStateController: {fileID: 2140472241}
 --- !u!114 &2140472241
 MonoBehaviour:
@@ -3599,6 +3640,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2f7f138f35aa564c965f83117c979b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}
   torchActive: 0
   Torch: {fileID: 1534568136}
   canPushD: 0
@@ -3608,7 +3650,7 @@ MonoBehaviour:
   totalTime: 3
   isTimerRunning: 0
   isHandlingRunning: 0
-  torchHandlerScript: {fileID: 0}
+  torchHandlerScript: {fileID: 1704696701}
 --- !u!114 &2140472242
 MonoBehaviour:
   m_ObjectHideFlags: 0

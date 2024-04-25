@@ -46,20 +46,8 @@ public class PlayerNavMesh : MonoBehaviour
 
 
 
-        if (isHandlingTriggered && canWallHandle)
-        {
-            if (animationStateController.isHandlingRunning)
-            {
-                navMeshAgent.enabled = true;
-                navMeshAgent.destination = torchHandlerScript.HandlePosition.transform.position;
-                navMeshAgent.updateRotation = false;
-                Player.transform.rotation = Quaternion.Euler(0, 270, 0);
-
-
-
-
-            }
-        }
+       
+        
         if (isHandlingTriggered)
         {
             if (vaseBurnPosition.burnPositionNumber == 1)
@@ -93,5 +81,12 @@ public class PlayerNavMesh : MonoBehaviour
 
 
         }
+    }
+
+    public void WallHandling()
+    {
+        navMeshAgent.enabled = true;
+        navMeshAgent.updateRotation = true;
+        Player.transform.rotation = Quaternion.Euler(0, 270, 0); 
     }
 }

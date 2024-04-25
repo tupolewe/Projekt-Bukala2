@@ -8,7 +8,7 @@ using UnityEngine.InputSystem.EnhancedTouch;
 public class animationStateController : MonoBehaviour
 {
 
-    Animator animator;
+    public Animator animator;
     int isWalkingHash;
     int canPushHash;
     public bool torchActive;
@@ -131,7 +131,7 @@ public class animationStateController : MonoBehaviour
         }
         else if (!isTimerRunning)
         {
-            animator.SetBool("torchHandler", false);
+            //animator.SetBool("torchHandler", false);
         }
         if (torchHandle && isHandlingRunning)
         {
@@ -148,16 +148,18 @@ public class animationStateController : MonoBehaviour
         
         if (isTimerRunning)
         {
+            playerController.staticAnimationPlayed = true;
             currentTime -= Time.deltaTime;
             if (currentTime <= 0) 
             {
                 isTimerRunning = false;
                 currentTime = 3;
+                playerController.staticAnimationPlayed = false;
             }
         } 
     }
 
-    void TorchHandleTimer()
+    public void TorchHandleTimer()
     {
         if (isHandlingRunning)
         {
@@ -167,7 +169,8 @@ public class animationStateController : MonoBehaviour
                 isHandlingRunning = false;
                 currentTime = 3;
                 torchHandlerScript.burnCount = 0;
-                
+                animator.SetBool("torchHandler", false);
+                playerController.staticAnimationPlayed = false;
             }
         }
     }
