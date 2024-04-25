@@ -118,14 +118,31 @@ public class TorchHandlerScript : MonoBehaviour, Interactable
         {
             playerNavMesh.navMeshAgent.destination = HandlePosition.transform.position;
             playerNavMesh.WallHandling();
+            controller.staticAnimationPlayed = true;
 
-           if(Vector3.Distance(PlayerTransform.position, HandleTransform.position) < 0.25f)
+            if (Vector3.Distance(PlayerTransform.position, HandleTransform.position) > 0.25f)
+            {
+                Vector3 dir = HandleTransform.position - Player.transform.position;
+
+                Quaternion rot = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dir), 0.001f * Time.deltaTime);
+                rot.x = 0;
+                rot.z = 0;
+
+                Player.transform.rotation = rot;
+                animationStateController.animator.SetBool("isWalking", true);
+                controller.speed = 1;
+                
+            }
+
+                if (Vector3.Distance(PlayerTransform.position, HandleTransform.position) < 0.25f)
             {
                 animationStateController.animator.SetBool("torchHandler", true);
                 playerNavMesh.navMeshAgent.enabled = false;
                 torchHandlingActive = false;
                 animationStateController.isHandlingRunning = true;
-                controller.staticAnimationPlayed = true;
+                animationStateController.animator.SetBool("isWalking", false);
+                controller.speed = 3;
+
             }
         }
         

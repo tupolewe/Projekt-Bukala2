@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEditor.Rendering.LookDev;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.InputSystem.XR;
 
 public class DzbanScript : MonoBehaviour, Interactable
 
@@ -36,6 +37,14 @@ public class DzbanScript : MonoBehaviour, Interactable
     public GameObject BurnPosition4;
     public NavMeshAgent navMeshAgent;
 
+    public Transform BurnTransform1;
+    public Transform BurnTransform2;
+    public Transform BurnTransform3;
+    public Transform BurnTransform4;
+    public Transform PlayerTransform;
+
+    public bool torchHandlingActive;
+
 
 
 
@@ -50,8 +59,8 @@ public class DzbanScript : MonoBehaviour, Interactable
     void Update()
     {
         TorchActiveCheck();
-        //BurnCount();
-        
+        NavMeshDestination();
+
         
        
     }
@@ -68,54 +77,19 @@ public class DzbanScript : MonoBehaviour, Interactable
 
   public void Interact()
     {
-        if (torchInRange == true && !isOn && torchActive && vaseBurnPosition.burnPositionNumber > 0)
-        {
-            UpdateLight();
-            animationStateController.torchHandle = true;
-            burnCount = 1;
-            animationStateController.isTimerRunning = true;
-            playerNavMesh.isHandlingTriggered = true;
-
-            if (vaseBurnPosition.burnPositionNumber == 1)
+        
+       if (torchActive && !isOn && vaseBurnPosition.burnPositionNumber > 0)
             {
-                Debug.Log("asasasas");
-                animationStateController.isHandlingRunning = true;
-                //playerNavMesh.navMeshAgent.destination = BurnPosition1.transform.position;
-                navMeshAgent.updateRotation = false;
-                Player.transform.rotation = Quaternion.Euler(0, -360, 0);
+                torchHandlingActive = true;
+                UpdateLight();
             }
-
-            else if (vaseBurnPosition.burnPositionNumber == 2)
-            {
-
-                Debug.Log("asasasas");
-                animationStateController.isHandlingRunning = true;
-                //playerNavMesh.navMeshAgent.destination = BurnPosition2.transform.position;
-                Player.transform.rotation = Quaternion.Euler(0, 100, 0);
-            }
-            else if (vaseBurnPosition.burnPositionNumber == 3)
-            {
-
-                Debug.Log("asasasas");
-                animationStateController.isHandlingRunning = true;
-                //playerNavMesh.navMeshAgent.destination = BurnPosition3.transform.position;
-                Player.transform.rotation = Quaternion.Euler(0, -90, 0);
-            }
-            else if (vaseBurnPosition.burnPositionNumber == 4)
-            {
-
-                Debug.Log("asasasas");
-                animationStateController.isHandlingRunning = true;
-                //playerNavMesh.navMeshAgent.destination = BurnPosition4.transform.position;
-                navMeshAgent.updateRotation = false;
-                Player.transform.rotation = Quaternion.Euler(0, 180, 0);
-            }
+        
 
             
 
 
 
-        }
+        
 
 
 
@@ -194,6 +168,80 @@ public class DzbanScript : MonoBehaviour, Interactable
         {
             animationStateController.torchHandle = false;
             //Debug.Log(burnCount);
+        }
+    }
+
+    void NavMeshDestination()
+    {
+        if (torchHandlingActive && vaseBurnPosition.burnPositionNumber > 0)
+        {
+            playerController.staticAnimationPlayed = true;
+            playerNavMesh.VaseBurning();
+
+            if (vaseBurnPosition.burnPositionNumber == 1)
+            {
+                
+                playerNavMesh.navMeshAgent.destination = BurnPosition1.transform.position;
+
+                if (Vector3.Distance(PlayerTransform.position, BurnTransform1.position) < 2.5f)
+                {
+                    Debug.Log("dupa1");
+                    Player.transform.rotation = Quaternion.Euler(0, -360, 0);
+                    navMeshAgent.updateRotation = false;
+                    animationStateController.animator.SetBool("torchHandler", true);
+                    playerNavMesh.navMeshAgent.enabled = false;
+                    torchHandlingActive = false;
+                    animationStateController.isHandlingRunning = true;
+                }
+            }
+            if (vaseBurnPosition.burnPositionNumber == 2)
+            {
+                
+                playerNavMesh.navMeshAgent.destination = BurnPosition2.transform.position;
+
+                if (Vector3.Distance(PlayerTransform.position, BurnTransform2.position) < 2.5f)
+                {
+                    Debug.Log("dupa2");
+                    Player.transform.rotation = Quaternion.Euler(0, 100, 0);
+                    navMeshAgent.updateRotation = false;
+                    animationStateController.animator.SetBool("torchHandler", true);
+                    playerNavMesh.navMeshAgent.enabled = false;
+                    torchHandlingActive = false;
+                    animationStateController.isHandlingRunning = true;
+                }
+            }
+            if (vaseBurnPosition.burnPositionNumber == 3)
+            {
+                
+                playerNavMesh.navMeshAgent.destination = BurnPosition3.transform.position;
+
+                if (Vector3.Distance(PlayerTransform.position, BurnTransform3.position) < 2.5f)
+                {
+                    Debug.Log("dupa3");
+                    Player.transform.rotation = Quaternion.Euler(0, -90, 0);
+                    navMeshAgent.updateRotation = false;
+                    animationStateController.animator.SetBool("torchHandler", true);
+                    playerNavMesh.navMeshAgent.enabled = false;
+                    torchHandlingActive = false;
+                    animationStateController.isHandlingRunning = true;
+                }
+            }
+            if (vaseBurnPosition.burnPositionNumber == 4)
+            {
+               
+                playerNavMesh.navMeshAgent.destination = BurnPosition4.transform.position;
+
+                if (Vector3.Distance(PlayerTransform.position, BurnTransform4.position) < 2.5f)
+                {
+                    Debug.Log("dupa4");
+                    Player.transform.rotation = Quaternion.Euler(0, 180, 0);
+                    navMeshAgent.updateRotation = false;
+                    animationStateController.animator.SetBool("torchHandler", true);
+                    playerNavMesh.navMeshAgent.enabled = false;
+                    torchHandlingActive = false;
+                    animationStateController.isHandlingRunning = true;
+                }
+            }
         }
     }
    

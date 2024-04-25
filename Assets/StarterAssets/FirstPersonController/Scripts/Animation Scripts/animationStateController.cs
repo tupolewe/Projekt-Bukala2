@@ -55,50 +55,53 @@ public class animationStateController : MonoBehaviour
         
 
         bool movementKey = Input.GetKey(KeyCode.W) | Input.GetKey(KeyCode.S) | Input.GetKey(KeyCode.A) | Input.GetKey(KeyCode.D);
-        
-         
 
-        if (!canPushD)
+        if(playerController.staticAnimationPlayed == false)
         {
-            if (movementKey && !isTimerRunning && !isHandlingRunning)
-
-            {   
-                animator.SetBool("isWalking", true);
-                animator.SetBool("canPush", false);
-
-            }
-
-            if (!movementKey)
+            if (!canPushD)
             {
-                animator.SetBool("isWalking", false);
-                
+                if (movementKey && !isTimerRunning && !isHandlingRunning)
+
+                {
+                    animator.SetBool("isWalking", true);
+                    animator.SetBool("canPush", false);
+
+                }
+
+                if (!movementKey)
+                {
+                    animator.SetBool("isWalking", false);
+
+                }
+
+
+
+
             }
 
-            
-
-
-        }
-
-        if (canPushD)
-        {
-            if (movementKey && !isTimerRunning && !isHandlingRunning)
-
+            if (canPushD)
             {
-                animator.SetBool("canPush", true);
-                animator.SetBool("isWalking", false);
+                if (movementKey && !isTimerRunning && !isHandlingRunning)
+
+                {
+                    animator.SetBool("canPush", true);
+                    animator.SetBool("isWalking", false);
+
+                }
+
+                if (!movementKey)
+                {
+                    animator.SetBool("canPush", false);
+                    animator.SetBool("isWalking", false);
+
+                }
 
             }
 
-            if (!movementKey)
-            {
-                animator.SetBool("canPush", false);
-                animator.SetBool("isWalking", false);
 
-            }
-            
 
-        
-            
+
+
         }
 
     }
