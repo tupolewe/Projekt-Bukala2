@@ -4,36 +4,40 @@ using UnityEngine;
 
 public class VaseBurnPosition : MonoBehaviour
 {
-    
+     public PlayerController controller;
 
     public int burnPositionNumber = 0;
 
-    // Update is called once per frame
+    
     void Update()
     {
-        //Debug.Log(burnPositionNumber);
+        Debug.Log(burnPositionNumber);
     }
 
     
 
     private void OnTriggerExit(Collider collider)
     {
-        if (collider.CompareTag("BurnPosition1"))
+        if (controller.staticAnimationPlayed == false)
         {
-            burnPositionNumber = 0;
-        }
-        else if (collider.CompareTag("BurnPosition2"))
-        {
-            burnPositionNumber = 0;
-        }
-        else if (collider.CompareTag("BurnPosition3"))
-        {
-            burnPositionNumber = 0;
-        }
-        else if (collider.CompareTag("BurnPosition4"))
-        {
-            burnPositionNumber = 0;
-        }
+            if (collider.CompareTag("BurnPosition1"))
+            {
+                burnPositionNumber = 0;
+            }
+            else if (collider.CompareTag("BurnPosition2"))
+            {
+                burnPositionNumber = 0;
+            }
+            else if (collider.CompareTag("BurnPosition3"))
+            {
+                burnPositionNumber = 0;
+            }
+            else if (collider.CompareTag("BurnPosition4"))
+            {
+                burnPositionNumber = 0;
+            }
+        }    
+        
     }
 
     private void OnTriggerEnter(Collider collider)

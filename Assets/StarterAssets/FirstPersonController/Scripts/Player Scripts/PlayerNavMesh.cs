@@ -31,7 +31,7 @@ public class PlayerNavMesh : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //VaseBurning();
+        
 
     }
 

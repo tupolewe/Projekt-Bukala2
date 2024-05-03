@@ -15,17 +15,17 @@ public class PlayerController : MonoBehaviour
 
     public bool staticAnimationPlayed;
 
-
+    public Transform player; 
     //public float horizontalInput = Input.GetAxis("Horizontal");
     //public float verticalInput = Input.GetAxis("Vertical");
     //public Vector3 movementDirection = new Vector3(horizontalInput, 0, verticalInput);
 
 
     public animationStateController animationStateController;
-
+    
     private void Start()
     {
-
+        
     }
 
     private void Update()
@@ -35,8 +35,13 @@ public class PlayerController : MonoBehaviour
             GatherInput();
             Look();
         }
-        
 
+        if (transform.position.y > -0.249001f)
+        {
+            transform.position = new Vector3(transform.position.x, -0.249001f, transform.position.z);
+
+
+        }
 
     }
 
