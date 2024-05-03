@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
     public float turnSpeed = 120;
     private Vector3 _input;
 
-    public bool staticAnimationPlayed;
+    public bool staticAnimationPlayed = false;
 
     public Transform player; 
     //public float horizontalInput = Input.GetAxis("Horizontal");

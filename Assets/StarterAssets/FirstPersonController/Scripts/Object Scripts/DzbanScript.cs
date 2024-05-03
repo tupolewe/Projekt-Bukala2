@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor.Rendering.LookDev;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.InputSystem.XR;
+using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
 
 public class DzbanScript : MonoBehaviour, Interactable
 
@@ -44,7 +46,8 @@ public class DzbanScript : MonoBehaviour, Interactable
     public Transform PlayerTransform;
 
     public bool VaseBurningActive;
-    public float distanceToPosition = 10f;
+    public float distanceToPosition = 3;
+
 
 
 
@@ -167,12 +170,17 @@ public class DzbanScript : MonoBehaviour, Interactable
             playerController.staticAnimationPlayed = true;
             playerNavMesh.VaseBurning();
 
+            
+
             if (vaseBurnPosition.burnPositionNumber == 1)
             {
-                Debug.Log("1");
+                
                 playerNavMesh.navMeshAgent.destination = BurnPosition1.transform.position;
-
-                if (Vector3.Distance(PlayerTransform.position, BurnTransform1.position) < 2.5f)
+                
+                float distance = Vector3.Distance(Player.transform.transform.position, BurnPosition1.transform.position);
+                Debug.Log(distance);
+                
+                if (distance < 1.65f)
                 {
                     Debug.Log("numer 1");
                     Player.transform.rotation = Quaternion.Euler(0, -360, 0);
@@ -185,10 +193,12 @@ public class DzbanScript : MonoBehaviour, Interactable
             }
             if (vaseBurnPosition.burnPositionNumber == 2)
             {
-
+                float distance = Vector3.Distance(Player.transform.transform.position, BurnPosition2.transform.position);
                 playerNavMesh.navMeshAgent.destination = BurnPosition2.transform.position;
-                Debug.Log("2");
-                if (Vector3.Distance(PlayerTransform.position, BurnTransform2.position) < 2.5f)
+                
+                Debug.Log(distance);
+                
+                if (distance < 1.61f)
                 {
                     Debug.Log("numer 2");
                     Player.transform.rotation = Quaternion.Euler(0, 100, 0);
@@ -201,10 +211,11 @@ public class DzbanScript : MonoBehaviour, Interactable
             }
             if (vaseBurnPosition.burnPositionNumber == 3)
             {
-
+                float distance = Vector3.Distance(Player.transform.transform.position, BurnPosition3.transform.position);
                 playerNavMesh.navMeshAgent.destination = BurnPosition3.transform.position;
-                Debug.Log("3");
-                if (Vector3.Distance(PlayerTransform.position, BurnTransform3.position) < 2.5)
+                
+                Debug.Log(distance);
+                if (distance < 1.61f)
                 {
                     Debug.Log("numer 3");
                     Player.transform.rotation = Quaternion.Euler(0, -90, 0);
@@ -217,11 +228,14 @@ public class DzbanScript : MonoBehaviour, Interactable
             }
             if (vaseBurnPosition.burnPositionNumber == 4)
             {
-                Debug.Log("4");
+                
                 playerNavMesh.navMeshAgent.destination = BurnPosition4.transform.position;
-
-                if (Vector3.Distance(PlayerTransform.position, BurnTransform4.position) < 2.5f)
+                float distance = Vector3.Distance(Player.transform.transform.position, BurnPosition4.transform.position);
+                Debug.Log(distance);
+                
+                if (distance < 1.61f)
                 {
+                    
                     Debug.Log("numer 4");
                     Player.transform.rotation = Quaternion.Euler(0, 180, 0);
                     navMeshAgent.updateRotation = false;
@@ -231,10 +245,7 @@ public class DzbanScript : MonoBehaviour, Interactable
                     animationStateController.isHandlingRunning = true;
                 }
             }
-            else
-            {
-                playerController.staticAnimationPlayed = false;
-            }
+            
         }
         
     }

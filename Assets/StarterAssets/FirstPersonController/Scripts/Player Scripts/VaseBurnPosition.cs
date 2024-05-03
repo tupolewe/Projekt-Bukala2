@@ -11,7 +11,7 @@ public class VaseBurnPosition : MonoBehaviour
     
     void Update()
     {
-        Debug.Log(burnPositionNumber);
+        Debug.Log(controller.staticAnimationPlayed);
     }
 
     
