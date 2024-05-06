@@ -26,7 +26,7 @@ public class animationStateController : MonoBehaviour
     public bool isHandlingRunning = false;
 
     public TorchHandlerScript torchHandlerScript;
-    
+    public DzbanScript dzbanScript;
 
     // Start is called before the first frame update
     void Start()
@@ -86,13 +86,21 @@ public class animationStateController : MonoBehaviour
                 {
                     animator.SetBool("canPush", true);
                     animator.SetBool("isWalking", false);
-
+                    
+                    
+                    dzbanScript.VaseSource.volume = 1f;
+                    dzbanScript.VaseSource.Play();
+                   
                 }
 
                 if (!movementKey)
                 {
                     animator.SetBool("canPush", false);
                     animator.SetBool("isWalking", false);
+                    
+                   
+                    dzbanScript.VaseSource.Stop();
+
 
                 }
 
@@ -156,7 +164,7 @@ public class animationStateController : MonoBehaviour
             if (currentTime <= 0) 
             {
                 isTimerRunning = false;
-                currentTime = 3;
+                currentTime = 2f;
                 playerController.staticAnimationPlayed = false;
             }
         } 
@@ -170,7 +178,7 @@ public class animationStateController : MonoBehaviour
             if (currentTime <= 0)
             {
                 isHandlingRunning = false;
-                currentTime = 3;
+                currentTime = 2f;
                 torchHandlerScript.burnCount = 0;
                 animator.SetBool("torchHandler", false);
                 playerController.staticAnimationPlayed = false;

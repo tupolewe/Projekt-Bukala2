@@ -23,6 +23,9 @@ public class DzbanScript : MonoBehaviour, Interactable
     private bool canPushD;
     public bool isOn = false;
 
+    public AudioClip VaseScratchClip;
+    public AudioSource VaseSource;
+
 
 
     public int burnCount = 0;
@@ -59,7 +62,8 @@ public class DzbanScript : MonoBehaviour, Interactable
     {
         
         VaseLight.SetActive(false);
-       
+        VaseSource.loop = true;
+        VaseSource.clip = VaseScratchClip;
         
     }
     void Update()
@@ -100,6 +104,8 @@ public class DzbanScript : MonoBehaviour, Interactable
             playerController.turnSpeed = 80;
             Vase.transform.position = PushingPosition.transform.position;
             Vase.transform.SetParent(Player.transform, true);
+            
+
         }
         else if (isOn && !torchActive && canPushD)
         {
@@ -109,6 +115,8 @@ public class DzbanScript : MonoBehaviour, Interactable
             canPushD = false;
             Vase.transform.parent = null;
             playerController.turnSpeed = 340;
+            VaseSource.loop = false;
+            VaseSource.clip = VaseScratchClip;
 
         }
 
@@ -175,7 +183,7 @@ public class DzbanScript : MonoBehaviour, Interactable
                 float distance = Vector3.Distance(Player.transform.transform.position, BurnPosition1.transform.position);
                 animationStateController.animator.SetBool("isWalking", true);
 
-                if (distance < 1.65f)
+                if (distance < 1.7f)
                 {
 
 
@@ -227,7 +235,7 @@ public class DzbanScript : MonoBehaviour, Interactable
                 float distance = Vector3.Distance(Player.transform.transform.position, BurnPosition2.transform.position);
                 playerNavMesh.navMeshAgent.destination = BurnPosition2.transform.position;
                 animationStateController.animator.SetBool("isWalking", true);
-                if (distance < 1.61f)
+                if (distance < 1.7f)
                 {
                     // Calculate the direction from the player to the fireplace
                     Vector3 fireDirection = Fireplace.position - Player.transform.position;
@@ -272,7 +280,7 @@ public class DzbanScript : MonoBehaviour, Interactable
                 float distance = Vector3.Distance(Player.transform.transform.position, BurnPosition3.transform.position);
                 playerNavMesh.navMeshAgent.destination = BurnPosition3.transform.position;
                 animationStateController.animator.SetBool("isWalking", true);
-                if (distance < 1.61f)
+                if (distance < 1.7f)
                 {
                     // Calculate the direction from the player to the fireplace
                     Vector3 fireDirection = Fireplace.position - Player.transform.position;
@@ -317,19 +325,19 @@ public class DzbanScript : MonoBehaviour, Interactable
                 playerNavMesh.navMeshAgent.destination = BurnPosition4.transform.position;
                 float distance = Vector3.Distance(Player.transform.transform.position, BurnPosition4.transform.position);
                 animationStateController.animator.SetBool("isWalking", true);
-                if (distance < 1.61f)
+                if (distance < 1.7f)
                 {
                     // Calculate the direction from the player to the fireplace
                     Vector3 fireDirection = Fireplace.position - Player.transform.position;
 
                     // Normalize fireDirection if needed
-                    fireDirection.Normalize();
+                    //fireDirection.Normalize();
 
                     // Calculate the angle between the player's forward direction and fireDirection
                     float angle = Vector3.Angle(Player.transform.forward, fireDirection);
 
                     // Define a threshold angle to determine if the player is facing the right direction
-                    float thresholdAngle = 45f; // Adjust as needed
+                    float thresholdAngle = 78f; // Adjust as needed
 
                     Debug.Log(angle);
                     animationStateController.animator.SetBool("isWalking", false);

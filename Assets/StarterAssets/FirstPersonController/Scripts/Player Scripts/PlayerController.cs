@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour
         {
             transform.position = new Vector3(transform.position.x, -0.249001f, transform.position.z);
 
-
+        
         }
 
     }
