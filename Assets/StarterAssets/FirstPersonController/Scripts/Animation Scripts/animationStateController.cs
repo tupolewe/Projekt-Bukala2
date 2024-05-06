@@ -8,7 +8,7 @@ using UnityEngine.InputSystem.EnhancedTouch;
 public class animationStateController : MonoBehaviour
 {
 
-    Animator animator;
+    public Animator animator;
     int isWalkingHash;
     int canPushHash;
     public bool torchActive;
@@ -55,50 +55,53 @@ public class animationStateController : MonoBehaviour
         
 
         bool movementKey = Input.GetKey(KeyCode.W) | Input.GetKey(KeyCode.S) | Input.GetKey(KeyCode.A) | Input.GetKey(KeyCode.D);
-        
-         
 
-        if (!canPushD)
+        if(playerController.staticAnimationPlayed == false)
         {
-            if (movementKey && !isTimerRunning && !isHandlingRunning)
-
-            {   
-                animator.SetBool("isWalking", true);
-                animator.SetBool("canPush", false);
-
-            }
-
-            if (!movementKey)
+            if (!canPushD)
             {
-                animator.SetBool("isWalking", false);
-                
+                if (movementKey && !isTimerRunning && !isHandlingRunning)
+
+                {
+                    animator.SetBool("isWalking", true);
+                    animator.SetBool("canPush", false);
+
+                }
+
+                if (!movementKey)
+                {
+                    animator.SetBool("isWalking", false);
+
+                }
+
+
+
+
             }
 
-            
-
-
-        }
-
-        if (canPushD)
-        {
-            if (movementKey && !isTimerRunning && !isHandlingRunning)
-
+            if (canPushD)
             {
-                animator.SetBool("canPush", true);
-                animator.SetBool("isWalking", false);
+                if (movementKey && !isTimerRunning && !isHandlingRunning)
+
+                {
+                    animator.SetBool("canPush", true);
+                    animator.SetBool("isWalking", false);
+
+                }
+
+                if (!movementKey)
+                {
+                    animator.SetBool("canPush", false);
+                    animator.SetBool("isWalking", false);
+
+                }
 
             }
 
-            if (!movementKey)
-            {
-                animator.SetBool("canPush", false);
-                animator.SetBool("isWalking", false);
 
-            }
-            
 
-        
-            
+
+
         }
 
     }
@@ -131,7 +134,7 @@ public class animationStateController : MonoBehaviour
         }
         else if (!isTimerRunning)
         {
-            animator.SetBool("torchHandler", false);
+            //animator.SetBool("torchHandler", false);
         }
         if (torchHandle && isHandlingRunning)
         {
@@ -148,16 +151,18 @@ public class animationStateController : MonoBehaviour
         
         if (isTimerRunning)
         {
+            playerController.staticAnimationPlayed = true;
             currentTime -= Time.deltaTime;
             if (currentTime <= 0) 
             {
                 isTimerRunning = false;
                 currentTime = 3;
+                playerController.staticAnimationPlayed = false;
             }
         } 
     }
 
-    void TorchHandleTimer()
+    public void TorchHandleTimer()
     {
         if (isHandlingRunning)
         {
@@ -167,7 +172,8 @@ public class animationStateController : MonoBehaviour
                 isHandlingRunning = false;
                 currentTime = 3;
                 torchHandlerScript.burnCount = 0;
-                
+                animator.SetBool("torchHandler", false);
+                playerController.staticAnimationPlayed = false;
             }
         }
     }

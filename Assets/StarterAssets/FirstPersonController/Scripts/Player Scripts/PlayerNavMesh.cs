@@ -22,7 +22,7 @@ public class PlayerNavMesh : MonoBehaviour
     void Start()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
-
+        navMeshAgent.enabled = false;
 
     }
 
@@ -31,67 +31,20 @@ public class PlayerNavMesh : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        MoveToHandlePosition();
+        
 
     }
 
-    void MoveToHandlePosition()
+    public void VaseBurning()
     {
-        bool movementKey = Input.GetKey(KeyCode.W) | Input.GetKey(KeyCode.S) | Input.GetKey(KeyCode.A) | Input.GetKey(KeyCode.D);
-        if (movementKey)
-        {
-            navMeshAgent.enabled = false;
+        navMeshAgent.enabled = true;
+        navMeshAgent.updateRotation = false;
+    }
 
-        }
-
-
-
-        if (isHandlingTriggered && canWallHandle)
-        {
-            if (animationStateController.isHandlingRunning)
-            {
-                navMeshAgent.enabled = true;
-                navMeshAgent.destination = torchHandlerScript.HandlePosition.transform.position;
-                navMeshAgent.updateRotation = false;
-                Player.transform.rotation = Quaternion.Euler(0, 270, 0);
-
-
-
-
-            }
-        }
-        if (isHandlingTriggered)
-        {
-            if (vaseBurnPosition.burnPositionNumber == 1)
-            {
-                navMeshAgent.enabled = true;
-                isHandlingTriggered = false;
-                navMeshAgent.updateRotation = false;
-                navMeshAgent.destination = dzbanScript.BurnPosition1.transform.position;
-            }
-            else if (vaseBurnPosition.burnPositionNumber == 2)
-            {
-                navMeshAgent.enabled = true;
-                navMeshAgent.destination = dzbanScript.BurnPosition2.transform.position;
-                isHandlingTriggered = false;
-                navMeshAgent.updateRotation = false;
-            }
-            else if (vaseBurnPosition.burnPositionNumber == 3)
-            {
-                navMeshAgent.enabled = true;
-                navMeshAgent.destination = dzbanScript.BurnPosition3.transform.position;
-                isHandlingTriggered = false;
-                navMeshAgent.updateRotation = false;
-            }
-            else if (vaseBurnPosition.burnPositionNumber == 4)
-            {
-                navMeshAgent.enabled = true;
-                navMeshAgent.destination = dzbanScript.BurnPosition4.transform.position;
-                isHandlingTriggered = false;
-                navMeshAgent.updateRotation = false;
-            }
-
-
-        }
+    public void WallHandling()
+    {
+        navMeshAgent.enabled = true;
+        navMeshAgent.updateRotation = true;
+        Player.transform.rotation = Quaternion.Euler(0, 270, 0); 
     }
 }

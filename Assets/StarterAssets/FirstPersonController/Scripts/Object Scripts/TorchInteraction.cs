@@ -6,9 +6,16 @@ public class TorchInteraction : MonoBehaviour
 {
     public GameObject Torch;
     [SerializeField] private bool torchActive = true;
+     MeshSockets sockets;
 
     public animationStateController animationStateController;
 
+    public void Start()
+    {
+        sockets = GetComponent<MeshSockets>();
+        
+        sockets.Attach(Torch.transform, MeshSockets.SocketId.Hand);
+    }
     public void Update()
     {
         TorchFiring(); 

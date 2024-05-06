@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem.EnhancedTouch;
 
@@ -8,18 +9,28 @@ public class TorchHandlerScript : MonoBehaviour, Interactable
 {
     public bool torchInRange = false;
     public bool torchActive;
-    public GameObject TorchLight;
+    public bool torchHandled = false;
+   
     public animationStateController animationStateController;
     public PlayerNavMesh playerNavMesh;
-    public bool torchHandled = false;
-    public GameObject Torch;
+    public PlayerController controller;
 
-    [SerializeField] private GameObject Player;
+    public GameObject TorchLight;
+    public GameObject Torch;
     public GameObject HandlePosition;
+    [SerializeField] private GameObject Player;
     [SerializeField] private GameObject TorchHandlePosition;
     [SerializeField] private GameObject TorchPosition;
 
+
+    public Transform PlayerTransform;
+    public Transform HandleTransform;
+
+
+
     public int burnCount;
+
+    public bool torchHandlingActive;
     
 
     // Start is called before the first frame update
@@ -32,29 +43,23 @@ public class TorchHandlerScript : MonoBehaviour, Interactable
     void Update()
     {
         TorchActiveCheck();
-        //BurnCount();
-       // Debug.Log(burnCount);
+        NavMeshDestination();
+
+        
+
     }
 
     public void Interact()
+
     {
-        if (torchActive && !torchHandled) 
+        Debug.Log("torch handling1");
+        if (torchActive) 
         {
-            playerNavMesh.isHandlingTriggered = true;
-            animationStateController.isHandlingRunning = true;
-            animationStateController.torchHandle = true;
-            burnCount = 1;
-            torchHandled = true;
-            Torch.transform.position = TorchHandlePosition.transform.position;
-            Torch.transform.parent = null; 
             
-        }
-        else if (torchHandled)
-        {
-            playerNavMesh.isHandlingTriggered = true;
-            animationStateController.isHandlingRunning = true;
-            Torch.transform.SetParent(TorchPosition.transform, true);
-            Torch.transform.position = TorchPosition.transform.position;
+             torchHandlingActive = true;
+            
+            
+
         }
         
         
@@ -106,5 +111,43 @@ public class TorchHandlerScript : MonoBehaviour, Interactable
             
         }
     }
+
+    void NavMeshDestination()
+    {
+        if (torchHandlingActive)
+        {
+            playerNavMesh.navMeshAgent.destination = HandlePosition.transform.position;
+            playerNavMesh.WallHandling();
+            controller.staticAnimationPlayed = true;
+
+            if (Vector3.Distance(PlayerTransform.position, HandleTransform.position) > 0.25f)
+            {
+                Vector3 dir = HandleTransform.position - Player.transform.position;
+
+                Quaternion rot = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dir), 0.001f * Time.deltaTime);
+                rot.x = 0;
+                rot.z = 0;
+
+                Player.transform.rotation = rot;
+                animationStateController.animator.SetBool("isWalking", true);
+                controller.speed = 1;
+                
+            }
+
+                if (Vector3.Distance(PlayerTransform.position, HandleTransform.position) < 0.25f)
+            {
+                animationStateController.animator.SetBool("torchHandler", true);
+                playerNavMesh.navMeshAgent.enabled = false;
+                torchHandlingActive = false;
+                animationStateController.isHandlingRunning = true;
+                animationStateController.animator.SetBool("isWalking", false);
+                controller.speed = 3;
+
+            }
+        }
+        
+    }
+
+    
 
 }

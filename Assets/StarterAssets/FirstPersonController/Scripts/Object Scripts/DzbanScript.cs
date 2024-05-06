@@ -1,8 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor.Rendering.LookDev;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.InputSystem.XR;
+using static UnityEditor.Experimental.GraphView.GraphView;
+using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
 
 public class DzbanScript : MonoBehaviour, Interactable
 
@@ -36,6 +40,17 @@ public class DzbanScript : MonoBehaviour, Interactable
     public GameObject BurnPosition4;
     public NavMeshAgent navMeshAgent;
 
+    public Transform BurnTransform1;
+    public Transform BurnTransform2;
+    public Transform BurnTransform3;
+    public Transform BurnTransform4;
+    public Transform Fireplace;
+    public Transform PlayerTransform;
+
+    public bool VaseBurningActive;
+    public float distanceToPosition = 3;
+    public float rotationSpeed = 100f;
+
 
 
 
@@ -50,8 +65,8 @@ public class DzbanScript : MonoBehaviour, Interactable
     void Update()
     {
         TorchActiveCheck();
-        //BurnCount();
-        
+        NavMeshDestination();
+
         
        
     }
@@ -68,68 +83,21 @@ public class DzbanScript : MonoBehaviour, Interactable
 
   public void Interact()
     {
-        if (torchInRange == true && !isOn && torchActive && vaseBurnPosition.burnPositionNumber > 0)
+        
+       if (torchActive && !isOn && vaseBurnPosition.burnPositionNumber > 0)
+            {
+                VaseBurningActive = true;
+                //UpdateLight();
+            
+            }
+         else if (isOn && !torchActive && !canPushD)
         {
-            UpdateLight();
-            animationStateController.torchHandle = true;
-            burnCount = 1;
-            animationStateController.isTimerRunning = true;
-            playerNavMesh.isHandlingTriggered = true;
-
-            if (vaseBurnPosition.burnPositionNumber == 1)
-            {
-                Debug.Log("asasasas");
-                animationStateController.isHandlingRunning = true;
-                //playerNavMesh.navMeshAgent.destination = BurnPosition1.transform.position;
-                navMeshAgent.updateRotation = false;
-                Player.transform.rotation = Quaternion.Euler(0, -360, 0);
-            }
-
-            else if (vaseBurnPosition.burnPositionNumber == 2)
-            {
-
-                Debug.Log("asasasas");
-                animationStateController.isHandlingRunning = true;
-                //playerNavMesh.navMeshAgent.destination = BurnPosition2.transform.position;
-                Player.transform.rotation = Quaternion.Euler(0, 100, 0);
-            }
-            else if (vaseBurnPosition.burnPositionNumber == 3)
-            {
-
-                Debug.Log("asasasas");
-                animationStateController.isHandlingRunning = true;
-                //playerNavMesh.navMeshAgent.destination = BurnPosition3.transform.position;
-                Player.transform.rotation = Quaternion.Euler(0, -90, 0);
-            }
-            else if (vaseBurnPosition.burnPositionNumber == 4)
-            {
-
-                Debug.Log("asasasas");
-                animationStateController.isHandlingRunning = true;
-                //playerNavMesh.navMeshAgent.destination = BurnPosition4.transform.position;
-                navMeshAgent.updateRotation = false;
-                Player.transform.rotation = Quaternion.Euler(0, 180, 0);
-            }
 
             
-
-
-
-        }
-
-
-
-
-
-
-        else if (isOn && !torchActive && !canPushD)
-        {
-
-
             playerController.speed = 2;
             canPushD = true;
             animationStateController.canPushD = true;
-            
+            playerController.turnSpeed = 80;
             Vase.transform.position = PushingPosition.transform.position;
             Vase.transform.SetParent(Player.transform, true);
         }
@@ -140,6 +108,7 @@ public class DzbanScript : MonoBehaviour, Interactable
             animationStateController.canPushD = false;
             canPushD = false;
             Vase.transform.parent = null;
+            playerController.turnSpeed = 340;
 
         }
 
@@ -187,13 +156,207 @@ public class DzbanScript : MonoBehaviour, Interactable
 
     }
 
-    void BurnCount()
+    void NavMeshDestination()
     {
-        if (burnCount > 0) 
+        if (VaseBurningActive == true)
         {
-            animationStateController.torchHandle = false;
-            //Debug.Log(burnCount);
+            playerController.staticAnimationPlayed = true;
+            playerNavMesh.VaseBurning();
+
+            
+
+            if (vaseBurnPosition.burnPositionNumber == 1)
+            {
+                
+                playerNavMesh.navMeshAgent.destination = BurnTransform1.transform.position;
+                Vector3 direction = BurnTransform1.position - Player.transform.position;
+                Quaternion targetRotation = Quaternion.LookRotation(direction);
+                Player.transform.rotation = Quaternion.Lerp(Player.transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+                float distance = Vector3.Distance(Player.transform.transform.position, BurnPosition1.transform.position);
+                animationStateController.animator.SetBool("isWalking", true);
+
+                if (distance < 1.65f)
+                {
+
+
+                    // Calculate the direction from the player to the fireplace
+                    Vector3 fireDirection = Fireplace.position - Player.transform.position;
+
+                    // Normalize fireDirection if needed
+                    fireDirection.Normalize();
+
+                    // Calculate the angle between the player's forward direction and fireDirection
+                    float angle = Vector3.Angle(Player.transform.forward, fireDirection);
+
+                    // Define a threshold angle to determine if the player is facing the right direction
+                    float thresholdAngle = 45f; // Adjust as needed
+
+                    Debug.Log(angle);
+                    animationStateController.animator.SetBool("isWalking", false);
+
+                    // Check if the angle is within the threshold
+                    if (angle <= thresholdAngle)
+                    {
+                        
+                        Player.transform.rotation = Quaternion.Euler(0, -360, 0);
+                        navMeshAgent.updateRotation = false;
+                        animationStateController.animator.SetBool("torchHandler", true);
+                        playerNavMesh.navMeshAgent.enabled = false;
+                        VaseBurningActive = false;
+                        animationStateController.isHandlingRunning = true;
+                        UpdateLight();
+                    }
+                    else
+                    {
+                        // Player is not facing the right direction, rotate the player towards the fireplace
+                        Quaternion firetargetRotation = Quaternion.LookRotation(fireDirection);
+                        Player.transform.rotation = Quaternion.Lerp(Player.transform.rotation, firetargetRotation, rotationSpeed * Time.deltaTime);
+                    }
+
+                    
+
+                    
+                    
+                }
+            }
+            if (vaseBurnPosition.burnPositionNumber == 2)
+            {
+                Vector3 direction = BurnTransform2.position - Player.transform.position;
+                Quaternion targetRotation = Quaternion.LookRotation(direction);
+                Player.transform.rotation = Quaternion.Lerp(Player.transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+                float distance = Vector3.Distance(Player.transform.transform.position, BurnPosition2.transform.position);
+                playerNavMesh.navMeshAgent.destination = BurnPosition2.transform.position;
+                animationStateController.animator.SetBool("isWalking", true);
+                if (distance < 1.61f)
+                {
+                    // Calculate the direction from the player to the fireplace
+                    Vector3 fireDirection = Fireplace.position - Player.transform.position;
+
+                    // Normalize fireDirection if needed
+                    fireDirection.Normalize();
+
+                    // Calculate the angle between the player's forward direction and fireDirection
+                    float angle = Vector3.Angle(Player.transform.forward, fireDirection);
+
+                    // Define a threshold angle to determine if the player is facing the right direction
+                    float thresholdAngle = 45f; // Adjust as needed
+
+                    Debug.Log(angle);
+                    animationStateController.animator.SetBool("isWalking", false);
+
+                    // Check if the angle is within the threshold
+                    if (angle <= thresholdAngle)
+                    {
+                        
+                        Player.transform.rotation = Quaternion.Euler(0, 100, 0);
+                        navMeshAgent.updateRotation = false;
+                        animationStateController.animator.SetBool("torchHandler", true);
+                        playerNavMesh.navMeshAgent.enabled = false;
+                        VaseBurningActive = false;
+                        animationStateController.isHandlingRunning = true;
+                        UpdateLight();
+                    }
+                    else
+                    {
+                        // Player is not facing the right direction, rotate the player towards the fireplace
+                        Quaternion firetargetRotation = Quaternion.LookRotation(fireDirection);
+                        Player.transform.rotation = Quaternion.Lerp(Player.transform.rotation, firetargetRotation, rotationSpeed * Time.deltaTime);
+                    }
+                }
+            }
+            if (vaseBurnPosition.burnPositionNumber == 3)
+            {
+                Vector3 direction = BurnTransform3.position - Player.transform.position;
+                Quaternion targetRotation = Quaternion.LookRotation(direction);
+                Player.transform.rotation = Quaternion.Lerp(Player.transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+                float distance = Vector3.Distance(Player.transform.transform.position, BurnPosition3.transform.position);
+                playerNavMesh.navMeshAgent.destination = BurnPosition3.transform.position;
+                animationStateController.animator.SetBool("isWalking", true);
+                if (distance < 1.61f)
+                {
+                    // Calculate the direction from the player to the fireplace
+                    Vector3 fireDirection = Fireplace.position - Player.transform.position;
+
+                    // Normalize fireDirection if needed
+                    fireDirection.Normalize();
+
+                    // Calculate the angle between the player's forward direction and fireDirection
+                    float angle = Vector3.Angle(Player.transform.forward, fireDirection);
+
+                    // Define a threshold angle to determine if the player is facing the right direction
+                    float thresholdAngle = 45f; // Adjust as needed
+
+                    Debug.Log(angle);
+                    animationStateController.animator.SetBool("isWalking", false);
+
+                    // Check if the angle is within the threshold
+                    if (angle <= thresholdAngle)
+                    {
+                        
+                        Player.transform.rotation = Quaternion.Euler(0, -90, 0);
+                        navMeshAgent.updateRotation = false;
+                        animationStateController.animator.SetBool("torchHandler", true);
+                        playerNavMesh.navMeshAgent.enabled = false;
+                        VaseBurningActive = false;
+                        animationStateController.isHandlingRunning = true;
+                        UpdateLight();
+                    }
+                    else
+                    {
+                        // Player is not facing the right direction, rotate the player towards the fireplace
+                        Quaternion firetargetRotation = Quaternion.LookRotation(fireDirection);
+                        Player.transform.rotation = Quaternion.Lerp(Player.transform.rotation, firetargetRotation, rotationSpeed * Time.deltaTime);
+                    }
+                }
+            }
+            if (vaseBurnPosition.burnPositionNumber == 4)
+            {
+                Vector3 direction = BurnTransform4.position - Player.transform.position;
+                Quaternion targetRotation = Quaternion.LookRotation(direction);
+                Player.transform.rotation = Quaternion.Lerp(Player.transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+                playerNavMesh.navMeshAgent.destination = BurnPosition4.transform.position;
+                float distance = Vector3.Distance(Player.transform.transform.position, BurnPosition4.transform.position);
+                animationStateController.animator.SetBool("isWalking", true);
+                if (distance < 1.61f)
+                {
+                    // Calculate the direction from the player to the fireplace
+                    Vector3 fireDirection = Fireplace.position - Player.transform.position;
+
+                    // Normalize fireDirection if needed
+                    fireDirection.Normalize();
+
+                    // Calculate the angle between the player's forward direction and fireDirection
+                    float angle = Vector3.Angle(Player.transform.forward, fireDirection);
+
+                    // Define a threshold angle to determine if the player is facing the right direction
+                    float thresholdAngle = 45f; // Adjust as needed
+
+                    Debug.Log(angle);
+                    animationStateController.animator.SetBool("isWalking", false);
+
+                    // Check if the angle is within the threshold
+                    if (angle <= thresholdAngle)
+                    {
+                        
+                        Player.transform.rotation = Quaternion.Euler(0, 180, 0);
+                        navMeshAgent.updateRotation = false;
+                        animationStateController.animator.SetBool("torchHandler", true);
+                        playerNavMesh.navMeshAgent.enabled = false;
+                        VaseBurningActive = false;
+                        animationStateController.isHandlingRunning = true;
+                        UpdateLight();
+                    }
+                    else
+                    {
+                        // Player is not facing the right direction, rotate the player towards the fireplace
+                        Quaternion firetargetRotation = Quaternion.LookRotation(fireDirection);
+                        Player.transform.rotation = Quaternion.Lerp(Player.transform.rotation, firetargetRotation, rotationSpeed * Time.deltaTime);
+                    }
+                }
+            }
+            
         }
+        
     }
    
 }
