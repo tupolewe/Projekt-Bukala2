@@ -16,7 +16,8 @@ public class DzbanScript : MonoBehaviour, Interactable
     public PlayerController playerController;
     public VaseBurnPosition vaseBurnPosition;
     public PlayerNavMesh playerNavMesh;
-
+    
+    public TorchInteraction torchInteraction;
    
     public bool torchInRange = false;
     public bool torchActive = true;
@@ -88,7 +89,7 @@ public class DzbanScript : MonoBehaviour, Interactable
   public void Interact()
     {
         
-       if (torchActive && !isOn && vaseBurnPosition.burnPositionNumber > 0)
+       if (torchActive && !isOn && vaseBurnPosition.burnPositionNumber > 0 && torchInteraction.hasTorch)
             {
                 VaseBurningActive = true;
                 //UpdateLight();
