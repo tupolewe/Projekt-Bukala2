@@ -15,17 +15,17 @@ public class PlayerController : MonoBehaviour
 
     public bool staticAnimationPlayed = false;
 
-    public Transform player; 
+    public Transform player;
     //public float horizontalInput = Input.GetAxis("Horizontal");
     //public float verticalInput = Input.GetAxis("Vertical");
     //public Vector3 movementDirection = new Vector3(horizontalInput, 0, verticalInput);
 
-
+    private Vector3 previousPos;
     public animationStateController animationStateController;
     
     private void Start()
     {
-        
+        previousPos = transform.position;
     }
 
     private void Update()
@@ -34,6 +34,7 @@ public class PlayerController : MonoBehaviour
         {
             GatherInput();
             Look();
+            MoveCheck();
         }
 
         if (transform.position.y > -0.249001f)
@@ -88,7 +89,25 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    private void MoveCheck()
+    {
 
+        bool movementKey = Input.GetKey(KeyCode.W) | Input.GetKey(KeyCode.S) | Input.GetKey(KeyCode.A) | Input.GetKey(KeyCode.D);
+
+        if (transform.position != previousPos && !movementKey)
+        {
+            previousPos = transform.position;
+            
+            _rb.isKinematic = true;
+        }
+        else if ((transform.position == previousPos && !movementKey))
+        {
+            _rb.isKinematic = false;
+        }
+        
+        
+        
+    }
 
 }
 

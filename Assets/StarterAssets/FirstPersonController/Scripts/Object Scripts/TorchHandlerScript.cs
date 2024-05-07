@@ -10,7 +10,9 @@ public class TorchHandlerScript : MonoBehaviour, Interactable
     public bool torchInRange = false;
     public bool torchActive;
     public bool torchHandled = false;
-   
+    public bool hasTorch;
+
+
     public animationStateController animationStateController;
     public PlayerNavMesh playerNavMesh;
     public PlayerController controller;
@@ -26,17 +28,19 @@ public class TorchHandlerScript : MonoBehaviour, Interactable
     public Transform PlayerTransform;
     public Transform HandleTransform;
     public Transform TorchHandlingPosition;
+    public GameObject TorchHandler;
+    public Transform LeftHand;
 
 
     public int burnCount;
 
     public bool torchHandlingActive;
-    
+
 
     // Start is called before the first frame update
     void Start()
     {
-
+        
     }
 
     // Update is called once per frame
@@ -45,24 +49,24 @@ public class TorchHandlerScript : MonoBehaviour, Interactable
         TorchActiveCheck();
         NavMeshDestination();
 
-        
+
 
     }
 
     public void Interact()
 
     {
-        Debug.Log("torch handling1");
-        if (torchActive) 
+
+        if (torchActive)
         {
-            
-             torchHandlingActive = true;
-            
-            
+
+            torchHandlingActive = true;
+
+
 
         }
-        
-        
+
+
     }
 
     public void OnTriggerEnter(Collider collider)
@@ -101,6 +105,12 @@ public class TorchHandlerScript : MonoBehaviour, Interactable
         {
             torchActive = false;
         }
+
+        if (Torch.transform.parent == LeftHand)
+        {
+            hasTorch = true;
+
+        }
     }
 
     void BurnCount()
@@ -108,72 +118,103 @@ public class TorchHandlerScript : MonoBehaviour, Interactable
         if (burnCount == 0)
         {
             animationStateController.torchHandle = false;
-            
+
         }
     }
 
     void NavMeshDestination()
     {
-        if (torchHandlingActive)
+
+        if (hasTorch)
         {
-            playerNavMesh.navMeshAgent.destination = HandlePosition.transform.position;
-            playerNavMesh.WallHandling();
-            controller.staticAnimationPlayed = true;
-
-            if (Vector3.Distance(PlayerTransform.position, HandleTransform.position) > 0.25f)
+            if (!torchHandled && torchHandlingActive)
             {
-                Vector3 direction = HandleTransform.position - Player.transform.position;
-                Quaternion targetRotation = Quaternion.LookRotation(direction);
-                Player.transform.rotation = Quaternion.Lerp(Player.transform.rotation, targetRotation, 5f * Time.deltaTime);
-                float distance = Vector3.Distance(Player.transform.transform.position, HandleTransform.transform.position);
-                playerNavMesh.navMeshAgent.destination = HandleTransform.transform.position;
-                animationStateController.animator.SetBool("isWalking", true);
+                playerNavMesh.navMeshAgent.destination = HandlePosition.transform.position;
+                playerNavMesh.WallHandling();
+                controller.staticAnimationPlayed = true;
 
-            }
+                if (Vector3.Distance(PlayerTransform.position, HandleTransform.position) > 0.25f)
+                {
+                    Vector3 direction = HandleTransform.position - Player.transform.position;
+                    Quaternion targetRotation = Quaternion.LookRotation(direction);
+                    Player.transform.rotation = Quaternion.Lerp(Player.transform.rotation, targetRotation, 5f * Time.deltaTime);
+                    float distance = Vector3.Distance(Player.transform.transform.position, HandleTransform.transform.position);
+                    playerNavMesh.navMeshAgent.destination = HandleTransform.transform.position;
+                    animationStateController.animator.SetBool("isWalking", true);
+
+                }
 
                 if (Vector3.Distance(PlayerTransform.position, HandleTransform.position) < 0.25f)
-            {
-                // Calculate the direction from the player to the fireplace
-                Vector3 fireDirection = TorchHandlingPosition.position - Player.transform.position;
-
-                // Normalize fireDirection if needed
-                fireDirection.Normalize();
-
-                // Calculate the angle between the player's forward direction and fireDirection
-                float angle = Vector3.Angle(Player.transform.forward, fireDirection);
-
-                // Define a threshold angle to determine if the player is facing the right direction
-                float thresholdAngle = 24f; // Adjust as needed
-
-                Debug.Log(angle);
-                animationStateController.animator.SetBool("isWalking", false);
-
-                if (angle <= thresholdAngle) 
                 {
-                    animationStateController.animator.SetBool("torchHandler", true);
-                    playerNavMesh.navMeshAgent.enabled = false;
-                    torchHandlingActive = false;
-                    animationStateController.isHandlingRunning = true;
+                    // Calculate the direction from the player to the fireplace
+                    Vector3 fireDirection = TorchHandlingPosition.position - Player.transform.position;
+
+                    // Normalize fireDirection if needed
+                    fireDirection.Normalize();
+
+                    // Calculate the angle between the player's forward direction and fireDirection
+                    float angle = Vector3.Angle(Player.transform.forward, fireDirection);
+
+                    // Define a threshold angle to determine if the player is facing the right direction
+                    float thresholdAngle = 24f; // Adjust as needed
+
+                    //Debug.Log(angle);
                     animationStateController.animator.SetBool("isWalking", false);
-                    controller.speed = 3;
-                    Player.transform.rotation = Quaternion.Euler(0, 270, 0);
+
+                    if (angle <= thresholdAngle)
+                    {
+                        Torch.transform.SetParent(TorchHandler.transform, true); 
+                        
+                        animationStateController.animator.SetBool("torchHandler", true);
+                        playerNavMesh.navMeshAgent.enabled = false;
+                        torchHandlingActive = false;
+                        animationStateController.isHandlingRunning = true;
+                        animationStateController.animator.SetBool("isWalking", false);
+                        controller.speed = 3;
+                        Player.transform.rotation = Quaternion.Euler(0, 270, 0);
+
+
+                        if (Torch.transform.parent == TorchHandler)
+                        {
+                            Debug.Log("dziala");
+                            Torch.transform.localPosition = new Vector3(0.04f, 0.622f, -0.007f);
+                            Torch.transform.localRotation = Quaternion.Euler(3.19f, 85.7f, 88f);
+                            torchHandled = true;
+                            
+
+                        }
+                    }
+
+                    else
+                    {
+                        // Player is not facing the right direction, rotate the player towards the fireplace
+                        Quaternion firetargetRotation = Quaternion.LookRotation(fireDirection);
+                        Player.transform.rotation = Quaternion.Lerp(Player.transform.rotation, firetargetRotation, 3f * Time.deltaTime);
+                        animationStateController.animator.SetBool("isWalking", true);
+                    }
+
+
+
                 }
 
-                else
-                {
-                    // Player is not facing the right direction, rotate the player towards the fireplace
-                    Quaternion firetargetRotation = Quaternion.LookRotation(fireDirection);
-                    Player.transform.rotation = Quaternion.Lerp(Player.transform.rotation, firetargetRotation, 1f * Time.deltaTime);
-                    animationStateController.animator.SetBool("isWalking", true);
-                }
+
 
 
 
             }
+
+            
+            
+
+
+
         }
+
         
+        }
     }
+
 
     
 
-}
+
