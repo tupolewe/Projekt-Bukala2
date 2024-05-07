@@ -197,7 +197,7 @@ public class DzbanScript : MonoBehaviour, Interactable
                     float angle = Vector3.Angle(Player.transform.forward, fireDirection);
 
                     // Define a threshold angle to determine if the player is facing the right direction
-                    float thresholdAngle = 45f; // Adjust as needed
+                    float thresholdAngle = 1000f; // Adjust as needed
 
                     Debug.Log(angle);
                     animationStateController.animator.SetBool("isWalking", false);
@@ -217,7 +217,7 @@ public class DzbanScript : MonoBehaviour, Interactable
                     else
                     {
                         // Player is not facing the right direction, rotate the player towards the fireplace
-                        Quaternion firetargetRotation = Quaternion.LookRotation(fireDirection);
+                        Quaternion firetargetRotation = Quaternion.LookRotation(Fireplace.forward);
                         Player.transform.rotation = Quaternion.Lerp(Player.transform.rotation, firetargetRotation, rotationSpeed * Time.deltaTime);
                     }
 
@@ -247,7 +247,7 @@ public class DzbanScript : MonoBehaviour, Interactable
                     float angle = Vector3.Angle(Player.transform.forward, fireDirection);
 
                     // Define a threshold angle to determine if the player is facing the right direction
-                    float thresholdAngle = 45f; // Adjust as needed
+                    float thresholdAngle = 2000f; // Adjust as needed
 
                     Debug.Log(angle);
                     animationStateController.animator.SetBool("isWalking", false);
@@ -267,7 +267,7 @@ public class DzbanScript : MonoBehaviour, Interactable
                     else
                     {
                         // Player is not facing the right direction, rotate the player towards the fireplace
-                        Quaternion firetargetRotation = Quaternion.LookRotation(fireDirection);
+                        Quaternion firetargetRotation = Quaternion.LookRotation(Fireplace.forward);
                         Player.transform.rotation = Quaternion.Lerp(Player.transform.rotation, firetargetRotation, rotationSpeed * Time.deltaTime);
                     }
                 }
@@ -292,7 +292,7 @@ public class DzbanScript : MonoBehaviour, Interactable
                     float angle = Vector3.Angle(Player.transform.forward, fireDirection);
 
                     // Define a threshold angle to determine if the player is facing the right direction
-                    float thresholdAngle = 45f; // Adjust as needed
+                    float thresholdAngle = 2000f; // Adjust as needed
 
                     Debug.Log(angle);
                     animationStateController.animator.SetBool("isWalking", false);
@@ -312,7 +312,7 @@ public class DzbanScript : MonoBehaviour, Interactable
                     else
                     {
                         // Player is not facing the right direction, rotate the player towards the fireplace
-                        Quaternion firetargetRotation = Quaternion.LookRotation(fireDirection);
+                        Quaternion firetargetRotation = Quaternion.LookRotation(Fireplace.forward);
                         Player.transform.rotation = Quaternion.Lerp(Player.transform.rotation, firetargetRotation, rotationSpeed * Time.deltaTime);
                     }
                 }
@@ -337,7 +337,7 @@ public class DzbanScript : MonoBehaviour, Interactable
                     float angle = Vector3.Angle(Player.transform.forward, fireDirection);
 
                     // Define a threshold angle to determine if the player is facing the right direction
-                    float thresholdAngle = 78f; // Adjust as needed
+                    float thresholdAngle = 2000f; // Adjust as needed
 
                     Debug.Log(angle);
                     animationStateController.animator.SetBool("isWalking", false);
@@ -357,7 +357,7 @@ public class DzbanScript : MonoBehaviour, Interactable
                     else
                     {
                         // Player is not facing the right direction, rotate the player towards the fireplace
-                        Quaternion firetargetRotation = Quaternion.LookRotation(fireDirection);
+                        Quaternion firetargetRotation = Quaternion.LookRotation(Fireplace.forward);
                         Player.transform.rotation = Quaternion.Lerp(Player.transform.rotation, firetargetRotation, rotationSpeed * Time.deltaTime);
                     }
                 }

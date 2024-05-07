@@ -163,7 +163,7 @@ public class TorchHandlerScript : MonoBehaviour, Interactable
                 {
                     // Player is not facing the right direction, rotate the player towards the fireplace
                     Quaternion firetargetRotation = Quaternion.LookRotation(fireDirection);
-                    Player.transform.rotation = Quaternion.Lerp(Player.transform.rotation, firetargetRotation, 3.5f * Time.deltaTime);
+                    Player.transform.rotation = Quaternion.Lerp(Player.transform.rotation, firetargetRotation, 1f * Time.deltaTime);
                     animationStateController.animator.SetBool("isWalking", true);
                 }
 

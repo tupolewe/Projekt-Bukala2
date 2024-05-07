@@ -88,8 +88,8 @@ public class animationStateController : MonoBehaviour
                     animator.SetBool("isWalking", false);
                     
                     
-                    dzbanScript.VaseSource.volume = 1f;
-                    dzbanScript.VaseSource.Play();
+                    //dzbanScript.VaseSource.volume = 1f;
+                    //dzbanScript.VaseSource.Play();
                    
                 }
 
@@ -99,7 +99,7 @@ public class animationStateController : MonoBehaviour
                     animator.SetBool("isWalking", false);
                     
                    
-                    dzbanScript.VaseSource.Stop();
+                    //dzbanScript.VaseSource.Stop();
 
 
                 }
