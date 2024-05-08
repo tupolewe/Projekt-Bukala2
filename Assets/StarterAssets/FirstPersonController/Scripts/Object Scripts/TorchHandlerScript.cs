@@ -313,7 +313,7 @@ public class TorchHandlerScript : MonoBehaviour, Interactable
         if (rayCastInteraction.currentHitDistance > 1.6f)
         {
             playerFarEnough = true;
-            Debug.Log("daleko");
+            //Debug.Log("daleko");
         }
         else
         {
