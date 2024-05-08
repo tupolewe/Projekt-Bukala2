@@ -16,6 +16,7 @@ public class DzbanScript : MonoBehaviour, Interactable
     public PlayerController playerController;
     public VaseBurnPosition vaseBurnPosition;
     public PlayerNavMesh playerNavMesh;
+    public RayCastInteraction rayCastInteraction;
     
     public TorchInteraction torchInteraction;
    
@@ -23,6 +24,7 @@ public class DzbanScript : MonoBehaviour, Interactable
     public bool torchActive = true;
     private bool canPushD;
     public bool isOn = false;
+    public bool playerFarEnough;
 
     public AudioClip VaseScratchClip;
     public AudioSource VaseSource;
@@ -367,5 +369,18 @@ public class DzbanScript : MonoBehaviour, Interactable
         }
         
     }
-   
+
+    void DistanceCheck()
+    {
+        if (rayCastInteraction.currentHitDistance > 1.6f)
+        {
+            playerFarEnough = true;
+            Debug.Log("daleko");
+        }
+        else
+        {
+            playerFarEnough = false;
+        }
+    }
+
 }

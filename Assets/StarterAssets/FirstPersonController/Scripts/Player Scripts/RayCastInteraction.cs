@@ -10,12 +10,12 @@ public class RayCastInteraction : MonoBehaviour
     public float maxDistance;
     public LayerMask layerMask;
     public GameObject player;
-
+    
 
     private Vector3 origin;
     private Vector3 direction;
 
-    private float currentHitDistance;
+    public float currentHitDistance;
     public GameObject currentHitObject;
 
 
