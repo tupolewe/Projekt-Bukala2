@@ -57,7 +57,7 @@ public class DzbanScript : MonoBehaviour, Interactable
 
     public bool VaseBurningActive;
     public float distanceToPosition = 3;
-    public float rotationSpeed = 100f;
+    public float rotationSpeed = 10000f;
 
 
 
@@ -76,8 +76,9 @@ public class DzbanScript : MonoBehaviour, Interactable
         TorchActiveCheck();
         NavMeshDestination();
         BurningDistanceCheck();
+        DistanceCheck();
 
-        Debug.Log(rotatedToPosition);
+        //Debug.Log(rotatedToPosition);
     }
 
     void UpdateLight()
@@ -93,7 +94,7 @@ public class DzbanScript : MonoBehaviour, Interactable
   public void Interact()
     {
         
-       if (torchActive && !isOn && vaseBurnPosition.burnPositionNumber > 0 && torchInteraction.hasTorch)
+       if (torchActive && !isOn && vaseBurnPosition.burnPositionNumber > 0 && torchInteraction.hasTorch && playerFarEnough)
             {
                 VaseBurningActive = true;
                 //UpdateLight();
@@ -199,8 +200,9 @@ public class DzbanScript : MonoBehaviour, Interactable
 
 
                     rotatedToPosition = true;
+                    Debug.Log("inPosition");
+                    //animationStateController.animator.SetBool("isWalking", false);
 
-                  
                 }
             }
             if (vaseBurnPosition.burnPositionNumber == 2 && !rotatedToPosition)
@@ -215,6 +217,8 @@ public class DzbanScript : MonoBehaviour, Interactable
                 if (distance < 1.7f)
                 {
                     rotatedToPosition = true;
+                    Debug.Log("inPosition");
+                    //animationStateController.animator.SetBool("isWalking", false);
                 }
             }
             if (vaseBurnPosition.burnPositionNumber == 3 && !rotatedToPosition)
@@ -229,6 +233,8 @@ public class DzbanScript : MonoBehaviour, Interactable
                 if (distance < 1.7f)
                 {
                     rotatedToPosition = true;
+                    Debug.Log("inPosition");
+                    //animationStateController.animator.SetBool("isWalking", false);
                 }
             }
             if (vaseBurnPosition.burnPositionNumber == 4 && !rotatedToPosition)
@@ -243,6 +249,8 @@ public class DzbanScript : MonoBehaviour, Interactable
                 if (distance < 1.7f)
                 {
                     rotatedToPosition = true;
+                    Debug.Log("inPosition");
+                    //animationStateController.animator.SetBool("isWalking", false);
                 }
             }
             
@@ -252,14 +260,16 @@ public class DzbanScript : MonoBehaviour, Interactable
 
     void DistanceCheck()
     {
-        if (rayCastInteraction.currentHitDistance > 1.6f)
+        if (rayCastInteraction.currentHitDistance > 0.5f && playerController.staticAnimationPlayed == false)
         {
             playerFarEnough = true;
             Debug.Log("daleko");
         }
-        else
+        else if (rayCastInteraction.currentHitDistance < 0.5f && playerController.staticAnimationPlayed == false)
         {
             playerFarEnough = false;
+            Debug.Log("blisko");
+
         }
     }
     void BurningDistanceCheck()
@@ -276,7 +286,7 @@ public class DzbanScript : MonoBehaviour, Interactable
             float angle = Vector3.Angle(Player.transform.forward, fireDirection);
 
             // Define a threshold angle to determine if the player is facing the right direction
-            float thresholdAngle = 10f; // Adjust as needed
+            float thresholdAngle = 15f; // Adjust as needed
 
             Debug.Log(angle);
             animationStateController.animator.SetBool("isWalking", false);
@@ -299,8 +309,9 @@ public class DzbanScript : MonoBehaviour, Interactable
             else
             {
                 // Player is not facing the right direction, rotate the player towards the fireplace
-                Quaternion firetargetRotation = Quaternion.LookRotation(Fireplace.forward);
-                Player.transform.rotation = Quaternion.Lerp(Player.transform.rotation, firetargetRotation, rotationSpeed * Time.deltaTime);
+                //Quaternion firetargetRotation = Quaternion.LookRotation(Fireplace.position - Player.transform.position);
+                //Player.transform.rotation = Quaternion.RotateTowards(Player.transform.rotation, firetargetRotation, rotationSpeed * Time.deltaTime);
+                Player.transform.LookAt(Fireplace);
 
             }
         }
@@ -317,7 +328,7 @@ public class DzbanScript : MonoBehaviour, Interactable
             float angle = Vector3.Angle(Player.transform.forward, fireDirection);
 
             // Define a threshold angle to determine if the player is facing the right direction
-            float thresholdAngle = 10f; // Adjust as needed
+            float thresholdAngle = 15f; // Adjust as needed
 
             Debug.Log(angle);
             animationStateController.animator.SetBool("isWalking", false);
@@ -338,9 +349,9 @@ public class DzbanScript : MonoBehaviour, Interactable
             else
             {
                 // Player is not facing the right direction, rotate the player towards the fireplace
-                Quaternion firetargetRotation = Quaternion.LookRotation(Fireplace.forward);
-                Player.transform.rotation = Quaternion.Lerp(Player.transform.rotation, firetargetRotation, rotationSpeed * Time.deltaTime);
-
+                //Quaternion firetargetRotation = Quaternion.LookRotation(Fireplace.position - Player.transform.position);
+                //Player.transform.rotation = Quaternion.RotateTowards(Player.transform.rotation, firetargetRotation, rotationSpeed * Time.deltaTime);
+                Player.transform.LookAt(Fireplace);
             }
         }
         
@@ -357,7 +368,7 @@ public class DzbanScript : MonoBehaviour, Interactable
             float angle = Vector3.Angle(Player.transform.forward, fireDirection);
 
             // Define a threshold angle to determine if the player is facing the right direction
-            float thresholdAngle = 10f; // Adjust as needed
+            float thresholdAngle = 15f; // Adjust as needed
 
             Debug.Log(angle);
             animationStateController.animator.SetBool("isWalking", false);
@@ -378,9 +389,9 @@ public class DzbanScript : MonoBehaviour, Interactable
             else
             {
                 // Player is not facing the right direction, rotate the player towards the fireplace
-                Quaternion firetargetRotation = Quaternion.LookRotation(Fireplace.forward);
-                Player.transform.rotation = Quaternion.Lerp(Player.transform.rotation, firetargetRotation, rotationSpeed * Time.deltaTime);
-
+                //Quaternion firetargetRotation = Quaternion.LookRotation(Fireplace.position - Player.transform.position);
+                //Player.transform.rotation = Quaternion.RotateTowards(Player.transform.rotation, firetargetRotation, rotationSpeed * Time.deltaTime);
+                Player.transform.LookAt(Fireplace);
             }
         }
             
@@ -420,9 +431,9 @@ public class DzbanScript : MonoBehaviour, Interactable
             else
             {
                 // Player is not facing the right direction, rotate the player towards the fireplace
-                Quaternion firetargetRotation = Quaternion.LookRotation(Fireplace.forward);
-                Player.transform.rotation = Quaternion.Lerp(Player.transform.rotation, firetargetRotation, rotationSpeed * Time.deltaTime);
-
+                //Quaternion firetargetRotation = Quaternion.LookRotation(Fireplace.position - Player.transform.position);
+                //Player.transform.rotation = Quaternion.RotateTowards(Player.transform.rotation, firetargetRotation, rotationSpeed * Time.deltaTime);
+                Player.transform.LookAt(Fireplace);
             }
 
 
