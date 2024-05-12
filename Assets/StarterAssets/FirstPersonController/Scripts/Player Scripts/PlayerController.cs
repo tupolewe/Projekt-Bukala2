@@ -37,12 +37,7 @@ public class PlayerController : MonoBehaviour
             MoveCheck();
         }
 
-        if (transform.position.y > -0.249001f)
-        {
-            transform.position = new Vector3(transform.position.x, -0.249001f, transform.position.z);
-
-        
-        }
+        HeightCheck();  
 
     }
 
@@ -107,6 +102,20 @@ public class PlayerController : MonoBehaviour
         
         
         
+    }
+
+    private void HeightCheck()
+    {
+        float heightValue = 0f;
+
+        if (transform.position.y != heightValue)
+        {
+            transform.position = new Vector3(transform.position.x, heightValue, transform.position.z);
+
+
+        }
+
+       
     }
 
 }
