@@ -83,7 +83,7 @@ public class DzbanScript : MonoBehaviour, Interactable
 
     void UpdateLight()
     {
-        VaseLight.SetActive(true);
+      //VaseLight.SetActive(true);
         isOn = true; 
          
     }
@@ -94,7 +94,7 @@ public class DzbanScript : MonoBehaviour, Interactable
   public void Interact()
     {
         
-       if (torchActive && !isOn && vaseBurnPosition.burnPositionNumber > 0 && torchInteraction.hasTorch && playerFarEnough)
+       if (torchActive && !isOn && vaseBurnPosition.burnPositionNumber > 0 && torchInteraction.hasTorch)
             {
                 VaseBurningActive = true;
                 //UpdateLight();
@@ -260,15 +260,15 @@ public class DzbanScript : MonoBehaviour, Interactable
 
     void DistanceCheck()
     {
-        if (rayCastInteraction.currentHitDistance > 0.5f && playerController.staticAnimationPlayed == false)
+        if (rayCastInteraction.currentHitDistance > 0.1f && playerController.staticAnimationPlayed == false)
         {
             playerFarEnough = true;
-            Debug.Log("daleko");
+         //bug.Log("daleko");
         }
-        else if (rayCastInteraction.currentHitDistance < 0.5f && playerController.staticAnimationPlayed == false)
+        else if (rayCastInteraction.currentHitDistance < 0.1f && playerController.staticAnimationPlayed == false)
         {
             playerFarEnough = false;
-            Debug.Log("blisko");
+           //ebug.Log("blisko");
 
         }
     }
