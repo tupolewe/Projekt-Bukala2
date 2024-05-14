@@ -1946,8 +1946,8 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.12
-  m_Center: {x: 0, y: 0, z: 0.39}
+  m_Radius: 0.08
+  m_Center: {x: 0, y: 0, z: 0.42}
 --- !u!1001 &649462184
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4485,6 +4485,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1534568137}
+    - targetCorrespondingSourceObject: {fileID: 3835053909659265441, guid: 0d0fb07ae956c2c40b68629b36f2eed4,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2117031802}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 0d0fb07ae956c2c40b68629b36f2eed4,
         type: 3}
@@ -6637,6 +6641,29 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4749707353668628313, guid: c829ee76878931142b57ba57ce183e30, type: 3}
+--- !u!136 &1889540641
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1889540634}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.26
+  m_Height: 1.4
+  m_Direction: 1
+  m_Center: {x: 0.04962871, y: 0.37799597, z: 0.0000058040023}
 --- !u!1001 &1924531356
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6727,6 +6754,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1889540638}
+    - targetCorrespondingSourceObject: {fileID: 6114178420475313924, guid: c829ee76878931142b57ba57ce183e30,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1889540641}
     - targetCorrespondingSourceObject: {fileID: 8495453939910312302, guid: c829ee76878931142b57ba57ce183e30,
         type: 3}
       insertIndex: -1
@@ -7572,6 +7603,61 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2117031801
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2117031802}
+  - component: {fileID: 2117031803}
+  m_Layer: 0
+  m_Name: LeftHandTrigger
+  m_TagString: LeftHand
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2117031802
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2117031801}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 757509725}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &2117031803
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2117031801}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.22
+  m_Height: 0
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2120642311
 GameObject:
   m_ObjectHideFlags: 0
@@ -8390,10 +8476,20 @@ PrefabInstance:
       propertyPath: m_Size.z
       value: 0.94
       objectReference: {fileID: 0}
+    - target: {fileID: 1866539125216782901, guid: a8be39b778e934e429ecca1b85b39ac2,
+        type: 3}
+      propertyPath: m_Center.x
+      value: 0.49
+      objectReference: {fileID: 0}
     - target: {fileID: 2854335455052379987, guid: a8be39b778e934e429ecca1b85b39ac2,
         type: 3}
       propertyPath: m_Name
       value: TorchHandler
+      objectReference: {fileID: 0}
+    - target: {fileID: 2976694592604708599, guid: a8be39b778e934e429ecca1b85b39ac2,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.919
       objectReference: {fileID: 0}
     - target: {fileID: 2976694592604708599, guid: a8be39b778e934e429ecca1b85b39ac2,
         type: 3}
@@ -8551,6 +8647,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_ExcludeLayers.m_Bits
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2335163740344627631, guid: 944f83f8bb78cbf41bc0829d9b584548,
+        type: 3}
+      propertyPath: m_Intensity
+      value: 0.21
       objectReference: {fileID: 0}
     - target: {fileID: 3051796305241100502, guid: 944f83f8bb78cbf41bc0829d9b584548,
         type: 3}
