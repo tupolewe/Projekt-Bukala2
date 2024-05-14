@@ -95,34 +95,7 @@ public class TorchHandlerScript : MonoBehaviour, Interactable
             animationStateController.canHandleTorch = false;
         }
 
-        if (collider.CompareTag("LeftHand") && animationStateController.isHandlingRunning && torchInteraction.hasTorch) 
-        {
-            Torch.transform.SetParent(TorchHandler, true);
 
-            if (Torch.transform.parent == TorchHandler)
-            {
-                Debug.Log("dziala");
-                Torch.transform.localPosition = new Vector3(0.04f, 0.622f, -0.007f);
-                Torch.transform.localRotation = Quaternion.Euler(3.19f, 85.7f, 88f);
-                torchHandled = true;
-                torchInteraction.hasTorch = false;
-
-            }
-        }
-        else if (collider.CompareTag("LeftHand") && animationStateController.isHandlingRunning && torchInteraction.hasTorch == false)
-        {
-            Torch.transform.SetParent(LeftHand, true);
-
-            if (Torch.transform.parent == LeftHand)
-            {
-                Debug.Log("dziala2");
-                Torch.transform.localPosition = new Vector3(0.165f, -0.031f, 0.013f);
-                Torch.transform.localRotation = Quaternion.Euler(4.276f, -1.564f, -8f);
-                torchHandled = false;
-                torchInteraction.hasTorch = true;
-
-            }
-        }
     }
 
     public void OnTriggerExit(Collider collider)
@@ -203,7 +176,7 @@ public class TorchHandlerScript : MonoBehaviour, Interactable
 
                         if (angle <= thresholdAngle)
                         {
-                            
+                            Torch.transform.SetParent(TorchHandler, true);
 
                             animationStateController.animator.SetBool("torchHandler", true);
                             playerNavMesh.navMeshAgent.enabled = false;
@@ -214,7 +187,15 @@ public class TorchHandlerScript : MonoBehaviour, Interactable
                             Player.transform.rotation = Quaternion.Euler(0, 270, 0);
 
 
-                           
+                            if (Torch.transform.parent == TorchHandler)
+                            {
+                                Debug.Log("dziala");
+                                Torch.transform.localPosition = new Vector3(0.04f, 0.622f, -0.007f);
+                                Torch.transform.localRotation = Quaternion.Euler(3.19f, 85.7f, 88f);
+                                torchHandled = true;
+                                torchInteraction.hasTorch = false;
+
+                            }
                         }
 
                         else
@@ -281,7 +262,7 @@ public class TorchHandlerScript : MonoBehaviour, Interactable
 
                         if (angle <= thresholdAngle)
                         {
-                            
+                            Torch.transform.SetParent(LeftHand, true);
 
                             animationStateController.animator.SetBool("torchHandler", true);
                             playerNavMesh.navMeshAgent.enabled = false;
@@ -292,7 +273,15 @@ public class TorchHandlerScript : MonoBehaviour, Interactable
                             Player.transform.rotation = Quaternion.Euler(0, 270, 0);
 
 
-                            
+                            if (Torch.transform.parent == LeftHand)
+                            {
+                                Debug.Log("dziala2");
+                                Torch.transform.localPosition = new Vector3(0.165f, -0.031f, 0.013f);
+                                Torch.transform.localRotation = Quaternion.Euler(4.276f, -1.564f, -8f);
+                                torchHandled = false;
+                                torchInteraction.hasTorch = true;
+
+                            }
                         }
 
                         else
