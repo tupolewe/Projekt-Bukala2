@@ -146,7 +146,7 @@ public class TorchHandlerScript : MonoBehaviour, Interactable
                     playerNavMesh.WallHandling();
                     controller.staticAnimationPlayed = true;
 
-                    if (Vector3.Distance(PlayerTransform.position, HandleTransform.position) > 0.25f)
+                    if (Vector3.Distance(PlayerTransform.position, HandleTransform.position) > 0.8f)
                     {
                         Vector3 direction = HandleTransform.position - Player.transform.position;
                         Quaternion targetRotation = Quaternion.LookRotation(direction);
@@ -157,7 +157,7 @@ public class TorchHandlerScript : MonoBehaviour, Interactable
 
                     }
 
-                    if (Vector3.Distance(PlayerTransform.position, HandleTransform.position) < 0.25f)
+                    if (Vector3.Distance(PlayerTransform.position, HandleTransform.position) < 0.8f)
                     {
                         // Calculate the direction from the player to the fireplace
                         Vector3 fireDirection = TorchHandlingPosition.position - Player.transform.position;
@@ -173,6 +173,8 @@ public class TorchHandlerScript : MonoBehaviour, Interactable
 
                         //Debug.Log(angle);
                         animationStateController.animator.SetBool("isWalking", false);
+
+                    Debug.Log(angle);
 
                         if (angle <= thresholdAngle)
                         {
@@ -232,7 +234,7 @@ public class TorchHandlerScript : MonoBehaviour, Interactable
                     playerNavMesh.WallHandling();
                     controller.staticAnimationPlayed = true;
 
-                    if (Vector3.Distance(PlayerTransform.position, HandleTransform.position) > 0.25f)
+                    if (Vector3.Distance(PlayerTransform.position, HandleTransform.position) > 0.8f)
                     {
                         Vector3 direction = HandleTransform.position - Player.transform.position;
                         Quaternion targetRotation = Quaternion.LookRotation(direction);
@@ -243,7 +245,7 @@ public class TorchHandlerScript : MonoBehaviour, Interactable
 
                     }
 
-                    if (Vector3.Distance(PlayerTransform.position, HandleTransform.position) < 0.25f)
+                    if (Vector3.Distance(PlayerTransform.position, HandleTransform.position) < 0.8f)
                     {
                         // Calculate the direction from the player to the fireplace
                         Vector3 fireDirection = TorchHandlingPosition.position - Player.transform.position;

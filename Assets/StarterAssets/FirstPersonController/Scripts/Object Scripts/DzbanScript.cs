@@ -94,7 +94,7 @@ public class DzbanScript : MonoBehaviour, Interactable
   public void Interact()
     {
         
-       if (torchActive && !isOn && vaseBurnPosition.burnPositionNumber > 0 && torchInteraction.hasTorch && playerFarEnough)
+       if (torchActive && !isOn && vaseBurnPosition.burnPositionNumber > 0 && torchInteraction.hasTorch)
             {
                 VaseBurningActive = true;
                 //UpdateLight();
@@ -263,12 +263,12 @@ public class DzbanScript : MonoBehaviour, Interactable
         if (rayCastInteraction.currentHitDistance > 0.5f && playerController.staticAnimationPlayed == false)
         {
             playerFarEnough = true;
-            Debug.Log("daleko");
+            //Debug.Log("daleko");
         }
         else if (rayCastInteraction.currentHitDistance < 0.5f && playerController.staticAnimationPlayed == false)
         {
             playerFarEnough = false;
-            Debug.Log("blisko");
+            //Debug.Log("blisko");
 
         }
     }
@@ -305,6 +305,7 @@ public class DzbanScript : MonoBehaviour, Interactable
                 animationStateController.isHandlingRunning = true;
                 UpdateLight();
                 rotatedToPosition = false;
+                
             }
             else
             {
@@ -345,6 +346,7 @@ public class DzbanScript : MonoBehaviour, Interactable
                 animationStateController.isHandlingRunning = true;
                 UpdateLight();
                 rotatedToPosition = false;
+                
             }
             else
             {
@@ -385,6 +387,7 @@ public class DzbanScript : MonoBehaviour, Interactable
                 animationStateController.isHandlingRunning = true;
                 UpdateLight();
                 rotatedToPosition = false;
+                
             }
             else
             {
@@ -427,6 +430,7 @@ public class DzbanScript : MonoBehaviour, Interactable
                 animationStateController.isHandlingRunning = true;
                 UpdateLight();
                 rotatedToPosition = false;
+                
             }
             else
             {

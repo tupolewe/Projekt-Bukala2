@@ -175,6 +175,8 @@ public class animationStateController : MonoBehaviour
         if (isHandlingRunning)
         {
             currentTime -= Time.deltaTime;
+
+            Debug.Log(currentTime);
             if (currentTime <= 0)
             {
                 isHandlingRunning = false;
@@ -182,6 +184,8 @@ public class animationStateController : MonoBehaviour
                 torchHandlerScript.burnCount = 0;
                 animator.SetBool("torchHandler", false);
                 playerController.staticAnimationPlayed = false;
+
+
             }
         }
     }
