@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.PlasticSCM.Editor.WebApi;
+using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 
 public class PressurePlateScript : MonoBehaviour
@@ -10,9 +12,10 @@ public class PressurePlateScript : MonoBehaviour
     [SerializeField] private float closingSpeed;
     [SerializeField] private int objectsAtPlate = 0;
     private Vector3 scaleChange;
-    
-    
-
+    private Vector3 doorScale;
+    public float doorScaleValue = 1f;
+    public float decreaseRate = 0.05f;
+    public float currentValue;
     // Update is called once per frame
     void Update()
     {
@@ -20,6 +23,11 @@ public class PressurePlateScript : MonoBehaviour
         StoneDoorClosing();
         //Debug.Log(objectsAtPlate);
         ObjectCheck();
+    }
+
+    private void Start()
+    {
+        currentValue = doorScaleValue;
     }
 
     public void OnTriggerEnter(Collider collider)
@@ -71,9 +79,17 @@ public class PressurePlateScript : MonoBehaviour
 
     void StoneDoorOpening()
     {
+        
+        
+        
         if (platePressured && StoneDoor.transform.position.y <= 7f && objectsAtPlate >= 1)
         {
             StoneDoor.transform.Translate(Vector3.up * openingSpeed * Time.deltaTime);
+
+            //doorScale = new Vector3(1, doorScaleValue, 1);
+            //StoneDoor.transform.localScale = doorScale;
+
+            //doorScaleValue = doorScaleValue - Time.deltaTime * 0.3f;
         }
     }
 

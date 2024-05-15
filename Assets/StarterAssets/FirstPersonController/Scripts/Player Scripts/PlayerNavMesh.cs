@@ -47,4 +47,11 @@ public class PlayerNavMesh : MonoBehaviour
         navMeshAgent.updateRotation = true;
         //Player.transform.rotation = Quaternion.Euler(0, 270, 0); 
     }
+
+    public void VinesBurning()
+    {
+        navMeshAgent.enabled = true;
+        navMeshAgent.updateRotation = true;
+    }
+    
 }

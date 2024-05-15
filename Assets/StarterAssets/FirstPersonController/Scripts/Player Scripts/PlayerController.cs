@@ -37,7 +37,7 @@ public class PlayerController : MonoBehaviour
             MoveCheck();
         }
 
-        HeightCheck();
+        //HeightCheck();
 
         //Debug.Log(staticAnimationPlayed);
     }

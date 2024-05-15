@@ -4,6 +4,7 @@ using System.Diagnostics.Contracts;
 using System.Threading;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.InputSystem.EnhancedTouch;
 
 public class TorchHandlerScript : MonoBehaviour, Interactable
@@ -33,6 +34,8 @@ public class TorchHandlerScript : MonoBehaviour, Interactable
     public Transform TorchHandlingPosition;
     public Transform TorchHandler;
     public Transform LeftHand;
+
+    
 
 
     public int burnCount;
