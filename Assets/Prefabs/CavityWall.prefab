@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6867176202176644040}
   m_Layer: 0
-  m_Name: Wall03
+  m_Name: CavityWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29,10 +29,10 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 627716991794181635}
+  - {fileID: 8334795746996024499}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &1097928581312614888
+--- !u!1001 &8368143232481039192
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -40,74 +40,69 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6867176202176644040}
     m_Modifications:
-    - target: {fileID: -8679921383154817045, guid: bd027622e3f13b2459a67ddb4036710a,
+    - target: {fileID: -8679921383154817045, guid: 6111315fba2abf24aaf548ed11f044e0,
         type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: bd027622e3f13b2459a67ddb4036710a,
+    - target: {fileID: -8679921383154817045, guid: 6111315fba2abf24aaf548ed11f044e0,
         type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: bd027622e3f13b2459a67ddb4036710a,
+    - target: {fileID: -8679921383154817045, guid: 6111315fba2abf24aaf548ed11f044e0,
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: bd027622e3f13b2459a67ddb4036710a,
+    - target: {fileID: -8679921383154817045, guid: 6111315fba2abf24aaf548ed11f044e0,
         type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: bd027622e3f13b2459a67ddb4036710a,
+    - target: {fileID: -8679921383154817045, guid: 6111315fba2abf24aaf548ed11f044e0,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: 0.0000000059624403
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: bd027622e3f13b2459a67ddb4036710a,
+    - target: {fileID: -8679921383154817045, guid: 6111315fba2abf24aaf548ed11f044e0,
         type: 3}
       propertyPath: m_LocalRotation.y
       value: 0.00000008742278
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: bd027622e3f13b2459a67ddb4036710a,
+    - target: {fileID: -8679921383154817045, guid: 6111315fba2abf24aaf548ed11f044e0,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -5.212531e-16
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: bd027622e3f13b2459a67ddb4036710a,
+    - target: {fileID: -8679921383154817045, guid: 6111315fba2abf24aaf548ed11f044e0,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: bd027622e3f13b2459a67ddb4036710a,
+    - target: {fileID: -8679921383154817045, guid: 6111315fba2abf24aaf548ed11f044e0,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: bd027622e3f13b2459a67ddb4036710a,
+    - target: {fileID: -8679921383154817045, guid: 6111315fba2abf24aaf548ed11f044e0,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: bd027622e3f13b2459a67ddb4036710a,
-        type: 3}
-      propertyPath: m_Materials.Array.data[1]
-      value: 
-      objectReference: {fileID: 2100000, guid: f4ca2e123b0ec5a45ae350f4c5a2912a, type: 2}
-    - target: {fileID: 919132149155446097, guid: bd027622e3f13b2459a67ddb4036710a,
+    - target: {fileID: 919132149155446097, guid: 6111315fba2abf24aaf548ed11f044e0,
         type: 3}
       propertyPath: m_Name
-      value: Wall03
+      value: CavityWall
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: bd027622e3f13b2459a67ddb4036710a, type: 3}
---- !u!4 &627716991794181635 stripped
+  m_SourcePrefab: {fileID: 100100000, guid: 6111315fba2abf24aaf548ed11f044e0, type: 3}
+--- !u!4 &8334795746996024499 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: bd027622e3f13b2459a67ddb4036710a,
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 6111315fba2abf24aaf548ed11f044e0,
     type: 3}
-  m_PrefabInstance: {fileID: 1097928581312614888}
+  m_PrefabInstance: {fileID: 8368143232481039192}
   m_PrefabAsset: {fileID: 0}
