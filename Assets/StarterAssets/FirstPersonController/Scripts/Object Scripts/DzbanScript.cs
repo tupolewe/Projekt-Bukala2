@@ -144,7 +144,12 @@ public class DzbanScript : MonoBehaviour, Interactable
             torchInRange = false;
         }
 
+        if (collider.CompareTag("LeftHand") && playerController.staticAnimationPlayed)
+        {
+            UpdateLight();
+            Debug.Log("dziala");
 
+        }
     }
 
     public void OnTriggerExit(Collider collider)
@@ -303,7 +308,7 @@ public class DzbanScript : MonoBehaviour, Interactable
                 playerNavMesh.navMeshAgent.enabled = false;
                 VaseBurningActive = false;
                 animationStateController.isHandlingRunning = true;
-                UpdateLight();
+                
                 rotatedToPosition = false;
                 
             }
@@ -344,7 +349,7 @@ public class DzbanScript : MonoBehaviour, Interactable
                 playerNavMesh.navMeshAgent.enabled = false;
                 VaseBurningActive = false;
                 animationStateController.isHandlingRunning = true;
-                UpdateLight();
+                
                 rotatedToPosition = false;
                 
             }
@@ -385,7 +390,7 @@ public class DzbanScript : MonoBehaviour, Interactable
                 playerNavMesh.navMeshAgent.enabled = false;
                 VaseBurningActive = false;
                 animationStateController.isHandlingRunning = true;
-                UpdateLight();
+                
                 rotatedToPosition = false;
                 
             }
@@ -413,7 +418,7 @@ public class DzbanScript : MonoBehaviour, Interactable
             float angle = Vector3.Angle(Player.transform.forward, fireDirection);
 
             // Define a threshold angle to determine if the player is facing the right direction
-            float thresholdAngle = 10f; // Adjust as needed
+            float thresholdAngle = 15f; // Adjust as needed
 
             Debug.Log(angle);
             animationStateController.animator.SetBool("isWalking", false);
@@ -428,7 +433,7 @@ public class DzbanScript : MonoBehaviour, Interactable
                 playerNavMesh.navMeshAgent.enabled = false;
                 VaseBurningActive = false;
                 animationStateController.isHandlingRunning = true;
-                UpdateLight();
+                
                 rotatedToPosition = false;
                 
             }

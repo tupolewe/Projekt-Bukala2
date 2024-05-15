@@ -16,6 +16,7 @@ TagManager:
   - BurnPosition2
   - BurnPosition3
   - BurnPosition4
+  - LeftHand
   layers:
   - Default
   - TransparentFX
