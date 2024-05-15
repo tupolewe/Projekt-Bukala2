@@ -79,7 +79,7 @@ public class PressurePlateScript : MonoBehaviour
 
     void StoneDoorClosing()
     {
-        if (StoneDoor.transform.position.y > 2.6f && !platePressured && objectsAtPlate < 1)
+        if (StoneDoor.transform.position.y > 0f && !platePressured && objectsAtPlate < 1)
         {
             StoneDoor.transform.Translate(Vector3.down * closingSpeed * Time.deltaTime);
         }

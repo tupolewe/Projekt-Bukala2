@@ -21,7 +21,7 @@ public class animationStateController : MonoBehaviour
 
 
     public float totalTime = 3f;
-    private float currentTime = 3f;
+    public float currentTime = 3f;
     public bool isTimerRunning = false;
     public bool isHandlingRunning = false;
 
@@ -185,8 +185,10 @@ public class animationStateController : MonoBehaviour
                 animator.SetBool("torchHandler", false);
                 playerController.staticAnimationPlayed = false;
 
-
+                
             }
+
+            
         }
     }
 }

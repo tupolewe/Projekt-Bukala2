@@ -26,7 +26,7 @@ public class DzbanScript : MonoBehaviour, Interactable
     public bool isOn = false;
     public bool playerFarEnough;
     public bool rotatedToPosition = false;
-
+    
 
     public AudioClip VaseScratchClip;
     public AudioSource VaseSource;
@@ -78,7 +78,8 @@ public class DzbanScript : MonoBehaviour, Interactable
         BurningDistanceCheck();
         DistanceCheck();
 
-        //Debug.Log(rotatedToPosition);
+
+       
     }
 
     void UpdateLight()
@@ -144,12 +145,12 @@ public class DzbanScript : MonoBehaviour, Interactable
             torchInRange = false;
         }
 
-        if (collider.CompareTag("LeftHand") && playerController.staticAnimationPlayed)
+        if (collider.CompareTag("TorchTrigger") && playerController.staticAnimationPlayed)
         {
-            UpdateLight();
             Debug.Log("dziala");
-
+            UpdateLight();
         }
+       
     }
 
     public void OnTriggerExit(Collider collider)
@@ -199,13 +200,13 @@ public class DzbanScript : MonoBehaviour, Interactable
                 Player.transform.rotation = Quaternion.Lerp(Player.transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
                 float distance = Vector3.Distance(Player.transform.transform.position, BurnPosition1.transform.position);
                 animationStateController.animator.SetBool("isWalking", true);
-                Debug.Log("kreci sie");
+               //Debug.Log("kreci sie");
                 if (distance < 1.7f)
                 {
 
 
                     rotatedToPosition = true;
-                    Debug.Log("inPosition");
+                    //Debug.Log("inPosition");
                     //animationStateController.animator.SetBool("isWalking", false);
 
                 }
@@ -218,11 +219,11 @@ public class DzbanScript : MonoBehaviour, Interactable
                 float distance = Vector3.Distance(Player.transform.transform.position, BurnPosition2.transform.position);
                 playerNavMesh.navMeshAgent.destination = BurnPosition2.transform.position;
                 animationStateController.animator.SetBool("isWalking", true);
-                Debug.Log("kreci sie");
+               // Debug.Log("kreci sie");
                 if (distance < 1.7f)
                 {
                     rotatedToPosition = true;
-                    Debug.Log("inPosition");
+                    //Debug.Log("inPosition");
                     //animationStateController.animator.SetBool("isWalking", false);
                 }
             }
@@ -234,11 +235,11 @@ public class DzbanScript : MonoBehaviour, Interactable
                 float distance = Vector3.Distance(Player.transform.transform.position, BurnPosition3.transform.position);
                 playerNavMesh.navMeshAgent.destination = BurnPosition3.transform.position;
                 animationStateController.animator.SetBool("isWalking", true);
-                Debug.Log("kreci sie");
+                //Debug.Log("kreci sie");
                 if (distance < 1.7f)
                 {
                     rotatedToPosition = true;
-                    Debug.Log("inPosition");
+                    //Debug.Log("inPosition");
                     //animationStateController.animator.SetBool("isWalking", false);
                 }
             }
@@ -250,11 +251,11 @@ public class DzbanScript : MonoBehaviour, Interactable
                 playerNavMesh.navMeshAgent.destination = BurnPosition4.transform.position;
                 float distance = Vector3.Distance(Player.transform.transform.position, BurnPosition4.transform.position);
                 animationStateController.animator.SetBool("isWalking", true);
-                Debug.Log("kreci sie");
+                //Debug.Log("kreci sie");
                 if (distance < 1.7f)
                 {
                     rotatedToPosition = true;
-                    Debug.Log("inPosition");
+                    //Debug.Log("inPosition");
                     //animationStateController.animator.SetBool("isWalking", false);
                 }
             }
@@ -293,7 +294,7 @@ public class DzbanScript : MonoBehaviour, Interactable
             // Define a threshold angle to determine if the player is facing the right direction
             float thresholdAngle = 15f; // Adjust as needed
 
-            Debug.Log(angle);
+            //Debug.Log(angle);
             animationStateController.animator.SetBool("isWalking", false);
 
 
@@ -310,6 +311,8 @@ public class DzbanScript : MonoBehaviour, Interactable
                 animationStateController.isHandlingRunning = true;
                 
                 rotatedToPosition = false;
+
+                
                 
             }
             else
@@ -336,7 +339,7 @@ public class DzbanScript : MonoBehaviour, Interactable
             // Define a threshold angle to determine if the player is facing the right direction
             float thresholdAngle = 15f; // Adjust as needed
 
-            Debug.Log(angle);
+            //Debug.Log(angle);
             animationStateController.animator.SetBool("isWalking", false);
 
             // Check if the angle is within the threshold
@@ -351,7 +354,9 @@ public class DzbanScript : MonoBehaviour, Interactable
                 animationStateController.isHandlingRunning = true;
                 
                 rotatedToPosition = false;
-                
+
+               
+
             }
             else
             {
@@ -377,7 +382,7 @@ public class DzbanScript : MonoBehaviour, Interactable
             // Define a threshold angle to determine if the player is facing the right direction
             float thresholdAngle = 15f; // Adjust as needed
 
-            Debug.Log(angle);
+            //Debug.Log(angle);
             animationStateController.animator.SetBool("isWalking", false);
 
             // Check if the angle is within the threshold
@@ -392,7 +397,8 @@ public class DzbanScript : MonoBehaviour, Interactable
                 animationStateController.isHandlingRunning = true;
                 
                 rotatedToPosition = false;
-                
+
+               
             }
             else
             {
@@ -420,7 +426,7 @@ public class DzbanScript : MonoBehaviour, Interactable
             // Define a threshold angle to determine if the player is facing the right direction
             float thresholdAngle = 15f; // Adjust as needed
 
-            Debug.Log(angle);
+            //Debug.Log(angle);
             animationStateController.animator.SetBool("isWalking", false);
 
             // Check if the angle is within the threshold
@@ -435,7 +441,9 @@ public class DzbanScript : MonoBehaviour, Interactable
                 animationStateController.isHandlingRunning = true;
                 
                 rotatedToPosition = false;
+
                 
+
             }
             else
             {
