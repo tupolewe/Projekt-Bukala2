@@ -36,6 +36,7 @@ public class DzbanScript : MonoBehaviour, Interactable
     public int burnCount = 0;
     public Rigidbody playerRb;
 
+    public GameObject TorchLight;
     public GameObject Player;
     public GameObject PushingPosition;
     public GameObject Vase;
@@ -78,7 +79,7 @@ public class DzbanScript : MonoBehaviour, Interactable
         BurningDistanceCheck();
         DistanceCheck();
 
-
+        //Debug.Log(animationStateController.isHandlingRunning);
        
     }
 
@@ -145,10 +146,11 @@ public class DzbanScript : MonoBehaviour, Interactable
             torchInRange = false;
         }
 
-        if (collider.CompareTag("TorchTrigger") && playerController.staticAnimationPlayed)
+        if (collider != TorchLight && animationStateController.isHandlingRunning)
         {
             Debug.Log("dziala");
             UpdateLight();
+            Debug.Log(collider);
         }
        
     }
