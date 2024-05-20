@@ -16,6 +16,8 @@ public class PressurePlateScript : MonoBehaviour
     public float doorScaleValue = 1f;
     public float decreaseRate = 0.05f;
     public float currentValue;
+
+    public animationStateController controller;
     // Update is called once per frame
     void Update()
     {
@@ -30,46 +32,52 @@ public class PressurePlateScript : MonoBehaviour
         currentValue = doorScaleValue;
     }
 
-    public void OnTriggerEnter(Collider collider)
+    public void OnCollisionEnter(Collision collider)
     {
-        if (collider.CompareTag("Player"))
+        if (collider != null && controller.canPushD) 
+        
+        {
+            platePressured = true;
+            objectsAtPlate = objectsAtPlate + 2;
+            scaleChange = new Vector3(1.849517f, 0.001f, 2.135503f);
+            gameObject.transform.localScale = scaleChange;
+            Debug.Log(collider);
+        }
+
+        if (collider != null && !controller.canPushD)
 
         {
             platePressured = true;
             objectsAtPlate = objectsAtPlate + 1;
-            scaleChange = new Vector3(1.849517f, 0.02f, 2.135503f);
+            scaleChange = new Vector3(1.849517f, 0.001f, 2.135503f);
             gameObject.transform.localScale = scaleChange;
+            Debug.Log(collider);
         }
-        if (collider.CompareTag("Vase"))
-        {
-            platePressured = true;
-            objectsAtPlate = objectsAtPlate +1;
-            scaleChange = new Vector3(1.849517f, 0.02f, 2.135503f);
-            gameObject.transform.localScale = scaleChange;
-        }
-        
 
     }
 
-    public void OnTriggerExit(Collider collider)
+   
+
+    public void OnCollisionExit(Collision collider)
 
     {
 
-       
-        if (collider.CompareTag("Player"))
+        if (collider != null && controller.canPushD)
 
         {
-            objectsAtPlate--;
-            
-
+            objectsAtPlate = objectsAtPlate - 2;
         }
-        if (collider.CompareTag("Vase"))
+
+
+        if (collider != null && !controller.canPushD)
 
         {
-            objectsAtPlate--;
-            
-
+            objectsAtPlate = objectsAtPlate - 1;
         }
+
+
+
+
 
     }
 
@@ -119,4 +127,6 @@ public class PressurePlateScript : MonoBehaviour
             objectsAtPlate = 0;
         }
     }
+
+   
 }

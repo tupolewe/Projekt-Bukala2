@@ -47,7 +47,7 @@ public class CameraPositionChange : MonoBehaviour
             PlayerNavMesh.navMeshAgent.destination = Position.transform.position;
             animationStateController.animator.SetBool("isWalking", true);
             playerController.staticAnimationPlayed = true;
-
+            
             
 
 
@@ -93,7 +93,7 @@ public class CameraPositionChange : MonoBehaviour
         yield return new WaitForSeconds(1);
         vignette.animator.SetBool("CameraChange", true);
         canStartTimer = false;
-
+        playerController.levelNumber = 1;
     }
           
     IEnumerator TimerOn()

@@ -953,6 +953,7 @@ MonoBehaviour:
   doorScaleValue: 1
   decreaseRate: 0.05
   currentValue: 0
+  controller: {fileID: 0}
 --- !u!65 &136723906
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4875,7 +4876,6 @@ GameObject:
   - component: {fileID: 556448297}
   - component: {fileID: 556448296}
   - component: {fileID: 556448295}
-  - component: {fileID: 556448294}
   - component: {fileID: 556448299}
   m_Layer: 0
   m_Name: PressurePlate
@@ -4884,27 +4884,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!65 &556448294
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 556448293}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.04, y: 8.17, z: 1.02}
-  m_Center: {x: 0.01, y: 4, z: 0}
 --- !u!65 &556448295
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5011,6 +4990,7 @@ MonoBehaviour:
   doorScaleValue: 1
   decreaseRate: 0.05
   currentValue: 0
+  controller: {fileID: 2140472241}
 --- !u!1001 &562479372
 PrefabInstance:
   m_ObjectHideFlags: 0

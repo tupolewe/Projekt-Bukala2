@@ -7,12 +7,15 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public int movementVertical = (1);
-    public int movementHorizontal = (-1);
+
+    public int levelNumber = 0;
+    public int movementMultiply = (-1);
+    
     [SerializeField] private Rigidbody _rb;
     public float speed;
     public float turnSpeed = 120;
     private Vector3 _input;
+    private Vector3 movementDirection;
 
     public bool staticAnimationPlayed = false;
 
@@ -63,8 +66,18 @@ public class PlayerController : MonoBehaviour
 
     private void Look()
     {
-        Vector3 movementDirection = new Vector3(Input.GetAxisRaw("Vertical") * (-1), 0, Input.GetAxisRaw("Horizontal"));
-        movementDirection.Normalize();
+
+
+        if (levelNumber == 0)
+        {
+            movementDirection = new Vector3(Input.GetAxisRaw("Vertical") * movementMultiply, 0, Input.GetAxisRaw("Horizontal"));
+            movementDirection.Normalize();
+        }
+        if (levelNumber == 1)
+        {
+            movementDirection = new Vector3(Input.GetAxisRaw("Vertical"), 0, Input.GetAxisRaw("Horizontal") * (-1));
+            movementDirection.Normalize();
+        }
 
         transform.Translate(movementDirection * speed * Time.deltaTime, Space.World);
 
@@ -120,6 +133,7 @@ public class PlayerController : MonoBehaviour
        
     }
 
+   
 }
 
 
