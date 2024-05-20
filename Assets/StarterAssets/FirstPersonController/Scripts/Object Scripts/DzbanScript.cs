@@ -79,7 +79,7 @@ public class DzbanScript : MonoBehaviour, Interactable
         BurningDistanceCheck();
         DistanceCheck();
 
-        //Debug.Log(animationStateController.isHandlingRunning);
+        //Debug.Log(isOn);
        
     }
 
@@ -102,7 +102,7 @@ public class DzbanScript : MonoBehaviour, Interactable
                 //UpdateLight();
             
             }
-         else if (isOn && !torchActive && !canPushD)
+       else if (isOn && !torchActive && !canPushD)
         {
 
             
@@ -167,14 +167,23 @@ public class DzbanScript : MonoBehaviour, Interactable
 
     public void TorchActiveCheck ()
     {
-        if (Torch.activeInHierarchy == true) 
+
+        if (torchInteraction.hasTorch)
         {
-            torchActive = true;
+            if (Torch.activeInHierarchy == true)
+            {
+                torchActive = true;
+            }
+            else if (Torch.activeInHierarchy == false)
+            {
+                torchActive = false;
+            }
         }
-        else if (Torch.activeInHierarchy == false)
+        if (torchInteraction.hasTorch == false)
         {
             torchActive = false;
         }
+        
 
     }
 

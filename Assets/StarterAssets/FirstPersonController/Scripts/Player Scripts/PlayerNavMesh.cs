@@ -54,4 +54,8 @@ public class PlayerNavMesh : MonoBehaviour
         navMeshAgent.updateRotation = true;
     }
     
+    public void LevelChange()
+    {
+        navMeshAgent.enabled = true;
+    }
 }

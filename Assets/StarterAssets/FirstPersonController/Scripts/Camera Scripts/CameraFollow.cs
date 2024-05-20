@@ -8,8 +8,8 @@ public class CameraFollow : MonoBehaviour
     #region Variables
     
         private Vector3 _offset;
-    [SerializeField] private Transform target;
-    [SerializeField] private float smoothTime;
+    public Transform target;
+    public float smoothTime;
     private Vector3 _currentVelocity = Vector3.zero;
 
     #endregion

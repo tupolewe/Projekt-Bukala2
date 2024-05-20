@@ -7,7 +7,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-
+    public int movementVertical = (1);
+    public int movementHorizontal = (-1);
     [SerializeField] private Rigidbody _rb;
     public float speed;
     public float turnSpeed = 120;
@@ -39,7 +40,7 @@ public class PlayerController : MonoBehaviour
 
         //HeightCheck();
 
-        //Debug.Log(staticAnimationPlayed);
+        
     }
 
     private void FixedUpdate()
@@ -55,7 +56,7 @@ public class PlayerController : MonoBehaviour
     {
         if (animationStateController.isTimerRunning == false)
         {
-            _input = new Vector3(Input.GetAxisRaw("Vertical") * (-1), 0, Input.GetAxisRaw("Horizontal"));
+            _input = new Vector3(Input.GetAxisRaw("Vertical"), 0, Input.GetAxisRaw("Horizontal"));
         }
 
     }
