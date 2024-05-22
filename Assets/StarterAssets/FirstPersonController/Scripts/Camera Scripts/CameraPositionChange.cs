@@ -18,8 +18,8 @@ public class CameraPositionChange : MonoBehaviour
     public animationStateController animationStateController;
     public PlayerController playerController;
     public VignetteScritp vignette;
-    
-    
+
+    [SerializeField] private float changeDistance; 
 
     public Transform Position;
     public Transform Player;
@@ -68,7 +68,7 @@ public class CameraPositionChange : MonoBehaviour
 
         
 
-        if (Vector3.Distance(Player.position, Position.position) < 1f && playerController.staticAnimationPlayed && TorchInteraction.hasTorch)
+        if (Vector3.Distance(Player.position, Position.position) < changeDistance && playerController.staticAnimationPlayed && TorchInteraction.hasTorch)
         {
             Debug.Log("dziala pozycja");
 
