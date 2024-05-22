@@ -105,8 +105,8 @@ public class TorchHandlerScript : MonoBehaviour, Interactable
             if (Torch.transform.parent == TorchHandler)
             {
                 Debug.Log("dziala");
-                Torch.transform.localPosition = new Vector3(-45.087f, 2.855f, 14.249f);
-                Torch.transform.localRotation = Quaternion.Euler(3.19f, 85.7f, 88f);
+                Torch.transform.localPosition = new Vector3(-0.004f, 0.418f, -0.022f);
+                Torch.transform.localRotation = Quaternion.Euler(0.49f, 85.7f, 88f);
                 torchHandled = true;
                 torchInteraction.hasTorch = false;
                 torchHandleCount = 1;
