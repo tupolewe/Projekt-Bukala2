@@ -215,7 +215,7 @@ public class TorchHandlerScript : MonoBehaviour, Interactable
                             torchHandlingActive = false;
                             animationStateController.isHandlingRunning = true;
                             animationStateController.animator.SetBool("isWalking", false);
-                            controller.speed = 3;
+                            controller.speed = 5;
                             Player.transform.rotation = Quaternion.Euler(0, 270, 0);
 
 
@@ -298,7 +298,7 @@ public class TorchHandlerScript : MonoBehaviour, Interactable
                             torchHandlingActive = false;
                             animationStateController.isHandlingRunning = true;
                             animationStateController.animator.SetBool("isWalking", false);
-                            controller.speed = 3;
+                            controller.speed = 5;
                             Player.transform.rotation = Quaternion.Euler(0, 270, 0);
 
 

@@ -5,7 +5,7 @@ using UnityEngine;
 
 
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, IDataPersistence
 {
 
     public int levelNumber = 0;
@@ -133,6 +133,16 @@ public class PlayerController : MonoBehaviour
        
     }
 
+
+    public void SaveData(ref GameData data)
+    {
+        this.levelNumber = data.level;
+    } 
+
+    public void LoadData(GameData data)
+    {
+        data.level = this.levelNumber;
+    }
    
 }
 

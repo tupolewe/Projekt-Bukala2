@@ -3,10 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraPositionChange : MonoBehaviour
+public class CameraPositionChange : MonoBehaviour, IDataPersistence
 {
 
-
+    public int level;
     private bool canStartTimer = true;
     
     private int changeCount = 0;
@@ -26,7 +26,7 @@ public class CameraPositionChange : MonoBehaviour
 
     private void Start()
     {
-        
+        level = 0;
     }
     private void Update()
     {
@@ -70,7 +70,7 @@ public class CameraPositionChange : MonoBehaviour
 
         if (Vector3.Distance(Player.position, Position.position) < changeDistance && playerController.staticAnimationPlayed && TorchInteraction.hasTorch)
         {
-            Debug.Log("dziala pozycja");
+            //Debug.Log("dziala pozycja");
 
             PlayerNavMesh.navMeshAgent.enabled = false;
             animationStateController.animator.SetBool("isWalking", false);
@@ -80,8 +80,8 @@ public class CameraPositionChange : MonoBehaviour
                 StartCoroutine(TimerOff());
                 StartCoroutine(TimerOn());
             }
-            
 
+            
 
         }
 
@@ -94,6 +94,7 @@ public class CameraPositionChange : MonoBehaviour
         vignette.animator.SetBool("CameraChange", true);
         canStartTimer = false;
         playerController.levelNumber = 1;
+        
     }
           
     IEnumerator TimerOn()
@@ -106,6 +107,17 @@ public class CameraPositionChange : MonoBehaviour
         canStartTimer = true;
     }
 
-    
+   public void SaveData(ref GameData data)
+    {
+        if (Vector3.Distance(Player.position, Position.position) < changeDistance && playerController.staticAnimationPlayed && TorchInteraction.hasTorch)
+        {
+            
+        }
+    }
+
+   public void LoadData(GameData data)
+    {
+            
+    }
 }
 

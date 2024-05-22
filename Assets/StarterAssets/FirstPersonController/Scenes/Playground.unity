@@ -3757,6 +3757,7 @@ GameObject:
   - component: {fileID: 431859336}
   - component: {fileID: 431859338}
   - component: {fileID: 431859337}
+  - component: {fileID: 431859339}
   m_Layer: 0
   m_Name: StoneColumn_LP (3)
   m_TagString: Untagged
@@ -3828,6 +3829,28 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 431859335}
+  m_Mesh: {fileID: 8342362520908161609, guid: 30fa883ad9b402543bf83a9d4e9a5efc, type: 3}
+--- !u!64 &431859339
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 431859335}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 1
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
   m_Mesh: {fileID: 8342362520908161609, guid: 30fa883ad9b402543bf83a9d4e9a5efc, type: 3}
 --- !u!1 &451306409
 GameObject:
@@ -6143,8 +6166,8 @@ MonoBehaviour:
   controller: {fileID: 2140472240}
   torchInteraction: {fileID: 2140472234}
   rayCastInteraction: {fileID: 504853051}
-  Torch: {fileID: 0}
-  TorchLight: {fileID: 0}
+  Torch: {fileID: 904117225}
+  TorchLight: {fileID: 210501441}
   LeftHand: {fileID: 757509725}
   BurningPosition: {fileID: 2014058638}
   Player: {fileID: 2140472229}
@@ -8682,6 +8705,7 @@ GameObject:
   - component: {fileID: 805076527}
   - component: {fileID: 805076529}
   - component: {fileID: 805076528}
+  - component: {fileID: 805076530}
   m_Layer: 7
   m_Name: Column_LP (1)
   m_TagString: Untagged
@@ -8754,6 +8778,28 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 805076526}
   m_Mesh: {fileID: 67576038888085833, guid: c98aa57b227a49c43818fa5a29eb57e4, type: 3}
+--- !u!64 &805076530
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 805076526}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 1
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 67576038888085833, guid: c98aa57b227a49c43818fa5a29eb57e4, type: 3}
 --- !u!4 &806023245 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6889227220460777767, guid: 6bf4fc8b3c9b98a438791ae99ba338d3,
@@ -8811,8 +8857,8 @@ MonoBehaviour:
   controller: {fileID: 2140472240}
   torchInteraction: {fileID: 2140472234}
   rayCastInteraction: {fileID: 504853051}
-  Torch: {fileID: 0}
-  TorchLight: {fileID: 0}
+  Torch: {fileID: 904117225}
+  TorchLight: {fileID: 210501441}
   LeftHand: {fileID: 757509725}
   BurningPosition: {fileID: 1337931452}
   Player: {fileID: 2140472229}
@@ -12624,8 +12670,8 @@ MonoBehaviour:
   controller: {fileID: 2140472240}
   torchInteraction: {fileID: 2140472234}
   rayCastInteraction: {fileID: 504853051}
-  Torch: {fileID: 0}
-  TorchLight: {fileID: 0}
+  Torch: {fileID: 904117225}
+  TorchLight: {fileID: 210501441}
   LeftHand: {fileID: 757509725}
   BurningPosition: {fileID: 1956002410}
   Player: {fileID: 2140472229}
@@ -13285,6 +13331,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be6b67bc9f734ed43bdc8a2004341e64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  level: 0
   Camera1: {fileID: 1109646345}
   Camera2: {fileID: 262565709}
   CameraFollow: {fileID: 1109646351}
@@ -13326,7 +13373,7 @@ Transform:
   m_GameObject: {fileID: 1345453621}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.15, y: 2.58, z: 13.5}
+  m_LocalPosition: {x: 9.15, y: 2.58, z: 14.57}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -13476,8 +13523,8 @@ MonoBehaviour:
   controller: {fileID: 2140472240}
   torchInteraction: {fileID: 2140472234}
   rayCastInteraction: {fileID: 504853051}
-  Torch: {fileID: 0}
-  TorchLight: {fileID: 0}
+  Torch: {fileID: 904117225}
+  TorchLight: {fileID: 210501441}
   LeftHand: {fileID: 757509725}
   BurningPosition: {fileID: 170084713}
   Player: {fileID: 2140472229}
@@ -18134,6 +18181,50 @@ Transform:
   - {fileID: 477561265}
   m_Father: {fileID: 596769840}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1908333203
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1908333205}
+  - component: {fileID: 1908333204}
+  m_Layer: 0
+  m_Name: DataPersistenceManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1908333204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1908333203}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d638859cbc4e69648ae0c245db84a095, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1908333205
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1908333203}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 8.702, y: 13.088904, z: 6.53}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1938317756
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20129,8 +20220,8 @@ MonoBehaviour:
   controller: {fileID: 2140472240}
   torchInteraction: {fileID: 2140472234}
   rayCastInteraction: {fileID: 504853051}
-  Torch: {fileID: 0}
-  TorchLight: {fileID: 0}
+  Torch: {fileID: 904117225}
+  TorchLight: {fileID: 210501441}
   LeftHand: {fileID: 757509725}
   BurningPosition: {fileID: 1015837810}
   Player: {fileID: 2140472229}
@@ -21647,3 +21738,4 @@ SceneRoots:
   - {fileID: 262565713}
   - {fileID: 451306413}
   - {fileID: 524034816}
+  - {fileID: 1908333205}
