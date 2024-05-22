@@ -57,12 +57,14 @@ public class DataPersistanceManager : MonoBehaviour
         // TODO pass the data to other scripts so they can update their data 
         // TODO save that data to a file using the data handler 
 
+        
+
         foreach (IDataPersistence dataPersistenceObj in dataPersistenceObjects)
         {
             dataPersistenceObj.SaveData(ref gameData);
         }
+        Debug.Log("Saved");
 
-        Debug.Log("Saved" + gameData.level);
     }
 
     

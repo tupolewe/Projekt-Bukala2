@@ -109,10 +109,7 @@ public class CameraPositionChange : MonoBehaviour, IDataPersistence
 
    public void SaveData(ref GameData data)
     {
-        if (Vector3.Distance(Player.position, Position.position) < changeDistance && playerController.staticAnimationPlayed && TorchInteraction.hasTorch)
-        {
-            
-        }
+        
     }
 
    public void LoadData(GameData data)
