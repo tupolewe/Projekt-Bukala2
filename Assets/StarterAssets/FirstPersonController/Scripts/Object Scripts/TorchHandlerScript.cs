@@ -105,8 +105,8 @@ public class TorchHandlerScript : MonoBehaviour, Interactable
             if (Torch.transform.parent == TorchHandler)
             {
                 Debug.Log("dziala");
-                Torch.transform.localPosition = new Vector3(-0.004f, 0.418f, -0.022f);
-                Torch.transform.localRotation = Quaternion.Euler(0.49f, 85.7f, 88f);
+                Torch.transform.localPosition = new Vector3(0.915f, 0.094f, -0.01f);
+                Torch.transform.localRotation = Quaternion.Euler(-0.97f, 89.466f, -1.403f);
                 torchHandled = true;
                 torchInteraction.hasTorch = false;
                 torchHandleCount = 1;
@@ -119,8 +119,8 @@ public class TorchHandlerScript : MonoBehaviour, Interactable
             if (Torch.transform.parent == LeftHand)
             {
                 Debug.Log("dziala2");
-                Torch.transform.localPosition = new Vector3(0.165f, -0.031f, 0.013f);
-                Torch.transform.localRotation = Quaternion.Euler(4.276f, -1.564f, -8f);
+                Torch.transform.localPosition = new Vector3(-0.0237f, 0.1343f, 0.459f);
+                Torch.transform.localRotation = Quaternion.Euler(-15.64f, 0.224f, -106.242f);
                 torchHandled = false;
                 torchInteraction.hasTorch = true;
                 torchHandleCount = 0;

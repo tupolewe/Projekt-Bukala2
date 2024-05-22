@@ -12,9 +12,9 @@ public class TorchInteraction : MonoBehaviour
 
     public void Start()
     {
-        sockets = GetComponent<MeshSockets>();
+
         
-        sockets.Attach(Torch.transform, MeshSockets.SocketId.Hand);
+
     }
     public void Update()
     {
