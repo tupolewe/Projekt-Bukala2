@@ -35,7 +35,7 @@ public class TorchHandlerScript : MonoBehaviour, Interactable
     public Transform TorchHandler;
     public Transform LeftHand;
 
-    
+    public float rotationSpeed;
 
 
     public int burnCount;
@@ -199,12 +199,14 @@ public class TorchHandlerScript : MonoBehaviour, Interactable
                         float angle = Vector3.Angle(Player.transform.forward, fireDirection);
 
                         // Define a threshold angle to determine if the player is facing the right direction
-                        float thresholdAngle = 24f; // Adjust as needed
+                        float thresholdAngle = 19f; // Adjust as needed
 
                         //Debug.Log(angle);
                         animationStateController.animator.SetBool("isWalking", false);
 
-                    Debug.Log(angle);
+                        Debug.Log(angle);
+
+                    rotationSpeed = 90f;
 
                         if (angle <= thresholdAngle)
                         {
@@ -216,10 +218,10 @@ public class TorchHandlerScript : MonoBehaviour, Interactable
                             animationStateController.isHandlingRunning = true;
                             animationStateController.animator.SetBool("isWalking", false);
                             controller.speed = 5;
-                            Player.transform.rotation = Quaternion.Euler(0, 270, 0);
+                            //Player.transform.rotation = Quaternion.Euler(0, 270, 0);
+                            Player.transform.LookAt(TorchHandlingPosition);
 
-
-                            if (Torch.transform.parent == TorchHandler)
+                        if (Torch.transform.parent == TorchHandler)
                             {
                                 Debug.Log("dziala");
                                 
@@ -229,11 +231,12 @@ public class TorchHandlerScript : MonoBehaviour, Interactable
 
                         else
                         {
-                            // Player is not facing the right direction, rotate the player towards the fireplace
-                            Quaternion firetargetRotation = Quaternion.LookRotation(fireDirection);
-                            Player.transform.rotation = Quaternion.Lerp(Player.transform.rotation, firetargetRotation, 3f * Time.deltaTime);
-                            animationStateController.animator.SetBool("isWalking", true);
-                        }
+                        // Player is not facing the right direction, rotate the player towards the fireplace
+                        animationStateController.animator.SetBool("isWalking", true);
+
+                        Quaternion firetargetRotation = Quaternion.LookRotation(fireDirection);
+                        Player.transform.rotation = Quaternion.RotateTowards(Player.transform.rotation, firetargetRotation, rotationSpeed * Time.deltaTime);
+                    }
 
 
 
@@ -284,10 +287,13 @@ public class TorchHandlerScript : MonoBehaviour, Interactable
                         float angle = Vector3.Angle(Player.transform.forward, fireDirection);
 
                         // Define a threshold angle to determine if the player is facing the right direction
-                        float thresholdAngle = 24f; // Adjust as needed
+                        float thresholdAngle = 18.5f; // Adjust as needed
 
                         //Debug.Log(angle);
                         animationStateController.animator.SetBool("isWalking", false);
+                    Debug.Log(angle);
+
+                    rotationSpeed = 90f;
 
                         if (angle <= thresholdAngle)
                         {
@@ -299,18 +305,19 @@ public class TorchHandlerScript : MonoBehaviour, Interactable
                             animationStateController.isHandlingRunning = true;
                             animationStateController.animator.SetBool("isWalking", false);
                             controller.speed = 5;
-                            Player.transform.rotation = Quaternion.Euler(0, 270, 0);
+                            Player.transform.LookAt(TorchHandlingPosition);
 
 
-                            
-                        }
+
+                    }
 
                         else
                         {
-                            // Player is not facing the right direction, rotate the player towards the fireplace
-                            Quaternion firetargetRotation = Quaternion.LookRotation(fireDirection);
-                            Player.transform.rotation = Quaternion.Lerp(Player.transform.rotation, firetargetRotation, 3f * Time.deltaTime);
-                            animationStateController.animator.SetBool("isWalking", true);
+                        // Player is not facing the right direction, rotate the player towards the fireplace
+                        animationStateController.animator.SetBool("isWalking", true);
+
+                        Quaternion firetargetRotation = Quaternion.LookRotation(fireDirection);
+                        Player.transform.rotation = Quaternion.RotateTowards(Player.transform.rotation, firetargetRotation, rotationSpeed * Time.deltaTime);
                         }
 
 

@@ -15,7 +15,7 @@ public class VinesBurningScript : MonoBehaviour, Interactable
     public TorchInteraction torchInteraction;
     public RayCastInteraction rayCastInteraction;
 
-
+    public float rotationSpeed;
 
     public GameObject Torch;
     public GameObject TorchLight;
@@ -112,12 +112,14 @@ public class VinesBurningScript : MonoBehaviour, Interactable
                 float angle = Vector3.Angle(Player.transform.forward, fireDirection);
 
                 // Define a threshold angle to determine if the player is facing the right direction
-                float thresholdAngle = 50f; // Adjust as needed
+                float thresholdAngle = 10f; // Adjust as needed
 
                 //Debug.Log(angle);
                 animationStateController.animator.SetBool("isWalking", false);
 
                 Debug.Log(angle);
+
+                rotationSpeed = 90f;
 
                 if (angle <= thresholdAngle)
                 {
@@ -132,9 +134,11 @@ public class VinesBurningScript : MonoBehaviour, Interactable
                 else
                 {
                     // Player is not facing the right direction, rotate the player towards the fireplace
-                    Quaternion firetargetRotation = Quaternion.LookRotation(fireDirection);
-                    Player.transform.rotation = Quaternion.Lerp(Player.transform.rotation, firetargetRotation, 3f * Time.deltaTime);
+                    
                     animationStateController.animator.SetBool("isWalking", true);
+
+                    Quaternion firetargetRotation = Quaternion.LookRotation(fireDirection);
+                    Player.transform.rotation = Quaternion.RotateTowards(Player.transform.rotation, firetargetRotation, rotationSpeed * Time.deltaTime);
                 }
             }
         }
