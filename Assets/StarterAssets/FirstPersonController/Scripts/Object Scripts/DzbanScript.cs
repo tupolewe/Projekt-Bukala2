@@ -105,26 +105,14 @@ public class DzbanScript : MonoBehaviour, Interactable
        else if (isOn && !torchActive && !canPushD)
         {
 
-            
-            playerController.speed = 2;
-            canPushD = true;
-            animationStateController.canPushD = true;
-            playerController.turnSpeed = 80;
-            Vase.transform.position = PushingPosition.transform.position;
-            Vase.transform.SetParent(Player.transform, true);
-            
+
+            VasePush();
 
         }
         else if (isOn && !torchActive && canPushD)
         {
             
-            playerController.speed = 4;
-            animationStateController.canPushD = false;
-            canPushD = false;
-            Vase.transform.parent = null;
-            playerController.turnSpeed = 340;
-            VaseSource.loop = false;
-            VaseSource.clip = VaseScratchClip;
+            BackToWalking();
 
         }
 
@@ -275,7 +263,7 @@ public class DzbanScript : MonoBehaviour, Interactable
             Debug.Log(angle);
             //animationStateController.animator.SetBool("isWalking", false);
 
-            rotationSpeed = 60f;
+            rotationSpeed = 120f;
 
             // Check if the angle is within the threshold
             if (angle <= thresholdAngle)
@@ -304,5 +292,27 @@ public class DzbanScript : MonoBehaviour, Interactable
         }
         
         
+    }
+
+
+    void VasePush()
+    {
+        playerController.speed = 2;
+        canPushD = true;
+        animationStateController.canPushD = true;
+        playerController.turnSpeed = 80;
+        Vase.transform.position = PushingPosition.transform.position;
+        Vase.transform.SetParent(Player.transform, true);
+    }
+
+    void BackToWalking()
+    {
+        playerController.speed = 4;
+        animationStateController.canPushD = false;
+        canPushD = false;
+        Vase.transform.parent = null;
+        playerController.turnSpeed = 340;
+        VaseSource.loop = false;
+        VaseSource.clip = VaseScratchClip;
     }
 }

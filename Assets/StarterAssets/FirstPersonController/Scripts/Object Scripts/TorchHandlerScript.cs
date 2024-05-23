@@ -206,7 +206,7 @@ public class TorchHandlerScript : MonoBehaviour, Interactable
 
                         Debug.Log(angle);
 
-                    rotationSpeed = 90f;
+                    rotationSpeed = 120f;
 
                         if (angle <= thresholdAngle)
                         {

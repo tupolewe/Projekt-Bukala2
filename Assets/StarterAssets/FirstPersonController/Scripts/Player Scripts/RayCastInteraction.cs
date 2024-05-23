@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO.Pipes;
 using UnityEngine;
 using UnityEngine.SocialPlatforms;
 
@@ -23,7 +24,7 @@ public class RayCastInteraction : MonoBehaviour
     public PlayerNavMesh playerNavMesh;
 
     
-
+    public DzbanScript dzbanScript;
 
 
 
@@ -58,6 +59,11 @@ public class RayCastInteraction : MonoBehaviour
                     interactable.Interact();
 
                 }
+            }
+            if (hit.collider.GetComponent("DzbanScript") != null)
+            {
+                vaseBurnPosition.burnPositionNumber = UnityEngine.Random.Range(1, 4);
+                Debug.Log(vaseBurnPosition.burnPositionNumber);
             }
 
         }
