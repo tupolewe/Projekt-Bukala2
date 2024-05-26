@@ -9,9 +9,10 @@ public class HealthScript : MonoBehaviour
     public bool isInLight = false;
     public float health = 100f;
     public bool hasTorch = true;
-    public GameObject torch; 
-    
-    
+    public GameObject torch;
+
+    public TorchInteraction torchInteraction;
+
     // Update is called once per frame
     void Update()
     {
@@ -21,10 +22,10 @@ public class HealthScript : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Shadow"))
+        if (other.gameObject.CompareTag("Light"))
         {
-            
-            isInShadow = true;
+
+            isInLight = true;
 
         }
 
@@ -35,27 +36,17 @@ public class HealthScript : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Light"))
         {
-            isInLight = false;
+            isInLight = false; 
         }
     }
 
-    public void OnTriggerStay(Collider other)
-    {
-        if (other.gameObject.CompareTag("Light"))
-        {
-            isInLight = true;
-        }
-        else if (other.gameObject.CompareTag("Torch"))
-        {
-            hasTorch = true;
-        }
-    }
+  
 
 
 
     public void PlayerHealth()
     {
-        if (!isInLight && isInShadow && !hasTorch)
+        if (!isInLight)
         {
             health -= 0.001f;
 
@@ -67,15 +58,26 @@ public class HealthScript : MonoBehaviour
 
     public void TorchActive()
     {
-            //if (Input.GetKeyDown(KeyCode.F)) 
+
+        if (torchInteraction.hasTorch) 
         {
-            //torch.SetActive(false);
-            //hasTorch = false;
-        }
-            //if (Input.GetKeyUp(KeyCode.F))
+            hasTorch = true;
+
+            if (hasTorch && torch.activeInHierarchy == true)
+            {
+                isInLight = true; 
+            }
+        
+        }  
+
+        if (torchInteraction.hasTorch == false)
         {
-            //torch.SetActive(true);
-            //hasTorch = true;
+            hasTorch = false;   
         }
+
+
+        
     }
 }
+
+    

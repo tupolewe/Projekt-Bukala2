@@ -10,6 +10,8 @@ public class CameraPositionChange : MonoBehaviour, IDataPersistence
     private bool canStartTimer = true;
     
     private int changeCount = 0;
+
+    public GameObject torch; 
     public GameObject Camera1;
     public GameObject Camera2;
     public CameraFollow CameraFollow;
@@ -38,7 +40,7 @@ public class CameraPositionChange : MonoBehaviour, IDataPersistence
     {
         
 
-        if (collider != null && changeCount < 1 && TorchInteraction.hasTorch)
+        if (collider != torch && changeCount < 1 && TorchInteraction.hasTorch)
         {
           CameraFollow.target = null; 
 
@@ -52,7 +54,7 @@ public class CameraPositionChange : MonoBehaviour, IDataPersistence
 
 
         }
-        if ((collider != null && changeCount < 1 && TorchInteraction.hasTorch ==  false))
+        if ((collider != torch && changeCount < 1 && TorchInteraction.hasTorch ==  false))
 
         {
             CameraFollow.target = null;
