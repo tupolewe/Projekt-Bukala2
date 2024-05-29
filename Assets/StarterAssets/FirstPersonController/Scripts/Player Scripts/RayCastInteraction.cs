@@ -63,7 +63,7 @@ public class RayCastInteraction : MonoBehaviour
             if (hit.collider.GetComponent("DzbanScript") != null)
             {
                 vaseBurnPosition.burnPositionNumber = UnityEngine.Random.Range(1, 4);
-                Debug.Log(vaseBurnPosition.burnPositionNumber);
+                //Debug.Log(vaseBurnPosition.burnPositionNumber);
             }
 
         }

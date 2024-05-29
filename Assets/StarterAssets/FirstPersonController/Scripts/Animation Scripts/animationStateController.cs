@@ -8,6 +8,9 @@ using UnityEngine.InputSystem.EnhancedTouch;
 public class animationStateController : MonoBehaviour
 {
 
+    public bool isPushing;
+    public bool isWalking1;
+
     public Animator animator;
     int isWalkingHash;
     int canPushHash;
@@ -65,13 +68,14 @@ public class animationStateController : MonoBehaviour
                 {
                     animator.SetBool("isWalking", true);
                     animator.SetBool("canPush", false);
+                    isWalking1 = true;
 
                 }
 
                 if (!movementKey)
                 {
                     animator.SetBool("isWalking", false);
-
+                    isWalking1 = false;
                 }
 
 
@@ -87,7 +91,7 @@ public class animationStateController : MonoBehaviour
                     animator.SetBool("canPush", true);
                     animator.SetBool("isWalking", false);
                     
-                    
+                    isPushing = true;
                     //dzbanScript.VaseSource.volume = 1f;
                     //dzbanScript.VaseSource.Play();
                    
@@ -97,8 +101,8 @@ public class animationStateController : MonoBehaviour
                 {
                     animator.SetBool("canPush", false);
                     animator.SetBool("isWalking", false);
-                    
-                   
+
+                    isPushing = false;
                     //dzbanScript.VaseSource.Stop();
 
 
