@@ -46,7 +46,7 @@ public class VinesBurningScript : MonoBehaviour, Interactable
 
     public void OnTriggerEnter(Collider collider)
     {
-        if (collider.CompareTag("TorchTrigger") && animationStateController.isHandlingRunning)
+        if (collider.CompareTag("Torch") && animationStateController.isHandlingRunning)
             
         {
             Debug.Log("palenie");
