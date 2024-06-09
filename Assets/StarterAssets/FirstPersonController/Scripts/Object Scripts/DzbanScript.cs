@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEditor.Rendering.LookDev;
 using UnityEngine;
@@ -60,7 +61,8 @@ public class DzbanScript : MonoBehaviour, Interactable
     public float distanceToPosition = 3;
     public float rotationSpeed;
 
-
+    public string text;
+    public TextMeshProUGUI actionHint; 
 
 
     // Start is called before the first frame update
@@ -102,7 +104,7 @@ public class DzbanScript : MonoBehaviour, Interactable
                 //UpdateLight();
             
             }
-       else if (isOn && !torchActive && !canPushD)
+       else if (isOn && !torchActive && !canPushD && rayCastInteraction.currentHitDistance < 1.5f)
         {
 
 
@@ -243,6 +245,23 @@ public class DzbanScript : MonoBehaviour, Interactable
             //Debug.Log("blisko");
 
         }
+
+        if(rayCastInteraction.currentHitDistance < 2f && rayCastInteraction.currentHitObject.GetComponent("DzbanScript"))
+        {
+            if (torchInteraction.hasTorch && !isOn) 
+            {
+                actionHint.text = "Press 'E' to light the vase";
+            }
+            else if (isOn && torchInteraction.hasTorch == false && rayCastInteraction.currentHitObject.GetComponent("DzbanScript"))
+            {
+                actionHint.text = "Press 'E' to push the vase";
+            }
+            
+
+        }
+        
+
+
     }
     void BurningDistanceCheck()
     {

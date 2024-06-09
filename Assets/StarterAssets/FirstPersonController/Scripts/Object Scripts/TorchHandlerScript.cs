@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.Threading;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
@@ -43,6 +44,8 @@ public class TorchHandlerScript : MonoBehaviour, Interactable
     public bool torchHandlingActive;
     public int torchHandleCount = 0;
 
+    public TextMeshProUGUI actionHint;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -56,13 +59,17 @@ public class TorchHandlerScript : MonoBehaviour, Interactable
         
         
         NavMeshDestination();
+
+
         
-        
-        
-        
+
+
         DistanceCheck();
+
+
+
         
-        
+
     }
 
     public void Interact()
@@ -347,6 +354,35 @@ public class TorchHandlerScript : MonoBehaviour, Interactable
         {
             playerFarEnough = false;
         }
+
+
+        if (rayCastInteraction.currentHitObject.GetComponent("TorchHandlerScript"))
+        {
+            if (torchInteraction.hasTorch)
+            {
+                
+                    actionHint.text = "Press 'E' to put down the torch";
+
+                
+            }
+            
+            else if (torchInteraction.hasTorch == false)
+            {
+                actionHint.text = "Press 'E' to grab the torch";
+
+
+            }
+            else
+            {
+                actionHint.text = string.Empty;
+            }
+        }
+       
+
+
+
+
+
     }
     }
 

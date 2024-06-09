@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO.Pipes;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SocialPlatforms;
 
@@ -27,7 +28,7 @@ public class RayCastInteraction : MonoBehaviour
     public DzbanScript dzbanScript;
 
 
-
+    public TextMeshProUGUI actionHint;
 
     
 
@@ -63,15 +64,16 @@ public class RayCastInteraction : MonoBehaviour
             if (hit.collider.GetComponent("DzbanScript") != null)
             {
                 vaseBurnPosition.burnPositionNumber = UnityEngine.Random.Range(1, 4);
-                //Debug.Log(vaseBurnPosition.burnPositionNumber);
+                
             }
+            
 
         }
         else
         {
             currentHitObject = null;
             currentHitDistance = maxDistance;
-            
+            actionHint.text = string.Empty;
 
         }
 
