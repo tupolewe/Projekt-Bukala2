@@ -5,8 +5,10 @@ using System.Runtime.CompilerServices;
 using System.Threading;
 using TMPro;
 using Unity.VisualScripting;
+using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.InputSystem.EnhancedTouch;
+using UnityEngine.Rendering.Universal;
 
 public class VinesBurningScript : MonoBehaviour, Interactable
 {
@@ -20,7 +22,7 @@ public class VinesBurningScript : MonoBehaviour, Interactable
 
     public GameObject Torch;
     public GameObject TorchLight;
-
+    public GameObject Vines;
 
     public Transform LeftHand;
     public Transform BurningPosition;
@@ -33,10 +35,19 @@ public class VinesBurningScript : MonoBehaviour, Interactable
 
     public TextMeshProUGUI actionHint;
 
+
+    public GameObject flames;
+
+    public bool burningMoving = false;
+
+
+    public float openingSpeed;
+
     // Start is called before the first frame update
     void Start()
     {
-
+        flames.SetActive(false);
+        
     }
 
     // Update is called once per frame
@@ -45,6 +56,9 @@ public class VinesBurningScript : MonoBehaviour, Interactable
         TorchActiveCheck();
         VinesBurning();
         ActionHint();
+        
+
+        
     }
 
 
@@ -53,8 +67,11 @@ public class VinesBurningScript : MonoBehaviour, Interactable
         if (collider.CompareTag("Torch") && animationStateController.isHandlingRunning)
             
         {
-            Debug.Log("palenie");
-            Destroy(gameObject);
+            
+            
+            flames.SetActive(true);
+            burningMoving = true;
+            StartCoroutine(TimerOn());
         }
     }
 
@@ -157,4 +174,11 @@ public class VinesBurningScript : MonoBehaviour, Interactable
             actionHint.text = "Press 'E' to burn the vines"; 
         }
     }
+
+    IEnumerator TimerOn()
+    {
+        yield return new WaitForSeconds(2);
+        Destroy(gameObject);
+    }
+
 }

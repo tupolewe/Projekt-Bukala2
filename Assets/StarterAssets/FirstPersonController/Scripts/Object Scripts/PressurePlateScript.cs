@@ -16,7 +16,7 @@ public class PressurePlateScript : MonoBehaviour
     public float doorScaleValue = 1f;
     public float decreaseRate = 0.05f;
     public float currentValue;
-
+    
     public animationStateController controller;
     // Update is called once per frame
     void Update()
@@ -93,7 +93,7 @@ public class PressurePlateScript : MonoBehaviour
         if (platePressured && StoneDoor.transform.position.y <= 7f && objectsAtPlate >= 1)
         {
             StoneDoor.transform.Translate(Vector3.up * openingSpeed * Time.deltaTime);
-
+            
             //doorScale = new Vector3(1, doorScaleValue, 1);
             //StoneDoor.transform.localScale = doorScale;
 
