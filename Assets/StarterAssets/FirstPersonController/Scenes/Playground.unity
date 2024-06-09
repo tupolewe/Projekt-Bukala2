@@ -5839,6 +5839,7 @@ MonoBehaviour:
   vinesBurningActive: 0
   torchActive: 0
   hasTorch: 0
+  actionHint: {fileID: 627661502}
 --- !u!64 &613580983
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -8792,6 +8793,7 @@ MonoBehaviour:
   vinesBurningActive: 0
   torchActive: 0
   hasTorch: 0
+  actionHint: {fileID: 627661502}
 --- !u!65 &818772852
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12256,6 +12258,7 @@ MonoBehaviour:
   vinesBurningActive: 0
   torchActive: 0
   hasTorch: 0
+  actionHint: {fileID: 627661502}
 --- !u!64 &1273123563
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -13064,6 +13067,7 @@ MonoBehaviour:
   vinesBurningActive: 0
   torchActive: 0
   hasTorch: 0
+  actionHint: {fileID: 627661502}
 --- !u!64 &1345954081
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -19888,6 +19892,7 @@ MonoBehaviour:
   vinesBurningActive: 0
   torchActive: 0
   hasTorch: 0
+  actionHint: {fileID: 627661502}
 --- !u!64 &2054473567
 MeshCollider:
   m_ObjectHideFlags: 0

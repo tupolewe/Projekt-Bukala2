@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.Runtime.CompilerServices;
 using System.Threading;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem.EnhancedTouch;
@@ -30,6 +31,8 @@ public class VinesBurningScript : MonoBehaviour, Interactable
     public bool torchActive;
     public bool hasTorch;
 
+    public TextMeshProUGUI actionHint;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -41,6 +44,7 @@ public class VinesBurningScript : MonoBehaviour, Interactable
     {
         TorchActiveCheck();
         VinesBurning();
+        ActionHint();
     }
 
 
@@ -142,7 +146,15 @@ public class VinesBurningScript : MonoBehaviour, Interactable
                 }
             }
         }
-
         
+        
+    }
+
+    void ActionHint()
+    {
+        if (rayCastInteraction.currentHitObject.GetComponent("VinesBurningScript") && torchInteraction.hasTorch)
+        {
+            actionHint.text = "Press 'E' to burn the vines"; 
+        }
     }
 }
