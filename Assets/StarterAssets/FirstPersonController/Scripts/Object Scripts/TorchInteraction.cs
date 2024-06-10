@@ -18,7 +18,8 @@ public class TorchInteraction : MonoBehaviour
     }
     public void Update()
     {
-        TorchFiring(); 
+        TorchFiring();
+        hasTorchCheck();
     }
 
     private void TorchFiring () 
@@ -43,5 +44,16 @@ public class TorchInteraction : MonoBehaviour
         }
     } 
         
-    
+    void hasTorchCheck()
+    {
+        if (!hasTorch)
+        {
+            animationStateController.animator.SetBool("hasTorch", false); 
+        }
+
+        if (hasTorch)
+        {
+            animationStateController.animator.SetBool("hasTorch", true);
+        }
+    }
 }

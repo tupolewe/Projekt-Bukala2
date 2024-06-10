@@ -14,6 +14,7 @@ public class animationStateController : MonoBehaviour
     public Animator animator;
     int isWalkingHash;
     int canPushHash;
+    int hasTorchHash;
     public bool torchActive;
     public GameObject Torch;
     public bool canPushD = false;
@@ -31,6 +32,8 @@ public class animationStateController : MonoBehaviour
     public TorchHandlerScript torchHandlerScript;
     public DzbanScript dzbanScript;
 
+    public TorchInteraction torchScript;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -38,6 +41,7 @@ public class animationStateController : MonoBehaviour
         isWalkingHash = Animator.StringToHash("isWalking");
         canPushHash = Animator.StringToHash("canPush");
         torchHandlerHash = Animator.StringToHash("torchHandler");
+        hasTorchHash = Animator.StringToHash("hasTorch"); 
     }
 
     // Update is called once per frame

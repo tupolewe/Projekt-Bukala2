@@ -72,7 +72,7 @@ public class DzbanScript : MonoBehaviour, Interactable
         VaseLight.SetActive(false);
         VaseSource.loop = true;
         VaseSource.clip = VaseScratchClip;
-        
+        UpdateLight();
     }
     void Update()
     {
@@ -297,7 +297,7 @@ public class DzbanScript : MonoBehaviour, Interactable
                 animationStateController.isHandlingRunning = true;
                 rotatedToPosition = false;
                 rotationSpeed = 2;
-
+                //Player.transform.rotation = Quaternion.Euler(0, 180, 0);
 
             }
             else
