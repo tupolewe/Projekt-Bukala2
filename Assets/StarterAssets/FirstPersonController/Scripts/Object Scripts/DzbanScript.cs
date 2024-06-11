@@ -72,7 +72,7 @@ public class DzbanScript : MonoBehaviour, Interactable
         VaseLight.SetActive(false);
         VaseSource.loop = true;
         VaseSource.clip = VaseScratchClip;
-        UpdateLight();
+        //UpdateLight();
     }
     void Update()
     {
@@ -220,8 +220,9 @@ public class DzbanScript : MonoBehaviour, Interactable
                 Player.transform.rotation = Quaternion.Lerp(Player.transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
                 float distance = Vector3.Distance(Player.transform.transform.position, currentBurnPosition.position);
                 animationStateController.animator.SetBool("isWalking", true);
-                
-                if (distance < 1.7f)
+
+                Debug.Log(distance);
+                if (distance < 1.9f)
                 {
                     rotatedToPosition = true;
                     
@@ -277,7 +278,7 @@ public class DzbanScript : MonoBehaviour, Interactable
             float angle = Vector3.Angle(Player.transform.forward, fireDirection);
 
             // Define a threshold angle to determine if the player is facing the right direction
-            float thresholdAngle = 5f; // Adjust as needed
+            float thresholdAngle = 15f; // Adjust as needed
 
             Debug.Log(angle);
             //animationStateController.animator.SetBool("isWalking", false);
