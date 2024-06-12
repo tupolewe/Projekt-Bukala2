@@ -68,7 +68,7 @@ public class CameraPositionChange : MonoBehaviour, IDataPersistence
     void PositionCheck()
     {
 
-        
+        //Debug.Log(Vector3.Distance(Player.position, Position.position)); 
 
         if (Vector3.Distance(Player.position, Position.position) < changeDistance && playerController.staticAnimationPlayed && TorchInteraction.hasTorch)
         {

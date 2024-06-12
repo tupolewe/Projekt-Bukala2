@@ -15,10 +15,14 @@ public class FootstepSystem : MonoBehaviour
 
     public void PlayFootstepSound(AudioClip audio)
     {
-        if (canPlay)
+        
+
+
+        if (animationStateController.animator.GetBool("isWalking"))
+            
         {
-            audioSource.pitch = Random.Range(0.8f, 1f);
-            audioSource.PlayOneShot(audio);
+            audioSource.pitch = Random.Range(0.8f, 1f); 
+            audioSource.PlayOneShot(audio); 
         }
         
     }
