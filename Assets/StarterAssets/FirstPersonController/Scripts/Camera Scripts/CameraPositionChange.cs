@@ -14,6 +14,7 @@ public class CameraPositionChange : MonoBehaviour, IDataPersistence
     public GameObject torch; 
     public GameObject Camera1;
     public GameObject Camera2;
+    public GameObject Level2Walls;
     public CameraFollow CameraFollow;
     public CameraFollow CameraFollow2;
     public PlayerNavMesh PlayerNavMesh;
@@ -141,6 +142,7 @@ public class CameraPositionChange : MonoBehaviour, IDataPersistence
         playerController.staticAnimationPlayed = false;
         canStartTimer = true;
         CameraFollow2.target = Player.transform;
+        Level2Walls.gameObject.SetActive(false);
     }
 
     IEnumerator TimerOff2()
@@ -161,6 +163,7 @@ public class CameraPositionChange : MonoBehaviour, IDataPersistence
         playerController.staticAnimationPlayed = false;
         canStartTimer = true;
         CameraFollow.target = Player.transform;
+        Level2Walls.gameObject.SetActive(true);
     }
 
 

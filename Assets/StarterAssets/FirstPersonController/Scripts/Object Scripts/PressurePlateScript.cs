@@ -16,6 +16,8 @@ public class PressurePlateScript : MonoBehaviour
     public float doorScaleValue = 1f;
     public float decreaseRate = 0.05f;
     public float currentValue;
+
+    public GameObject pressurePlate;
     
     public animationStateController controller;
     // Update is called once per frame
@@ -32,56 +34,64 @@ public class PressurePlateScript : MonoBehaviour
         currentValue = doorScaleValue;
     }
 
-    public void OnCollisionEnter(Collision collider)
+    public void OnTriggerEnter(Collider collider)
     {
-        if (collider != null && controller.canPushD) 
-        
         {
-            platePressured = true;
-            objectsAtPlate = objectsAtPlate + 2;
-            scaleChange = new Vector3(1.849517f, 0.001f, 2.135503f);
-            gameObject.transform.localScale = scaleChange;
-            Debug.Log(collider);
+            if (collider != null && controller.canPushD)
+
+            {
+                platePressured = true;
+                objectsAtPlate = objectsAtPlate + 2;
+                //scaleChange = new Vector3(1.849517f, 0.001f, 2.135503f);
+                pressurePlate.transform.position = new Vector3(transform.position.x, -0.18f, transform.position.z);
+                //gameObject.transform.localScale = scaleChange;
+                Debug.Log(collider);
+            }
+
+            if (collider != null && !controller.canPushD)
+
+            {
+                platePressured = true;
+                objectsAtPlate = objectsAtPlate + 1;
+                //scaleChange = new Vector3(1.849517f, 0.001f, 2.135503f);
+                pressurePlate.transform.position = new Vector3(transform.position.x, -0.18f, transform.position.z);
+                //gameObject.transform.localScale = scaleChange;
+                Debug.Log(collider);
+            }
+
         }
-
-        if (collider != null && !controller.canPushD)
-
-        {
-            platePressured = true;
-            objectsAtPlate = objectsAtPlate + 1;
-            scaleChange = new Vector3(1.849517f, 0.001f, 2.135503f);
-            gameObject.transform.localScale = scaleChange;
-            Debug.Log(collider);
-        }
-
     }
 
-   
 
-    public void OnCollisionExit(Collision collider)
 
+
+    public void OnTriggerExit(Collider collider)
     {
-
-        if (collider != null && controller.canPushD)
-
         {
-            objectsAtPlate = objectsAtPlate - 2;
+
+            if (collider != null && controller.canPushD)
+
+            {
+                objectsAtPlate = objectsAtPlate - 2;
+            }
+
+
+            if (collider != null && !controller.canPushD)
+
+            {
+                objectsAtPlate = objectsAtPlate - 1;
+            }
+
+
+
+
+
         }
-
-
-        if (collider != null && !controller.canPushD)
-
-        {
-            objectsAtPlate = objectsAtPlate - 1;
-        }
-
-
-
-
-
     }
 
-    
+
+
+
 
 
 
@@ -94,10 +104,12 @@ public class PressurePlateScript : MonoBehaviour
         {
             StoneDoor.transform.Translate(Vector3.up * openingSpeed * Time.deltaTime);
             
-            //doorScale = new Vector3(1, doorScaleValue, 1);
-            //StoneDoor.transform.localScale = doorScale;
+            
+        }
 
-            //doorScaleValue = doorScaleValue - Time.deltaTime * 0.3f;
+        if ((platePressured && StoneDoor.transform.position.y < 0f && objectsAtPlate >= 1))
+        {
+            StoneDoor.transform.Translate(Vector3.up * openingSpeed * Time.deltaTime);
         }
     }
 
@@ -114,8 +126,8 @@ public class PressurePlateScript : MonoBehaviour
 
         {
             platePressured = false;
-            scaleChange = new Vector3(1.849517f, 0.06f, 2.135503f);
-            gameObject.transform.localScale = scaleChange;
+            pressurePlate.transform.position = new Vector3(transform.position.x, -0.12f, transform.position.z);
+            //gameObject.transform.localScale = scaleChange;
         }
 
         if (objectsAtPlate > 3)
