@@ -9,12 +9,13 @@ public class CameraPositionChange : MonoBehaviour, IDataPersistence
     public int level;
     private bool canStartTimer = true;
     
-    private int changeCount = 0;
+    public int changeCount = 0;
 
     public GameObject torch; 
     public GameObject Camera1;
     public GameObject Camera2;
     public CameraFollow CameraFollow;
+    public CameraFollow CameraFollow2;
     public PlayerNavMesh PlayerNavMesh;
     public TorchInteraction TorchInteraction;
     public animationStateController animationStateController;
@@ -23,7 +24,8 @@ public class CameraPositionChange : MonoBehaviour, IDataPersistence
 
     [SerializeField] private float changeDistance; 
 
-    public Transform Position;
+    public Transform Position1;
+    public Transform Position2;
     public Transform Player;
 
     private void Start()
@@ -40,29 +42,46 @@ public class CameraPositionChange : MonoBehaviour, IDataPersistence
     {
         
 
-        if (collider != torch && changeCount < 1 && TorchInteraction.hasTorch)
+        if (collider != torch && level == 0)
         {
-          CameraFollow.target = null; 
+            CameraFollow.target = null; 
 
            
             PlayerNavMesh.LevelChange();
-            PlayerNavMesh.navMeshAgent.destination = Position.transform.position;
+            PlayerNavMesh.navMeshAgent.destination = Position1.transform.position;
             animationStateController.animator.SetBool("isWalking", true);
             playerController.staticAnimationPlayed = true;
-            
+            changeCount = 1; 
             
 
 
         }
-        if ((collider != torch && changeCount < 1 && TorchInteraction.hasTorch ==  false))
+        //else if ((collider != torch && changeCount < 1 && TorchInteraction.hasTorch ==  false))
 
+        //{
+            //CameraFollow.target = null;
+            //PlayerNavMesh.LevelChange();
+            //PlayerNavMesh.navMeshAgent.destination = Position1.transform.position;
+            //animationStateController.animator.SetBool("isWalking", true);
+            //playerController.staticAnimationPlayed = true;
+            
+        //}
+
+        if ((collider != torch && level == 1))
         {
-            CameraFollow.target = null;
+
+            Debug.Log("level2");
+            CameraFollow2.target = null;
+
+
             PlayerNavMesh.LevelChange();
-            PlayerNavMesh.navMeshAgent.destination = Position.transform.position;
+            PlayerNavMesh.navMeshAgent.destination = Position2.transform.position;
             animationStateController.animator.SetBool("isWalking", true);
             playerController.staticAnimationPlayed = true;
+            changeCount = 0;
         }
+
+
     }
 
     void PositionCheck()
@@ -70,27 +89,41 @@ public class CameraPositionChange : MonoBehaviour, IDataPersistence
 
         //Debug.Log(Vector3.Distance(Player.position, Position.position)); 
 
-        if (Vector3.Distance(Player.position, Position.position) < changeDistance && playerController.staticAnimationPlayed && TorchInteraction.hasTorch)
+        if (Vector3.Distance(Player.position, Position1.position) < changeDistance && playerController.staticAnimationPlayed && level == 0)
         {
             //Debug.Log("dziala pozycja");
 
             PlayerNavMesh.navMeshAgent.enabled = false;
             animationStateController.animator.SetBool("isWalking", false);
+            level = 1;
             
             if (canStartTimer)
             {
-                StartCoroutine(TimerOff());
-                StartCoroutine(TimerOn());
+                StartCoroutine(TimerOff1());
+                StartCoroutine(TimerOn1());
             }
 
             
 
         }
+        else if (Vector3.Distance(Player.position, Position2.position) < changeDistance && playerController.staticAnimationPlayed && level == 1)
+        {
+            PlayerNavMesh.navMeshAgent.enabled = false;
+            animationStateController.animator.SetBool("isWalking", false);
+            level = 0;
 
-        
+            if (canStartTimer)
+            {
+                StartCoroutine(TimerOff2());
+                StartCoroutine(TimerOn2());
+            }
+
+        }
+
+
     }
 
-    IEnumerator TimerOff()
+    IEnumerator TimerOff1()
     {
         yield return new WaitForSeconds(1);
         vignette.animator.SetBool("CameraChange", true);
@@ -99,7 +132,7 @@ public class CameraPositionChange : MonoBehaviour, IDataPersistence
         
     }
           
-    IEnumerator TimerOn()
+    IEnumerator TimerOn1()
     {
             yield return new WaitForSeconds(2);
             vignette.animator.SetBool("CameraChange", false);
@@ -107,9 +140,32 @@ public class CameraPositionChange : MonoBehaviour, IDataPersistence
             Camera2.SetActive(true);
         playerController.staticAnimationPlayed = false;
         canStartTimer = true;
+        CameraFollow2.target = Player.transform;
     }
 
-   public void SaveData(ref GameData data)
+    IEnumerator TimerOff2()
+    {
+        yield return new WaitForSeconds(1);
+        vignette.animator.SetBool("CameraChange", true);
+        canStartTimer = false;
+        playerController.levelNumber = 0;
+
+    }
+
+    IEnumerator TimerOn2()
+    {
+        yield return new WaitForSeconds(2);
+        vignette.animator.SetBool("CameraChange", false);
+        Camera1.SetActive(true);
+        Camera2.SetActive(false);
+        playerController.staticAnimationPlayed = false;
+        canStartTimer = true;
+        CameraFollow.target = Player.transform;
+    }
+
+
+
+    public void SaveData(ref GameData data)
     {
         
     }
