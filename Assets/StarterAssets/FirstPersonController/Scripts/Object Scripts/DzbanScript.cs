@@ -55,6 +55,9 @@ public class DzbanScript : MonoBehaviour, Interactable
     public Transform BurnTransform3;
     public Transform BurnTransform4;
     public Transform Fireplace;
+    public Transform Fireplace2;
+    public Transform Fireplace3;
+    public Transform Fireplace4;
     public Transform PlayerTransform;
 
     public bool VaseBurningActive;
@@ -188,25 +191,29 @@ public class DzbanScript : MonoBehaviour, Interactable
 
             Transform currentBurnPosition = null;
             Transform currentBurnTransform = null;
+            Transform currentFireplace = null;
 
             switch (vaseBurnPosition.burnPositionNumber)
             {
                 case 1:
                     currentBurnPosition = BurnPosition1.transform;
                     currentBurnTransform = BurnTransform1;
-
+                    currentFireplace = Fireplace;
                     break;
                 case 2:
                     currentBurnPosition = BurnPosition2.transform;
                     currentBurnTransform = BurnTransform2;
+                    currentFireplace = Fireplace2;
                     break;
                 case 3:
                     currentBurnPosition = BurnPosition3.transform;
                     currentBurnTransform = BurnTransform3;
+                    currentFireplace = Fireplace3;
                     break;
                 case 4:
                     currentBurnPosition = BurnPosition4.transform;
                     currentBurnTransform = BurnTransform4;
+                    currentFireplace = Fireplace4;
                     break;
             }
 
@@ -278,7 +285,7 @@ public class DzbanScript : MonoBehaviour, Interactable
             float angle = Vector3.Angle(Player.transform.forward, fireDirection);
 
             // Define a threshold angle to determine if the player is facing the right direction
-            float thresholdAngle = 15f; // Adjust as needed
+            float thresholdAngle = 10f; // Adjust as needed
 
             Debug.Log(angle);
             //animationStateController.animator.SetBool("isWalking", false);
@@ -298,6 +305,7 @@ public class DzbanScript : MonoBehaviour, Interactable
                 animationStateController.isHandlingRunning = true;
                 rotatedToPosition = false;
                 rotationSpeed = 2;
+                Player.transform.LookAt(Fireplace);
                 //Player.transform.rotation = Quaternion.Euler(0, 180, 0);
 
             }
