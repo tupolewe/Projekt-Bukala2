@@ -229,7 +229,7 @@ public class DzbanScript : MonoBehaviour, Interactable
                 animationStateController.animator.SetBool("isWalking", true);
 
                 Debug.Log(distance);
-                if (distance < 1.9f)
+                if (distance < 0.95f)
                 {
                     rotatedToPosition = true;
                     
@@ -285,9 +285,9 @@ public class DzbanScript : MonoBehaviour, Interactable
             float angle = Vector3.Angle(Player.transform.forward, fireDirection);
 
             // Define a threshold angle to determine if the player is facing the right direction
-            float thresholdAngle = 10f; // Adjust as needed
+            float thresholdAngle = 1f; // Adjust as needed
 
-            Debug.Log(angle);
+            //Debug.Log(angle);
             //animationStateController.animator.SetBool("isWalking", false);
 
             rotationSpeed = 120f;
@@ -306,7 +306,22 @@ public class DzbanScript : MonoBehaviour, Interactable
                 rotatedToPosition = false;
                 rotationSpeed = 2;
                 Player.transform.LookAt(Fireplace);
-                //Player.transform.rotation = Quaternion.Euler(0, 180, 0);
+
+                switch (vaseBurnPosition.burnPositionNumber)
+                {
+                    case 1:
+                        Player.transform.rotation = Quaternion.Euler(0, 30, 0);
+                        break;
+                    case 2:
+                        Player.transform.rotation = Quaternion.Euler(0, 103.28f, 0);
+                        break;
+                    case 3:
+                        Player.transform.rotation = Quaternion.Euler(0, -62.409f, 0);
+                        break;
+                    case 4:
+                        Player.transform.rotation = Quaternion.Euler(0, -166.84f, 0);
+                        break;
+                }
 
             }
             else

@@ -26,7 +26,7 @@ public class RayCastInteraction : MonoBehaviour
 
     
     public DzbanScript dzbanScript;
-
+    public PlayerController controller;
 
     public TextMeshProUGUI actionHint;
 
@@ -61,7 +61,7 @@ public class RayCastInteraction : MonoBehaviour
 
                 }
             }
-            if (hit.collider.GetComponent("DzbanScript") != null)
+            if (hit.collider.GetComponent("DzbanScript") != null && controller.staticAnimationPlayed == false)
             {
                 vaseBurnPosition.burnPositionNumber = UnityEngine.Random.Range(1, 4);
                 
