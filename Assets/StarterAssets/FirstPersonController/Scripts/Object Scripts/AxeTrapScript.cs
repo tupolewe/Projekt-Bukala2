@@ -37,16 +37,17 @@ public class AxeTrapScript : MonoBehaviour
         {
             direction1 *= -1;
 
-            if (axe1.transform.rotation == Quaternion.Euler(0f, 180f, 0f))
+            if (direction1 == 1)
             {
-                axe1.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+                Debug.Log("obrot");
+                axe1.transform.rotation = Quaternion.Euler(0f, -90f, 0f);
             }
             
 
-            else if (axe1.transform.rotation == Quaternion.Euler(0f, 0f, 0f))
-            {     
-
-                axe1.transform.rotation = Quaternion.Euler(0f, 180f, 0f);
+            else if (direction1 < 1)
+            {
+                Debug.Log("obrot");
+                axe1.transform.rotation = Quaternion.Euler(0f, 90f, 0f);
 
             }
 
@@ -56,16 +57,17 @@ public class AxeTrapScript : MonoBehaviour
         {
             direction2 *= -1;
 
-            if (axe2.transform.rotation == Quaternion.Euler(0f, 0f, 0f))
+            if ((direction2 == 1))
             {
-                axe2.transform.rotation = Quaternion.Euler(0f, 180f, 0f);
+                Debug.Log("obrot");
+                axe2.transform.rotation = Quaternion.Euler(0f, 90f, 0f);
             }
 
 
-            else if (axe2.transform.rotation == Quaternion.Euler(0f, 180f, 0f))
+            else if (direction2 < 1)
             {
-
-                axe2.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+                Debug.Log("obrot");
+                axe2.transform.rotation = Quaternion.Euler(0f, -90f, 0f);
 
             }
         }
@@ -99,6 +101,7 @@ public class AxeTrapScript : MonoBehaviour
         }
     }
 
-
     
+   
+
 }
