@@ -3207,10 +3207,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 2560, y: 1440}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -3256,7 +3256,6 @@ RectTransform:
   - {fileID: 1807133549}
   - {fileID: 627661504}
   - {fileID: 973642189}
-  - {fileID: 1861613724}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -6698,7 +6697,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2.2222223, y: 2.5849714, z: 15.835684}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1861613724}
   m_Father: {fileID: 973642189}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -7688,17 +7688,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level: 0
+  changeCount: 0
   torch: {fileID: 0}
   Camera1: {fileID: 1109646345}
   Camera2: {fileID: 262565709}
+  Level2Walls: {fileID: 0}
   CameraFollow: {fileID: 1109646351}
+  CameraFollow2: {fileID: 0}
   PlayerNavMesh: {fileID: 4660150138884957781}
   TorchInteraction: {fileID: 5639732307795926278}
   animationStateController: {fileID: 8250464910264477725}
   playerController: {fileID: 9207869467005841440}
   vignette: {fileID: 1807133553}
   changeDistance: 1.78
-  Position: {fileID: 635958890}
+  Position1: {fileID: 0}
+  Position2: {fileID: 0}
   Player: {fileID: 2140472229}
 --- !u!65 &1345453623
 BoxCollider:
@@ -10315,12 +10319,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1861613723}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.19080894, z: 0.9816273, w: 0}
-  m_LocalPosition: {x: -692.49, y: -442.28, z: 10.13}
-  m_LocalScale: {x: 0.45, y: 0.45, z: 0}
+  m_LocalRotation: {x: -0, y: 0.19080894, z: 0.9816273, w: 0}
+  m_LocalPosition: {x: -55.459972, y: 191.5612, z: -12.633857}
+  m_LocalScale: {x: 42.799053, y: 21.39953, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 451306413}
+  m_Father: {fileID: 1072462403}
   m_LocalEulerAnglesHint: {x: -22, y: 0, z: 180}
 --- !u!212 &1861613725
 SpriteRenderer:
