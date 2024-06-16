@@ -1,16 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.PlasticSCM.Editor.WebApi;
 using UnityEngine;
 
 public class AxeTrapScript : MonoBehaviour
 {
 
-    public GameObject axe1;
-    public GameObject axe2;
+    public Transform axe1;
+    public Transform axe2;
     public Transform railEnd1;
     public Transform railEnd2;
     public bool trapOn;
     public float speed;
+
+    int direction1 = 1;
+    int direction2 = 1;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,29 +24,81 @@ public class AxeTrapScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        AxeMove1();
-    }
+        Vector3 target = currentMoveTarget();
+        Vector3 target2 = currentMoveTarget2();
 
+        axe1.transform.position = Vector3.Lerp(axe1.transform.position, target, speed * Time.deltaTime);
+        axe2.transform.position = Vector3.Lerp(axe2.transform.position, target2, speed * Time.deltaTime);
 
-    void AxeMove1()
-    {
+        float distance1 = (target - axe1.transform.position).magnitude;
+        float distance2 = (target - axe2.transform.position).magnitude;
 
-        float distance1 = Vector3.Distance(axe1.transform.transform.position, railEnd1.position);
-        float distance2 = Vector3.Distance(axe2.transform.transform.position, railEnd2.position);
-
-        if (trapOn)
+        if (distance1 <= 0.5f) 
         {
-            if (distance1 > 1f)
+            direction1 *= -1;
+
+            if (axe1.transform.rotation == Quaternion.Euler(0f, 180f, 0f))
             {
-                axe1.transform.Translate(Vector3.right * speed * Time.deltaTime);
-                
+                axe1.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
             }
-            if (distance2 > 1f)
-            {
-                axe2.transform.Translate(Vector3.right * speed * Time.deltaTime);
+            
+
+            else if (axe1.transform.rotation == Quaternion.Euler(0f, 0f, 0f))
+            {     
+
+                axe1.transform.rotation = Quaternion.Euler(0f, 180f, 0f);
+
             }
 
         }
-        
+
+        if (distance2 <= 0.5f)
+        {
+            direction2 *= -1;
+
+            if (axe2.transform.rotation == Quaternion.Euler(0f, 0f, 0f))
+            {
+                axe2.transform.rotation = Quaternion.Euler(0f, 180f, 0f);
+            }
+
+
+            else if (axe2.transform.rotation == Quaternion.Euler(0f, 180f, 0f))
+            {
+
+                axe2.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+
+            }
+        }
     }
+
+    Vector3 currentMoveTarget()
+    {
+        if (direction1 == 1) 
+        {
+            return railEnd1.position; 
+
+        }
+        else
+        {
+             return railEnd2.position;
+        }
+
+
+    }
+
+    Vector3 currentMoveTarget2()
+    {
+        if (direction2 == 1)
+        {
+            return railEnd2.position;
+
+        }
+        else
+        {
+            return railEnd1.position;
+        }
+    }
+
+
+    
 }
