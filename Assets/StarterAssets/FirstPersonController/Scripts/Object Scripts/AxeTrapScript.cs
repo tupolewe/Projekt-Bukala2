@@ -13,6 +13,7 @@ public class AxeTrapScript : MonoBehaviour
     public bool trapOn;
     public float speed;
 
+    public AudioSource src;
     int direction1 = 1;
     int direction2 = 1;
     // Start is called before the first frame update
@@ -36,6 +37,8 @@ public class AxeTrapScript : MonoBehaviour
         if (distance1 <= 0.5f) 
         {
             direction1 *= -1;
+
+            src.Play();
 
             if (direction1 == 1)
             {

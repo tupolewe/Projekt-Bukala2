@@ -17,6 +17,12 @@ public class PressurePlateScript : MonoBehaviour
     public float decreaseRate = 0.05f;
     public float currentValue;
 
+    public AudioSource src;
+    public AudioSource src2;
+
+    bool playCount = false;
+
+
     public GameObject pressurePlate;
     
     public animationStateController controller;
@@ -36,6 +42,18 @@ public class PressurePlateScript : MonoBehaviour
 
     public void OnTriggerEnter(Collider collider)
     {
+
+        
+
+        if (playCount == false)
+        {
+            src.pitch = 0.8f;
+            src.Play();
+            playCount = true;
+        }
+        
+        
+
         {
             if (collider != null && controller.canPushD)
 
@@ -67,6 +85,12 @@ public class PressurePlateScript : MonoBehaviour
 
     public void OnTriggerExit(Collider collider)
     {
+
+        src.pitch = 0.6f;
+        src.Play();
+        playCount = false;
+
+
         {
 
             if (collider != null && controller.canPushD)
@@ -98,26 +122,35 @@ public class PressurePlateScript : MonoBehaviour
     void StoneDoorOpening()
     {
         
-        
-        
-        if (platePressured && StoneDoor.transform.position.y <= 7f && objectsAtPlate >= 1)
+
+
+
+            if (platePressured && StoneDoor.transform.position.y <= 7f && objectsAtPlate >= 1)
         {
             StoneDoor.transform.Translate(Vector3.up * openingSpeed * Time.deltaTime);
+
             
-            
+
         }
 
         if ((platePressured && StoneDoor.transform.position.y < 0f && objectsAtPlate >= 1))
         {
             StoneDoor.transform.Translate(Vector3.up * openingSpeed * Time.deltaTime);
+
+            
         }
     }
 
     void StoneDoorClosing()
     {
+
+        
+
         if (StoneDoor.transform.position.y > 0f && !platePressured && objectsAtPlate < 1)
         {
             StoneDoor.transform.Translate(Vector3.down * closingSpeed * Time.deltaTime);
+
+            
         }
     }
    void ObjectCheck()

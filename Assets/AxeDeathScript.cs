@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class AxeDeathScript : MonoBehaviour
 {
+
+
+    public HealthScript HealthScript;
     private void OnTriggerEnter(Collider collider)
     {
         if (collider.CompareTag("Player"))
         {
-            Debug.Log("death");
+            HealthScript.Death();
         }
     }
 }

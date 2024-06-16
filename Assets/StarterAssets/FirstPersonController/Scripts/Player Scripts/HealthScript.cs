@@ -11,6 +11,13 @@ public class HealthScript : MonoBehaviour
     public bool hasTorch = true;
     public GameObject torch;
 
+
+
+
+    public animationStateController animationStateController;
+    public PlayerController playerController;
+
+
     public TorchInteraction torchInteraction;
 
     // Update is called once per frame
@@ -48,11 +55,24 @@ public class HealthScript : MonoBehaviour
     {
         if (!isInLight)
         {
-            health -= 0.001f;
+            health -= 0.01f;
 
             //Debug.Log(health);
+            
+            if (health < 0)
+            {
+                Death();
+            }
 
-
+        }
+        else
+        {
+            if (health < 100)
+            {
+                health += 0.01f;
+            }
+            
+                
         }
     }
 
@@ -76,6 +96,14 @@ public class HealthScript : MonoBehaviour
         }
 
 
+        
+    }
+
+
+    public void Death()
+    {
+        playerController.staticAnimationPlayed = true;
+        animationStateController.animator.SetBool("isWalking", false);
         
     }
 }
