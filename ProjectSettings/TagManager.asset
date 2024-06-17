@@ -18,6 +18,7 @@ TagManager:
   - BurnPosition4
   - LeftHand
   - TorchTrigger
+  - Equasion
   layers:
   - Default
   - TransparentFX

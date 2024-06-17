@@ -18,7 +18,7 @@ public class TorchInteraction : MonoBehaviour
     }
     public void Update()
     {
-        TorchFiring();
+        
         hasTorchCheck();
     }
 

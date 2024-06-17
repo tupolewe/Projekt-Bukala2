@@ -5,6 +5,7 @@ using System.IO.Pipes;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SocialPlatforms;
+using UnityEngine.UI;
 
 public class RayCastInteraction : MonoBehaviour
 {
@@ -29,6 +30,10 @@ public class RayCastInteraction : MonoBehaviour
     public PlayerController controller;
 
     public TextMeshProUGUI actionHint;
+
+    //public GameObject equasion;
+
+    public Image equasion; 
 
     
 
@@ -74,7 +79,7 @@ public class RayCastInteraction : MonoBehaviour
             currentHitObject = null;
             currentHitDistance = maxDistance;
             actionHint.text = string.Empty;
-
+            equasion.gameObject.SetActive(false);
         }
 
         
@@ -88,7 +93,17 @@ public class RayCastInteraction : MonoBehaviour
         {
             playerNavMesh.canWallHandle = false;
         }
-        
+
+        if (hit.collider.CompareTag("Equasion"))
+        {
+            
+            equasion.gameObject.SetActive(true);
+        }
+        else if (hit.collider == null) 
+        {
+            Debug.Log("asdasdasd");
+            equasion.gameObject.SetActive(false);
+        }
 
 
 
@@ -101,6 +116,11 @@ public class RayCastInteraction : MonoBehaviour
         Gizmos.color = Color.green;
         Debug.DrawLine(origin, origin + direction * currentHitDistance);
         Gizmos.DrawWireSphere(origin + direction * currentHitDistance, sphereRadius);
+    }
+
+    private void Start()
+    {
+        equasion.gameObject.SetActive(false);
     }
 }
 
