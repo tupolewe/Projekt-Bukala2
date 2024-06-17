@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EquasionScript : MonoBehaviour
+public class EquasionScript : MonoBehaviour, Interactable 
 {
     // Start is called before the first frame update
     void Start()
@@ -14,5 +14,11 @@ public class EquasionScript : MonoBehaviour
     void Update()
     {
         
+    }
+
+
+    public void Interact()
+    {
+
     }
 }
