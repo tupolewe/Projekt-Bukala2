@@ -133,7 +133,7 @@ public class VinesBurningScript : MonoBehaviour, Interactable
                 float angle = Vector3.Angle(Player.transform.forward, fireDirection);
 
                 // Define a threshold angle to determine if the player is facing the right direction
-                float thresholdAngle = 10f; // Adjust as needed
+                float thresholdAngle = 20f; // Adjust as needed
 
                 //Debug.Log(angle);
                 animationStateController.animator.SetBool("isWalking", false);

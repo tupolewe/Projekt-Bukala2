@@ -42,15 +42,15 @@ public class AxeTrapScript : MonoBehaviour
 
             if (direction1 == 1)
             {
-                Debug.Log("obrot");
-                axe1.transform.rotation = Quaternion.Euler(0f, -90f, 0f);
+                //Debug.Log("obrot");
+                axe1.transform.rotation = Quaternion.Euler(0f, 180f, 0f);
             }
             
 
             else if (direction1 < 1)
             {
-                Debug.Log("obrot");
-                axe1.transform.rotation = Quaternion.Euler(0f, 90f, 0f);
+                //Debug.Log("obrot");
+                axe1.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
 
             }
 
@@ -62,15 +62,15 @@ public class AxeTrapScript : MonoBehaviour
 
             if ((direction2 == 1))
             {
-                Debug.Log("obrot");
-                axe2.transform.rotation = Quaternion.Euler(0f, 90f, 0f);
+                //Debug.Log("obrot");
+                axe2.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
             }
 
 
             else if (direction2 < 1)
             {
-                Debug.Log("obrot");
-                axe2.transform.rotation = Quaternion.Euler(0f, -90f, 0f);
+                //Debug.Log("obrot");
+                axe2.transform.rotation = Quaternion.Euler(0f, 180f, 0f);
 
             }
         }
