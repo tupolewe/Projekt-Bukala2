@@ -143,6 +143,7 @@ public class CameraPositionChange : MonoBehaviour, IDataPersistence
         canStartTimer = true;
         CameraFollow2.target = Player.transform;
         Level2Walls.gameObject.SetActive(false);
+        this.gameObject.SetActive(false);
     }
 
     IEnumerator TimerOff2()

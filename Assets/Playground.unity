@@ -5774,7 +5774,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0
+  m_Intensity: 0.015
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -25509,6 +25509,7 @@ MonoBehaviour:
   vignette: {fileID: 1807133553}
   level: 0
   changeDistance: 2
+  lvl2walls: {fileID: 1779610619}
 --- !u!1001 &924705981
 PrefabInstance:
   m_ObjectHideFlags: 0

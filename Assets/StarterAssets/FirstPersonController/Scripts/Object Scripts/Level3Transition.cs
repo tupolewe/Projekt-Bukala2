@@ -21,6 +21,8 @@ public class Level3Transition : MonoBehaviour
     public int level = 0;
     public float changeDistance;
 
+    public GameObject lvl2walls;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -80,6 +82,8 @@ public class Level3Transition : MonoBehaviour
         playerController.staticAnimationPlayed = false;
         
         CameraFollow3.target = Player.transform;
+        lvl2walls.SetActive(false);
+        this.gameObject.SetActive(false);
         
     }
 }
