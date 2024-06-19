@@ -143,7 +143,7 @@ public class PressurePlateScript : MonoBehaviour
 
         if (StoneDoor.transform.position.y >= height)
         {
-            doorOpened = true;
+            src2.mute = true;
         }
 
 
@@ -166,9 +166,9 @@ public class PressurePlateScript : MonoBehaviour
     void StoneDoorClosing()
     {
 
-        if(StoneDoor.transform.position.y >= height)
+        if(StoneDoor.transform.position.y < 0.01f)
             {
-                doorClosed = true;
+                src3.mute = true;
             }
 
         if (StoneDoor.transform.position.y > 0f && !platePressured && objectsAtPlate < 1)
@@ -200,26 +200,6 @@ public class PressurePlateScript : MonoBehaviour
 
    void SoundPlaying()
     {
-        if(doorClosed == true)
-        {
-            src2.mute = true;
-            src3.mute = true;
-        }
-
-        if(doorOpened == true)
-        {
-            src2.mute = true;
-            src3.mute = true;
-        }
-        if (doorOpening == true)
-        {
-            src2.mute = false;
-            src3.mute = true;
-        }
-        if(doorClosing == true)
-        {
-            src2.mute = true;
-            src3.mute = false;
-        }
+        
     }
 }

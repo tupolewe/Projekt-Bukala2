@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
+using UnityEngine.SceneManagement;
 
 public class HealthScript : MonoBehaviour
 {
@@ -105,7 +107,18 @@ public class HealthScript : MonoBehaviour
         playerController.staticAnimationPlayed = true;
         animationStateController.animator.SetBool("isWalking", false);
         animationStateController.animator.SetBool("isDead", true);
-        
+        StartCoroutine(TimerOff1());
+        Debug.Log("start cortunine");
+
+    }
+
+    IEnumerator TimerOff1()
+    {
+        Debug.Log("startrtrrtr");
+        yield return new WaitForSeconds(3);
+        SceneManager.LoadScene("Level");
+
+
     }
 }
 
