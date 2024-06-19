@@ -33,7 +33,9 @@ public class RayCastInteraction : MonoBehaviour
 
     //public GameObject equasion;
 
-    public Image equasion; 
+    public Image equasion;
+
+    public GameObject goldBar;
 
     
 

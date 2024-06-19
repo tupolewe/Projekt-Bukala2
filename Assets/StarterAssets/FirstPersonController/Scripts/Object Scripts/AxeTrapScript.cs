@@ -25,55 +25,59 @@ public class AxeTrapScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 target = currentMoveTarget();
-        Vector3 target2 = currentMoveTarget2();
-
-        axe1.transform.position = Vector3.Lerp(axe1.transform.position, target, speed * Time.deltaTime);
-        axe2.transform.position = Vector3.Lerp(axe2.transform.position, target2, speed * Time.deltaTime);
-
-        float distance1 = (target - axe1.transform.position).magnitude;
-        float distance2 = (target - axe2.transform.position).magnitude;
-
-        if (distance1 <= 0.5f) 
+        if (trapOn)
         {
-            direction1 *= -1;
+            Vector3 target = currentMoveTarget();
+            Vector3 target2 = currentMoveTarget2();
 
-            src.Play();
+            axe1.transform.position = Vector3.Lerp(axe1.transform.position, target, speed * Time.deltaTime);
+            axe2.transform.position = Vector3.Lerp(axe2.transform.position, target2, speed * Time.deltaTime);
 
-            if (direction1 == 1)
+            float distance1 = (target - axe1.transform.position).magnitude;
+            float distance2 = (target - axe2.transform.position).magnitude;
+
+            if (distance1 <= 0.5f)
             {
-                //Debug.Log("obrot");
-                axe1.transform.rotation = Quaternion.Euler(0f, 180f, 0f);
-            }
-            
+                direction1 *= -1;
 
-            else if (direction1 < 1)
+                src.Play();
+
+                if (direction1 == 1)
+                {
+                    //Debug.Log("obrot");
+                    axe1.transform.rotation = Quaternion.Euler(0f, 180f, 0f);
+                }
+
+
+                else if (direction1 < 1)
+                {
+                    //Debug.Log("obrot");
+                    axe1.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+
+                }
+
+            }
+
+            if (distance2 <= 0.5f)
             {
-                //Debug.Log("obrot");
-                axe1.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+                direction2 *= -1;
 
+                if ((direction2 == 1))
+                {
+                    //Debug.Log("obrot");
+                    axe2.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+                }
+
+
+                else if (direction2 < 1)
+                {
+                    //Debug.Log("obrot");
+                    axe2.transform.rotation = Quaternion.Euler(0f, 180f, 0f);
+
+                }
             }
-
         }
-
-        if (distance2 <= 0.5f)
-        {
-            direction2 *= -1;
-
-            if ((direction2 == 1))
-            {
-                //Debug.Log("obrot");
-                axe2.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
-            }
-
-
-            else if (direction2 < 1)
-            {
-                //Debug.Log("obrot");
-                axe2.transform.rotation = Quaternion.Euler(0f, 180f, 0f);
-
-            }
-        }
+       
     }
 
     Vector3 currentMoveTarget()

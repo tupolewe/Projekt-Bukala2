@@ -7,6 +7,8 @@ using UnityEngine.UIElements;
 public class Level3Transition : MonoBehaviour
 {
 
+    public bool inPosition;
+    public GameObject wall;
     public Transform Player;
     public Transform Position;
 
@@ -26,7 +28,7 @@ public class Level3Transition : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        wall.SetActive(false);
     }
 
     // Update is called once per frame
@@ -58,6 +60,7 @@ public class Level3Transition : MonoBehaviour
             animationStateController.animator.SetBool("isWalking", false);
             level = 1;
 
+            inPosition = true;
             StartCoroutine(TimerOff());
             StartCoroutine(TimerOn());
         }
@@ -80,10 +83,11 @@ public class Level3Transition : MonoBehaviour
         Camera2.SetActive(false);
         Camera3.SetActive(true);
         playerController.staticAnimationPlayed = false;
-        
+        wall.SetActive(true);
         CameraFollow3.target = Player.transform;
         lvl2walls.SetActive(false);
-        this.gameObject.SetActive(false);
+        //this.gameObject.SetActive(false);
+        
         
     }
 }

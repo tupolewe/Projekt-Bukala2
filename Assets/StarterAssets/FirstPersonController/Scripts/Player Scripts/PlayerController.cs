@@ -78,6 +78,11 @@ public class PlayerController : MonoBehaviour, IDataPersistence
             movementDirection = new Vector3(Input.GetAxisRaw("Vertical"), 0, Input.GetAxisRaw("Horizontal") * (-1));
             movementDirection.Normalize();
         }
+        if (levelNumber == 2)
+        {
+            movementDirection = new Vector3(Input.GetAxisRaw("Vertical") * movementMultiply, 0, Input.GetAxisRaw("Horizontal") * (-1));
+            movementDirection.Normalize();
+        }
 
         transform.Translate(movementDirection * speed * Time.deltaTime, Space.World);
 
