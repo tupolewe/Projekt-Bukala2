@@ -39,7 +39,7 @@ public class Level3Transition : MonoBehaviour
 
     public void OnTriggerEnter(Collider collider)
     {
-        if (collider != null && level == 0)
+        if (collider != null)
         {
             PlayerNavMesh.LevelChange();
             PlayerNavMesh.navMeshAgent.destination = Position.transform.position;
@@ -71,7 +71,7 @@ public class Level3Transition : MonoBehaviour
     {
         yield return new WaitForSeconds(1);
         vignette.animator.SetBool("CameraChange", true);
-        
+        CameraFollow3.target = Player.transform;
         playerController.levelNumber = 0;
 
     }

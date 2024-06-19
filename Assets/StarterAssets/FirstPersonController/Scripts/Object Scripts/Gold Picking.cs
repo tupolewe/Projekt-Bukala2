@@ -12,12 +12,13 @@ public class GoldPicking : MonoBehaviour, Interactable
     public TextMeshProUGUI actionHint;
     public void Interact()
     {
-        if (rayCast.currentHitObject.GetComponent("GoldPicking"))
-        {
+        
+            
             goldMenager.goldCount++;
             Debug.Log(goldMenager.goldCount);   
             this.gameObject.SetActive(false);
-        }
+        
+        
     }
 
     public void Update()

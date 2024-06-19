@@ -13,6 +13,7 @@ public class TeleportScript : MonoBehaviour
     public AxeTrapScript axetrap;
     public AxeTrapScript axeTrap2;
     public AxeTrapScript axeTrap3;
+    public Level6Transistion level6transistion;
     // Start is called before the first frame update
     void Start()
     {

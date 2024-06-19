@@ -22,7 +22,7 @@ public class animationStateController : MonoBehaviour
     int torchHandlerHash;
     public bool canHandleTorch;
     public bool torchHandle = false;
-
+    int isDeadHash; 
 
     public float totalTime = 3f;
     public float currentTime;
@@ -41,7 +41,8 @@ public class animationStateController : MonoBehaviour
         isWalkingHash = Animator.StringToHash("isWalking");
         canPushHash = Animator.StringToHash("canPush");
         torchHandlerHash = Animator.StringToHash("torchHandler");
-        hasTorchHash = Animator.StringToHash("hasTorch"); 
+        hasTorchHash = Animator.StringToHash("hasTorch");
+        isDeadHash = Animator.StringToHash("isDead");
     }
 
     // Update is called once per frame

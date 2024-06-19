@@ -19,13 +19,21 @@ public class PressurePlateScript : MonoBehaviour
 
     public AudioSource src;
     public AudioSource src2;
+    public AudioSource src3;
+    public AudioClip clip;
 
     bool playCount = false;
 
+    public float height;
 
     public GameObject pressurePlate;
     
     public animationStateController controller;
+
+    public bool doorOpened;
+    public bool doorClosed;
+    public bool doorOpening;
+    public bool doorClosing;
     // Update is called once per frame
     void Update()
     {
@@ -33,6 +41,7 @@ public class PressurePlateScript : MonoBehaviour
         StoneDoorClosing();
         //Debug.Log(objectsAtPlate);
         ObjectCheck();
+        SoundPlaying();
     }
 
     private void Start()
@@ -42,13 +51,17 @@ public class PressurePlateScript : MonoBehaviour
 
     public void OnTriggerEnter(Collider collider)
     {
-
-        
+        src3.mute = true;
+        src2.mute = false;
+        src2.pitch = 0.8f;
+        src2.PlayOneShot(clip);
+        doorOpening = true;
 
         if (playCount == false)
         {
             src.pitch = 0.8f;
             src.Play();
+            
             playCount = true;
         }
         
@@ -64,6 +77,7 @@ public class PressurePlateScript : MonoBehaviour
                 pressurePlate.transform.position = new Vector3(transform.position.x, -0.18f, transform.position.z);
                 //gameObject.transform.localScale = scaleChange;
                 Debug.Log(collider);
+                 
             }
 
             if (collider != null && !controller.canPushD)
@@ -88,8 +102,13 @@ public class PressurePlateScript : MonoBehaviour
 
         src.pitch = 0.6f;
         src.Play();
+        src2.mute = true;
+        src3.mute = false;
         playCount = false;
-
+        src3.pitch = 0.6f;
+        src3.PlayOneShot(clip);
+        doorClosing = true;
+        ;
 
         {
 
@@ -121,14 +140,17 @@ public class PressurePlateScript : MonoBehaviour
 
     void StoneDoorOpening()
     {
-        
+
+        if (StoneDoor.transform.position.y >= height)
+        {
+            doorOpened = true;
+        }
 
 
-
-            if (platePressured && StoneDoor.transform.position.y <= 7f && objectsAtPlate >= 1)
+        if (platePressured && StoneDoor.transform.position.y <= height && objectsAtPlate >= 1)
         {
             StoneDoor.transform.Translate(Vector3.up * openingSpeed * Time.deltaTime);
-
+            doorOpened = false;
             
 
         }
@@ -144,12 +166,15 @@ public class PressurePlateScript : MonoBehaviour
     void StoneDoorClosing()
     {
 
-        
+        if(StoneDoor.transform.position.y >= height)
+            {
+                doorClosed = true;
+            }
 
         if (StoneDoor.transform.position.y > 0f && !platePressured && objectsAtPlate < 1)
         {
             StoneDoor.transform.Translate(Vector3.down * closingSpeed * Time.deltaTime);
-
+            doorClosed=false;
             
         }
     }
@@ -173,5 +198,28 @@ public class PressurePlateScript : MonoBehaviour
         }
     }
 
-   
+   void SoundPlaying()
+    {
+        if(doorClosed == true)
+        {
+            src2.mute = true;
+            src3.mute = true;
+        }
+
+        if(doorOpened == true)
+        {
+            src2.mute = true;
+            src3.mute = true;
+        }
+        if (doorOpening == true)
+        {
+            src2.mute = false;
+            src3.mute = true;
+        }
+        if(doorClosing == true)
+        {
+            src2.mute = true;
+            src3.mute = false;
+        }
+    }
 }

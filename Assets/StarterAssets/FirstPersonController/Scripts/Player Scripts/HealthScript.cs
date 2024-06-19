@@ -104,6 +104,7 @@ public class HealthScript : MonoBehaviour
     {
         playerController.staticAnimationPlayed = true;
         animationStateController.animator.SetBool("isWalking", false);
+        animationStateController.animator.SetBool("isDead", true);
         
     }
 }
