@@ -7,7 +7,7 @@ using UnityEngine;
 public class NarrativeUIScript : MonoBehaviour
 {
 
-    public GameObject MainCamera;
+    public Camera MainCamera;
     public GameObject narrativeUI;
     public GameObject narrativeText;
     // Start is called before the first frame update
@@ -20,6 +20,7 @@ public class NarrativeUIScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        MainCamera = Camera.main;
         transform.rotation = Quaternion.LookRotation(transform.position - MainCamera.transform.position);
         ScaleCheck();
     }

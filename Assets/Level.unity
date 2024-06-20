@@ -12903,7 +12903,7 @@ GameObject:
   - component: {fileID: 259070164}
   m_Layer: 0
   m_Name: Camera4
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13511,7 +13511,7 @@ GameObject:
   - component: {fileID: 262565714}
   m_Layer: 0
   m_Name: Camera2
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14434,7 +14434,7 @@ GameObject:
   - component: {fileID: 281808773}
   m_Layer: 0
   m_Name: Camera5
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -44404,7 +44404,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   narrativeText: {fileID: 1411039054}
   animator: {fileID: 7032680}
-  Text: You hear some cutting noises in the distance, it makes your hair stand up
+  Text: You hear some sharp,cutting noises in the distance, it makes your hair stand
+    up
 --- !u!65 &872461825
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -57409,6 +57410,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 2140472229}
   smoothTime: 0.27
+--- !u!20 &1109646356 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 9005220659476430821, guid: 2d3a85ecde41a8246a79669975912b74,
+    type: 3}
+  m_PrefabInstance: {fileID: 60889539378096550}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1112782181
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -61118,7 +61125,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   narrativeText: {fileID: 1411039054}
   animator: {fileID: 7032680}
-  Text: The walls seems to have some symbols painted on them...
+  Text: The walls seem to have some symbols painted on them...
 --- !u!65 &1220455152
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -72664,7 +72671,7 @@ GameObject:
   - component: {fileID: 1475075243}
   m_Layer: 0
   m_Name: Camera3
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -76912,7 +76919,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   narrativeText: {fileID: 1411039054}
   animator: {fileID: 7032680}
-  Text: It seems to be the goods mentioned on the statue...
+  Text: Are those the goods mentioned by the statue?
 --- !u!65 &1547648292
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -88878,7 +88885,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1779610620
 Transform:
   m_ObjectHideFlags: 0
@@ -105194,8 +105201,8 @@ Transform:
   m_GameObject: {fileID: 2064181214}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 14.62, y: -16.642286, z: 3.5415726}
-  m_LocalScale: {x: 54.008343, y: 9.3438, z: 40.907696}
+  m_LocalPosition: {x: 14.340749, y: -16.642286, z: 3.5415726}
+  m_LocalScale: {x: 51.145363, y: 9.3438, z: 40.907696}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1665860500}
@@ -109158,7 +109165,7 @@ PrefabInstance:
         type: 3}
       propertyPath: MainCamera
       value: 
-      objectReference: {fileID: 1109646345}
+      objectReference: {fileID: 1109646356}
     - target: {fileID: 4192970384129903215, guid: 77692ea18b1603d4bb54cfb7df361f72,
         type: 3}
       propertyPath: Torch
