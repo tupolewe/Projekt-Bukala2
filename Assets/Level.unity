@@ -41171,6 +41171,75 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 796542056}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &797303444
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 797303445}
+  - component: {fileID: 797303447}
+  - component: {fileID: 797303446}
+  m_Layer: 0
+  m_Name: NarrativeBox1 (3)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &797303445
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 797303444}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 37.67, y: 0, z: 36.39}
+  m_LocalScale: {x: 26.116032, y: 2.2483518, z: 2.6835456}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1021780975}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &797303446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 797303444}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd07b4f304a20d54fad634b80d60f7a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  narrativeText: {fileID: 1411039054}
+  animator: {fileID: 7032680}
+  Text: It looks like main chamber, there is some kind of statue in front
+--- !u!65 &797303447
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 797303444}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &798229013
 GameObject:
   m_ObjectHideFlags: 0
@@ -44288,6 +44357,75 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1120330370}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &872461822
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 872461823}
+  - component: {fileID: 872461825}
+  - component: {fileID: 872461824}
+  m_Layer: 0
+  m_Name: NarrativeBox1 (5)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &872461823
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 872461822}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 149.87, y: 0, z: 50.81}
+  m_LocalScale: {x: 12.372614, y: 2.2483518, z: 3.7534752}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1021780975}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!114 &872461824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 872461822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd07b4f304a20d54fad634b80d60f7a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  narrativeText: {fileID: 1411039054}
+  animator: {fileID: 7032680}
+  Text: You hear some cutting noises in the distance, it makes your hair stand up
+--- !u!65 &872461825
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 872461822}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &873647594
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -53064,6 +53202,11 @@ Transform:
   m_Children:
   - {fileID: 2111191945}
   - {fileID: 1278084064}
+  - {fileID: 1220455150}
+  - {fileID: 797303445}
+  - {fileID: 1782516430}
+  - {fileID: 872461823}
+  - {fileID: 1547648290}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1024805134
@@ -60928,6 +61071,75 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 619795461117719369, guid: 2a666b7813480c74881b41aad4e7f311, type: 3}
+--- !u!1 &1220455149
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1220455150}
+  - component: {fileID: 1220455152}
+  - component: {fileID: 1220455151}
+  m_Layer: 0
+  m_Name: NarrativeBox1 (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1220455150
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1220455149}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 23.61, y: 0, z: 4.75}
+  m_LocalScale: {x: 18.886341, y: 2.2483518, z: 2.6835456}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1021780975}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!114 &1220455151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1220455149}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd07b4f304a20d54fad634b80d60f7a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  narrativeText: {fileID: 1411039054}
+  animator: {fileID: 7032680}
+  Text: The walls seems to have some symbols painted on them...
+--- !u!65 &1220455152
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1220455149}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &1221546649
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -63126,7 +63338,7 @@ Transform:
   m_GameObject: {fileID: 1278084063}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.73, y: 0, z: -8.16}
+  m_LocalPosition: {x: 2.73, y: 0, z: -17.19}
   m_LocalScale: {x: 6.767539, y: 2.2483518, z: 2.2483518}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -63146,7 +63358,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   narrativeText: {fileID: 1411039054}
   animator: {fileID: 7032680}
-  Text: zostaw mnie ty kurwo jebana!!! chujujujujffsdfsdfsdfsdfsdfsdfsdddddddddddddddddddddddddddddddddddddddddddddddd
+  Text: 'It seems to be some sort of ancient mechanism '
 --- !u!65 &1278084066
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -76653,6 +76865,75 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1545911107}
   m_Mesh: {fileID: -5368404280738853613, guid: 1ec690850f93d4f4385153108775bf7e, type: 3}
+--- !u!1 &1547648289
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1547648290}
+  - component: {fileID: 1547648292}
+  - component: {fileID: 1547648291}
+  m_Layer: 0
+  m_Name: NarrativeBox1 (6)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1547648290
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1547648289}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 126.67, y: 0, z: 1.24}
+  m_LocalScale: {x: 5.2453694, y: 2.2483518, z: 4.702729}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1021780975}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!114 &1547648291
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1547648289}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd07b4f304a20d54fad634b80d60f7a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  narrativeText: {fileID: 1411039054}
+  animator: {fileID: 7032680}
+  Text: It seems to be the goods mentioned on the statue...
+--- !u!65 &1547648292
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1547648289}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &1548191419
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -88909,6 +89190,75 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -5311807679334697150, guid: 6e1beed3ab2711f43ada2f7ed4ba611a, type: 3}
+--- !u!1 &1782516429
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1782516430}
+  - component: {fileID: 1782516432}
+  - component: {fileID: 1782516431}
+  m_Layer: 0
+  m_Name: NarrativeBox1 (4)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1782516430
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1782516429}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 32.01, y: 0, z: 69.25}
+  m_LocalScale: {x: 6.6540895, y: 2.2483518, z: 3.7534752}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1021780975}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1782516431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1782516429}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd07b4f304a20d54fad634b80d60f7a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  narrativeText: {fileID: 1411039054}
+  animator: {fileID: 7032680}
+  Text: '"Bring me the goods and I shall grant you freedom"'
+--- !u!65 &1782516432
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1782516429}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &1784150174
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -108738,6 +109088,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_margin.y
       value: 18.32582
+      objectReference: {fileID: 0}
+    - target: {fileID: 2374673307660166737, guid: 77692ea18b1603d4bb54cfb7df361f72,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 54.3532
       objectReference: {fileID: 0}
     - target: {fileID: 2553176520576615412, guid: 77692ea18b1603d4bb54cfb7df361f72,
         type: 3}
