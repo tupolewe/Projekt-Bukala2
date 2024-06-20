@@ -27,6 +27,11 @@ public class HealthScript : MonoBehaviour
     {
         PlayerHealth();
         TorchActive();
+
+        if(Input.GetKeyDown(KeyCode.Escape)) 
+        {
+            SceneManager.LoadScene("Main Menu");
+        }
     }
 
     public void OnTriggerEnter(Collider other)
