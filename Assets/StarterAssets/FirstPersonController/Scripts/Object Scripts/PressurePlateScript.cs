@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.PlasticSCM.Editor.WebApi;
-using UnityEditor.ShaderGraph.Internal;
+
+
 using UnityEngine;
 
 public class PressurePlateScript : MonoBehaviour
